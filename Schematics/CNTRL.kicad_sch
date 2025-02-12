@@ -4,6 +4,10 @@
 	(generator_version "8.0")
 	(uuid "b53c4715-f5d4-49ad-81c7-0d4de72c86a6")
 	(paper "A4")
+	(title_block
+		(title "ENCODER CLUSTER")
+		(date "2025-02-12")
+	)
 	(lib_symbols
 		(symbol "Device:C"
 			(pin_numbers hide)
@@ -1616,6 +1620,18 @@
 		)
 		(uuid "fd59ec21-de16-49d6-bf34-866062534a86")
 	)
+	(text "Drawn by Harvey McBurney"
+		(exclude_from_sim no)
+		(at 199.39 169.418 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.6)
+				(bold yes)
+			)
+		)
+		(uuid "e77ddf19-8327-41d4-8d3a-3a6802680143")
+	)
 	(global_label "ENC1_B"
 		(shape input)
 		(at 53.34 59.69 180)
@@ -2142,7 +2158,7 @@
 			(uuid "de60493c-0df7-42b8-9e0b-80931d4c3646")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR018")
 					(unit 1)
@@ -3029,7 +3045,7 @@
 			(uuid "a2ce710c-efc3-4479-89e3-6b298581cb81")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "R1")
 					(unit 1)
@@ -3835,7 +3851,7 @@
 			(uuid "befefd22-b25f-4b4f-b315-70a1a33185fa")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR016")
 					(unit 1)
@@ -4171,7 +4187,7 @@
 			(uuid "092f137e-ab45-4ae1-b89c-93775905c1f4")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR017")
 					(unit 1)
@@ -4658,7 +4674,7 @@
 			(uuid "c50cce26-1753-46d8-a439-127310ef33c9")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "SW1")
 					(unit 1)
@@ -5408,7 +5424,7 @@
 			(uuid "693415ce-475c-4cb4-8aee-949b30426cd5")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR011")
 					(unit 1)
@@ -6369,7 +6385,7 @@
 			(uuid "ac4f7995-f22b-4b34-9f35-6b15dfe06f60")
 		)
 		(instances
-			(project ""
+			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "C9")
 					(unit 1)

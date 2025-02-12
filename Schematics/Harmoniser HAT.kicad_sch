@@ -120,44 +120,6 @@
 		)
 	)
 	(sheet
-		(at 172.72 34.29)
-		(size 21.59 17.78)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "7c09dc29-e8ec-410a-845a-e200b7195393")
-		(property "Sheetname" "Power"
-			(at 172.72 33.5784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "PWR.kicad_sch"
-			(at 172.72 52.6546 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053"
-					(page "6")
-				)
-			)
-		)
-	)
-	(sheet
 		(at 66.04 30.48)
 		(size 25.4 17.78)
 		(fields_autoplaced yes)
