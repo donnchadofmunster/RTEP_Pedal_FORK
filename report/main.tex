@@ -1,0 +1,94 @@
+\documentclass{l5eng}
+
+% Add bibliography file
+\addbibresource{References.bib}
+
+\input{titlepage}
+
+\begin{document}
+
+% Title Page
+\customTitlePage
+
+\pagenumbering{roman} 
+
+% Declaration of Originality
+\chapter*{Declaration of Originality}
+This work is the result of my own investigations, except where otherwise stated. Other sources are acknowledged by explicit references. A bibliography is appended.
+
+I understand that plagiarism constitutes a serious academic offence. I declare that this document does not, to the best of my knowledge and belief, contain any material previously published or written by another person, except where due acknowledgement is made in the text. I also declare that this work has not been submitted for any other degree or professional qualification.
+
+\vspace{2cm}
+\noindent
+\textbf{Name:} %Add names here \\
+\textbf{Date:} \today
+\addcontentsline{toc}{chapter}{Declaration of Originality}
+\clearpage
+
+% Abstract
+\chapter*{Abstract}
+\input{report/sections/0_Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\clearpage
+
+% Acknowledgements
+\chapter*{Acknowledgements}
+
+
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\clearpage
+
+% Table of Contents
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic} 
+
+% Chapters
+\chapter{Introduction}
+\input{report/sections/1_Introduction}
+
+
+\chapter{Literature Review}
+\input{report/sections/2_Literature_Review}
+
+
+\chapter{System Design}
+\input{report/sections/3_System_Design}
+
+
+\chapter{Simulation and Modelling}
+\input{report/sections/4_Simulation_and_Modeling}
+
+
+\chapter{Assembly and Experimental Setup}
+\input{report/sections/5_Experimental_Setup}
+
+
+\chapter{Results and Analysis}
+\input{report/sections/6_Results_and_Analysis}
+
+
+\chapter{Discussion}
+\input{report/sections/7_Discussion}
+
+
+\chapter{Conclusions and Further Work}
+\input{report/sections/8_Conclusion}
+
+
+% Bibliography
+\printbibliography[heading=bibintoc, title={References}]
+
+% Appendices
+\appendix
+\chapter{Appendices}
+%\input{report/appendices/A_Risk_Assessment}
+
+%\input{report/appendices/B_JB_Spec_Sheet}
+
+%\input{report/appendices/C_JB_Documentation}
+
+%\input{report/appendices/D_JB_Code}
+
+\end{document}
