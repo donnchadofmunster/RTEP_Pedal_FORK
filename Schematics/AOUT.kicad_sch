@@ -2023,10 +2023,10 @@
 		)
 		(uuid "fc6ae878-0731-4184-a32d-90080af3509b")
 	)
-	(text_box "Separate L/R TS\nMono Outputs"
+	(text_box "TS Mono \nLine Out"
 		(exclude_from_sim no)
 		(at 182.245 53.975 0)
-		(size 20.32 88.9)
+		(size 20.32 29.845)
 		(stroke
 			(width 0)
 			(type default)
@@ -2060,6 +2060,25 @@
 			(justify left top)
 		)
 		(uuid "5ad75c2f-b9c4-45c2-9db8-5c3d74401131")
+	)
+	(text_box "TS Mono \nInst Out"
+		(exclude_from_sim no)
+		(at 182.88 114.3 0)
+		(size 20.32 29.845)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "89a60a7a-32cf-44af-8048-8ad4e30e3852")
 	)
 	(text "Drawn by Harvey McBurney"
 		(exclude_from_sim no)
