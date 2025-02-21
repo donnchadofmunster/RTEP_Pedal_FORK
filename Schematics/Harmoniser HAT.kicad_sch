@@ -6,8 +6,8 @@
 	(paper "A4")
 	(lib_symbols)
 	(sheet
-		(at 25.4 30.48)
-		(size 35.56 20.32)
+		(at 25.4 25.4)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -18,7 +18,7 @@
 		)
 		(uuid "1e24c712-f0cf-4e13-a910-a1f2072b9310")
 		(property "Sheetname" "PCM3060 CODEC"
-			(at 25.4 29.7684 0)
+			(at 25.4 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -44,8 +44,8 @@
 		)
 	)
 	(sheet
-		(at 100.33 31.75)
-		(size 20.32 16.51)
+		(at 101.6 25.4)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -56,7 +56,7 @@
 		)
 		(uuid "3b32bbde-f207-4d45-b634-d2776b47a4e0")
 		(property "Sheetname" "Audio Inputs"
-			(at 100.33 31.0384 0)
+			(at 101.6 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -65,7 +65,7 @@
 			)
 		)
 		(property "Sheetfile" "AINPUT.kicad_sch"
-			(at 100.33 48.8446 0)
+			(at 101.6 51.3846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -82,8 +82,8 @@
 		)
 	)
 	(sheet
-		(at 208.28 34.29)
-		(size 12.7 3.81)
+		(at 177.8 25.4)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -94,7 +94,7 @@
 		)
 		(uuid "5d678f4e-03b5-43f5-b100-a64e850a5e5c")
 		(property "Sheetname" "Control"
-			(at 208.28 33.5784 0)
+			(at 177.8 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -103,7 +103,7 @@
 			)
 		)
 		(property "Sheetfile" "CNTRL.kicad_sch"
-			(at 208.28 38.6846 0)
+			(at 177.8 51.3846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -120,8 +120,8 @@
 		)
 	)
 	(sheet
-		(at 66.04 30.48)
-		(size 25.4 17.78)
+		(at 63.5 25.4)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -132,7 +132,7 @@
 		)
 		(uuid "94150540-adfd-4870-80d6-c5485bc02207")
 		(property "Sheetname" "RPi GPIO"
-			(at 66.04 29.7684 0)
+			(at 63.5 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -141,7 +141,7 @@
 			)
 		)
 		(property "Sheetfile" "RPI.kicad_sch"
-			(at 66.04 48.8446 0)
+			(at 63.5 51.3846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -158,8 +158,8 @@
 		)
 	)
 	(sheet
-		(at 138.43 34.29)
-		(size 19.05 15.24)
+		(at 139.7 25.4)
+		(size 25.4 25.4)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -170,7 +170,7 @@
 		)
 		(uuid "95a9c2d0-fcb3-47f7-96a1-b730c3ba5238")
 		(property "Sheetname" "Audio Outputs"
-			(at 138.43 33.5784 0)
+			(at 139.7 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -179,7 +179,7 @@
 			)
 		)
 		(property "Sheetfile" "AOUT.kicad_sch"
-			(at 138.43 50.1146 0)
+			(at 139.7 51.3846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
