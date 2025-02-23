@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "cdd73fd1-bc7e-4351-ad4b-19304ecf94ec")
 	(paper "A4")
 	(title_block
@@ -101,6 +101,18 @@
 			(symbol "AudioJack2_Switch_1_1"
 				(polyline
 					(pts
+						(xy 0 0) (xy 0.635 -0.635) (xy 1.27 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy 0.635 4.826) (xy 0.889 4.318)
 					)
 					(stroke
@@ -125,22 +137,10 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0.635 -0.635) (xy 1.27 0) (xy 2.54 0)
+						(xy 2.54 5.08) (xy -0.635 5.08) (xy -0.635 0) (xy -1.27 -0.635) (xy -1.905 0)
 					)
 					(stroke
 						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 1.778 -2.54) (xy 1.778 -0.254) (xy 1.524 -0.762)
-					)
-					(stroke
-						(width 0)
 						(type default)
 					)
 					(fill
@@ -161,10 +161,10 @@
 				)
 				(polyline
 					(pts
-						(xy 2.54 5.08) (xy -0.635 5.08) (xy -0.635 0) (xy -1.27 -0.635) (xy -1.905 0)
+						(xy 2.54 -2.54) (xy 1.778 -2.54) (xy 1.778 -0.254) (xy 1.524 -0.762)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -244,21 +244,22 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
-		(symbol "Connector_Audio:AudioJack3_Switch"
+		(symbol "Connector_Audio:AudioJack3"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "J"
-				(at 0 11.43 0)
+				(at 0 8.89 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "AudioJack3_Switch"
-				(at 0 8.89 0)
+			(property "Value" "AudioJack3"
+				(at 0 6.35 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -283,7 +284,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Audio Jack, 3 Poles (Stereo / TRS), Switched Poles (Normalling)"
+			(property "Description" "Audio Jack, 3 Poles (Stereo / TRS)"
 				(at 0 0 0)
 				(effects
 					(font
@@ -292,7 +293,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "audio jack receptacle stereo headphones connector"
+			(property "ki_keywords" "audio jack receptacle stereo headphones phones TRS connector"
 				(at 0 0 0)
 				(effects
 					(font
@@ -310,10 +311,10 @@
 					(hide yes)
 				)
 			)
-			(symbol "AudioJack3_Switch_0_1"
+			(symbol "AudioJack3_0_1"
 				(rectangle
 					(start -5.08 -5.08)
-					(end -6.35 -7.62)
+					(end -6.35 -2.54)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -324,43 +325,7 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 4.826) (xy -1.016 4.318)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.508 -0.254) (xy 0.762 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.778 -5.334) (xy 2.032 -5.842)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -5.08) (xy 0.635 -5.715) (xy 1.27 -5.08) (xy 2.54 -5.08)
+						(xy -1.905 -2.54) (xy -1.27 -3.175) (xy -0.635 -2.54) (xy -0.635 0) (xy 2.54 0)
 					)
 					(stroke
 						(width 0.254)
@@ -372,55 +337,7 @@
 				)
 				(polyline
 					(pts
-						(xy 2.54 -7.62) (xy 1.778 -7.62) (xy 1.778 -5.334) (xy 1.524 -5.842)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 0.508 -2.54) (xy 0.508 -0.254) (xy 0.254 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy -1.27 2.54) (xy -1.27 4.826) (xy -1.524 4.318)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.905 -5.08) (xy -1.27 -5.715) (xy -0.635 -5.08) (xy -0.635 0) (xy 2.54 0)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 5.08) (xy -2.54 5.08) (xy -2.54 -5.08) (xy -3.175 -5.715) (xy -3.81 -5.08)
+						(xy 0 -2.54) (xy 0.635 -3.175) (xy 1.27 -2.54) (xy 2.54 -2.54)
 					)
 					(stroke
 						(width 0.254)
@@ -431,8 +348,8 @@
 					)
 				)
 				(rectangle
-					(start 2.54 6.35)
-					(end -5.08 -8.89)
+					(start 2.54 3.81)
+					(end -5.08 -5.08)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -441,8 +358,38 @@
 						(type background)
 					)
 				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy -2.54 2.54) (xy -2.54 -2.54) (xy -3.175 -3.175) (xy -3.81 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 			)
-			(symbol "AudioJack3_Switch_1_1"
+			(symbol "AudioJack3_1_1"
+				(pin passive line
+					(at 5.08 2.54 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin passive line
 					(at 5.08 0 180)
 					(length 2.54)
@@ -471,60 +418,6 @@
 							)
 						)
 					)
-					(number "RN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 5.08 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "SN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -5.08 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
 					(number "T"
 						(effects
 							(font
@@ -533,28 +426,13 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 5.08 -7.62 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "TN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -627,7 +505,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -639,7 +517,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -688,9 +566,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C_Polarized"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -846,6 +727,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:Opamp_Dual"
 			(exclude_from_sim no)
@@ -971,17 +853,17 @@
 						(type background)
 					)
 				)
-				(pin output line
-					(at 7.62 0 180)
+				(pin input line
+					(at -7.62 2.54 0)
 					(length 2.54)
-					(name "~"
+					(name "+"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "1"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1007,17 +889,17 @@
 						)
 					)
 				)
-				(pin input line
-					(at -7.62 2.54 0)
+				(pin output line
+					(at 7.62 0 180)
 					(length 2.54)
-					(name "+"
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "3"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1096,24 +978,6 @@
 			)
 			(symbol "Opamp_Dual_3_1"
 				(pin power_in line
-					(at -2.54 -7.62 90)
-					(length 3.81)
-					(name "V-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
 					(at -2.54 7.62 270)
 					(length 3.81)
 					(name "V+"
@@ -1131,11 +995,32 @@
 						)
 					)
 				)
+				(pin power_in line
+					(at -2.54 -7.62 90)
+					(length 3.81)
+					(name "V-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:Q_NPN_BEC"
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1196,6 +1081,18 @@
 			(symbol "Q_NPN_BEC_0_1"
 				(polyline
 					(pts
+						(xy 0.635 1.905) (xy 0.635 -1.905) (xy 0.635 -1.905)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy 0.635 0.635) (xy 2.54 2.54)
 					)
 					(stroke
@@ -1218,12 +1115,11 @@
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0.635 1.905) (xy 0.635 -1.905) (xy 0.635 -1.905)
-					)
+				(circle
+					(center 1.27 0)
+					(radius 2.8194)
 					(stroke
-						(width 0.508)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1242,17 +1138,6 @@
 						(type outline)
 					)
 				)
-				(circle
-					(center 1.27 0)
-					(radius 2.8194)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
 			)
 			(symbol "Q_NPN_BEC_1_1"
 				(pin input line
@@ -1266,24 +1151,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1309,10 +1176,31 @@
 						)
 					)
 				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "E"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:R"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -1431,12 +1319,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+5V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1508,7 +1401,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -1520,7 +1413,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -1551,12 +1444,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1647,12 +1545,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:VCOM"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1755,7 +1658,91 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "Drawn by Harvey McBurney"
+		(exclude_from_sim no)
+		(at 199.136 169.926 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.6)
+				(bold yes)
+			)
+		)
+		(uuid "8023a479-a4eb-430f-a53e-7ca5541aaddd")
+	)
+	(text "T: Left\nR: Right\nS: GND\n\nChange R for stereo"
+		(exclude_from_sim no)
+		(at 185.42 79.756 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8754f49c-d340-4216-81d8-eef19b1de2f0")
+	)
+	(text_box "Instrument Level\n6.35mm TS Output"
+		(exclude_from_sim no)
+		(at 170.815 116.84 0)
+		(size 36.83 29.845)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "21708ca6-3f51-408c-a43e-e1af14456495")
+	)
+	(text_box "Line Level\n3.5mm TRS Output"
+		(exclude_from_sim no)
+		(at 170.18 46.99 0)
+		(size 36.83 44.45)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "3c3934d6-54c1-4686-ae3e-752e0ea249c1")
+	)
+	(text_box "Auto-Mute when\nno ADC input"
+		(exclude_from_sim no)
+		(at 144.145 38.1 0)
+		(size 23.495 104.775)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "5ad75c2f-b9c4-45c2-9db8-5c3d74401131")
 	)
 	(junction
 		(at 82.55 124.46)
@@ -1800,12 +1787,6 @@
 		(uuid "5379b4ef-7939-444d-9c39-f30c5b101ce3")
 	)
 	(junction
-		(at 184.15 67.31)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "585320a7-f0ca-4982-83d6-0707dcd1dd72")
-	)
-	(junction
 		(at 181.61 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1842,22 +1823,10 @@
 		(uuid "79587949-6738-4167-aa69-3003d3e3e059")
 	)
 	(junction
-		(at 176.53 59.69)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "799d1102-9d9d-4e11-b527-5d590f0fb0bd")
-	)
-	(junction
 		(at 148.59 67.31)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "908c7ab1-c6d3-4499-bd96-4faca75bd5b9")
-	)
-	(junction
-		(at 181.61 64.77)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b7a617de-eddc-40b3-943f-c12abd344c27")
 	)
 	(junction
 		(at 163.83 127)
@@ -2101,7 +2070,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 57.15) (xy 186.69 57.15)
+			(xy 176.53 62.23) (xy 186.69 62.23)
 		)
 		(stroke
 			(width 0)
@@ -2211,7 +2180,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 57.15) (xy 176.53 59.69)
+			(xy 176.53 62.23) (xy 176.53 63.5)
 		)
 		(stroke
 			(width 0)
@@ -2361,16 +2330,6 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 62.23) (xy 181.61 64.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8b58771a-f6c8-4412-ac42-935e8df66746")
-	)
-	(wire
-		(pts
 			(xy 184.15 132.08) (xy 184.15 134.62)
 		)
 		(stroke
@@ -2411,16 +2370,6 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 59.69) (xy 186.69 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9238671f-ebef-43cd-b222-15f4906b2fbd")
-	)
-	(wire
-		(pts
 			(xy 176.53 73.66) (xy 176.53 74.93)
 		)
 		(stroke
@@ -2448,16 +2397,6 @@
 			(type default)
 		)
 		(uuid "97b7e414-cbb4-4e0d-80cf-89ad8fc0646e")
-	)
-	(wire
-		(pts
-			(xy 184.15 69.85) (xy 184.15 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9988290e-7be2-4194-9e5f-c98496cc7208")
 	)
 	(wire
 		(pts
@@ -2491,16 +2430,6 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 69.85) (xy 184.15 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac09a25e-d4f6-4846-a5e0-9740f3253a7a")
-	)
-	(wire
-		(pts
 			(xy 184.15 129.54) (xy 184.15 127)
 		)
 		(stroke
@@ -2528,16 +2457,6 @@
 			(type default)
 		)
 		(uuid "b805136d-1e87-4dd0-9fa4-d453db4e28ea")
-	)
-	(wire
-		(pts
-			(xy 186.69 62.23) (xy 181.61 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b8aaa8d4-e537-4871-ad3e-f7083d66f18e")
 	)
 	(wire
 		(pts
@@ -2611,7 +2530,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 67.31) (xy 186.69 67.31)
+			(xy 163.83 67.31) (xy 186.69 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2628,16 +2547,6 @@
 			(type default)
 		)
 		(uuid "d7194d6c-b17b-4933-ab2a-c978a5ec9bf1")
-	)
-	(wire
-		(pts
-			(xy 163.83 67.31) (xy 184.15 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d991f812-03d1-4d61-bb59-142dbc0d75a7")
 	)
 	(wire
 		(pts
@@ -2728,86 +2637,6 @@
 			(type default)
 		)
 		(uuid "ff378f9e-1609-4445-b86f-c822a2956945")
-	)
-	(text_box "Instrument Level\n6.35mm TS Output"
-		(exclude_from_sim no)
-		(at 170.815 116.84 0)
-		(size 36.83 29.845)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "21708ca6-3f51-408c-a43e-e1af14456495")
-	)
-	(text_box "Line Level\n3.5mm TRS Output"
-		(exclude_from_sim no)
-		(at 171.45 45.72 0)
-		(size 36.83 44.45)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "3c3934d6-54c1-4686-ae3e-752e0ea249c1")
-	)
-	(text_box "Auto-Mute when\nno ADC input"
-		(exclude_from_sim no)
-		(at 144.145 38.1 0)
-		(size 23.495 104.775)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "5ad75c2f-b9c4-45c2-9db8-5c3d74401131")
-	)
-	(text "Drawn by Harvey McBurney"
-		(exclude_from_sim no)
-		(at 199.136 169.926 0)
-		(effects
-			(font
-				(size 2 2)
-				(thickness 0.6)
-				(bold yes)
-			)
-		)
-		(uuid "8023a479-a4eb-430f-a53e-7ca5541aaddd")
-	)
-	(text "T: Left\nR: Right\nS: GND\n\nChange R for stereo"
-		(exclude_from_sim no)
-		(at 185.42 79.756 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "8754f49c-d340-4216-81d8-eef19b1de2f0")
 	)
 	(global_label "ZEROR"
 		(shape input)
@@ -2922,7 +2751,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.4"
 			(at 129.54 126.0348 0)
 			(effects
 				(font
@@ -3372,13 +3201,13 @@
 		(lib_id "Device:Opamp_Dual")
 		(at 107.95 127 0)
 		(mirror x)
-		(unit 1)
+		(unit 2)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "2b13c9c4-2807-4753-9e89-7dde6cf359c8")
-		(property "Reference" "U5"
+		(property "Reference" "U4"
 			(at 107.95 137.16 0)
 			(effects
 				(font
@@ -3484,8 +3313,8 @@
 		(instances
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/95a9c2d0-fcb3-47f7-96a1-b730c3ba5238"
-					(reference "U5")
-					(unit 1)
+					(reference "U4")
+					(unit 2)
 				)
 			)
 		)
@@ -3586,22 +3415,22 @@
 			(uuid "cc8bbfa1-6a60-4849-8732-e15a788c0f86")
 		)
 		(pin "4"
-			(uuid "dd9dda7c-b6d5-458e-a537-e1bf87399b9b")
+			(uuid "dd9dda7c-b6d5-458e-a537-e1bf87399b9c")
 		)
 		(pin "6"
-			(uuid "67226d39-3a82-43d6-8ea6-14eedacf0995")
+			(uuid "67226d39-3a82-43d6-8ea6-14eedacf0996")
 		)
 		(pin "7"
-			(uuid "aa952bf5-0d9d-4b08-9a49-daeb191cfa8b")
+			(uuid "aa952bf5-0d9d-4b08-9a49-daeb191cfa8c")
 		)
 		(pin "5"
-			(uuid "d914e69b-b673-40cd-b32b-c409f8ee6cbb")
+			(uuid "d914e69b-b673-40cd-b32b-c409f8ee6cbc")
 		)
 		(pin "1"
 			(uuid "9eb7e5e1-c7db-4265-96be-74ea3fb7738c")
 		)
 		(pin "8"
-			(uuid "bb130ea1-8e66-4c57-8fa3-3e883e827bdf")
+			(uuid "bb130ea1-8e66-4c57-8fa3-3e883e827be0")
 		)
 		(instances
 			(project "Harmoniser HAT"
@@ -3985,22 +3814,22 @@
 			(uuid "cc8bbfa1-6a60-4849-8732-e15a788c0f87")
 		)
 		(pin "4"
-			(uuid "dd9dda7c-b6d5-458e-a537-e1bf87399b9c")
+			(uuid "dd9dda7c-b6d5-458e-a537-e1bf87399b9d")
 		)
 		(pin "6"
-			(uuid "67226d39-3a82-43d6-8ea6-14eedacf0996")
+			(uuid "67226d39-3a82-43d6-8ea6-14eedacf0997")
 		)
 		(pin "7"
-			(uuid "aa952bf5-0d9d-4b08-9a49-daeb191cfa8c")
+			(uuid "aa952bf5-0d9d-4b08-9a49-daeb191cfa8d")
 		)
 		(pin "5"
-			(uuid "d914e69b-b673-40cd-b32b-c409f8ee6cbc")
+			(uuid "d914e69b-b673-40cd-b32b-c409f8ee6cbd")
 		)
 		(pin "1"
 			(uuid "9eb7e5e1-c7db-4265-96be-74ea3fb7738d")
 		)
 		(pin "8"
-			(uuid "bb130ea1-8e66-4c57-8fa3-3e883e827be0")
+			(uuid "bb130ea1-8e66-4c57-8fa3-3e883e827be1")
 		)
 		(instances
 			(project "Harmoniser HAT"
@@ -4447,7 +4276,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:CP_Elec_5x5.4"
 			(at 129.54 66.3448 0)
 			(effects
 				(font
@@ -4576,7 +4405,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "0.1u"
 			(at 86.36 173.1009 0)
 			(effects
 				(font
@@ -4754,89 +4583,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/95a9c2d0-fcb3-47f7-96a1-b730c3ba5238"
 					(reference "#PWR049")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Audio:AudioJack3_Switch")
-		(at 191.77 62.23 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "95ffcd91-0289-4fd4-be4c-cb1bcb03a3a0")
-		(property "Reference" "J4"
-			(at 199.39 62.2299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "TRS OUT"
-			(at 199.39 64.7699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 191.77 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 191.77 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Audio Jack, 3 Poles (Stereo / TRS), Switched Poles (Normalling)"
-			(at 191.77 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "SN"
-			(uuid "fa90d505-fee7-43f0-9a6a-03ea3d700d57")
-		)
-		(pin "R"
-			(uuid "d27ba7eb-919c-4c64-949c-7e30d4a5ae29")
-		)
-		(pin "RN"
-			(uuid "f56407ee-018f-4c7f-b1e1-c0cef8034372")
-		)
-		(pin "TN"
-			(uuid "748374d7-7196-4495-9dc5-1b6298066222")
-		)
-		(pin "T"
-			(uuid "03d46ce0-0468-4247-96e5-5049bed614b4")
-		)
-		(pin "S"
-			(uuid "51d171da-305c-450b-89fc-d5d89f2a8857")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/95a9c2d0-fcb3-47f7-96a1-b730c3ba5238"
-					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -5111,6 +4857,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Audio:AudioJack3")
+		(at 191.77 64.77 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a4c12deb-b85c-4aaf-bc9d-ace966f00b15")
+		(property "Reference" "J10"
+			(at 193.675 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Line Out"
+			(at 193.675 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_Audio:Jack_3.5mm_CUI_SJ1-3523N_Horizontal"
+			(at 191.77 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 191.77 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Audio Jack, 3 Poles (Stereo / TRS)"
+			(at 191.77 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "R"
+			(uuid "7025b008-20cd-4135-ab48-c7b1f67ef596")
+		)
+		(pin "T"
+			(uuid "9a41279b-52e8-4900-8528-d2dcf656386b")
+		)
+		(pin "S"
+			(uuid "ecada6a3-f355-453e-8ecb-0ec435d6bd60")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/95a9c2d0-fcb3-47f7-96a1-b730c3ba5238"
+					(reference "J10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Audio:AudioJack2_Switch")
 		(at 191.77 132.08 0)
 		(mirror y)
@@ -5130,7 +4947,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "TS OUT"
+		(property "Value" "Inst Out"
 			(at 196.85 132.0799 0)
 			(effects
 				(font
@@ -5390,7 +5207,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 176.53 59.69 0)
+		(at 176.53 63.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5399,7 +5216,7 @@
 		(fields_autoplaced yes)
 		(uuid "c573b0ac-18ca-4ced-901f-5b54f6e3b01d")
 		(property "Reference" "#PWR039"
-			(at 176.53 66.04 0)
+			(at 176.53 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5408,7 +5225,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 176.53 64.77 0)
+			(at 176.53 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5416,7 +5233,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 176.53 59.69 0)
+			(at 176.53 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5425,7 +5242,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 176.53 59.69 0)
+			(at 176.53 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5434,7 +5251,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 176.53 59.69 0)
+			(at 176.53 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
