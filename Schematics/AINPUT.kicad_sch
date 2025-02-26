@@ -729,174 +729,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:D"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "D"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:Opamp_Dual"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1291,6 +1123,173 @@
 					(at 0 -3.81 90)
 					(length 1.27)
 					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Diode:1N4148W"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "1N4148W"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Diode_SMD:D_SOD-123"
+				(at 0 -4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.vishay.com/docs/85748/1n4148w.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "D*SOD?123*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "1N4148W_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "1N4148W_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2184,6 +2183,12 @@
 		(uuid "490211c7-b381-42ef-9b83-f7b6ef3f0fb4")
 	)
 	(junction
+		(at 200.66 66.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4adf3607-bc71-483c-a5fa-e5a15cb792c0")
+	)
+	(junction
 		(at 148.59 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2196,6 +2201,12 @@
 		(uuid "75e14a5e-a7f1-4a7d-8a30-8fff9b5ce7d1")
 	)
 	(junction
+		(at 200.66 123.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "806d57cc-b8c5-4abb-9993-a9ca795741a0")
+	)
+	(junction
 		(at 154.94 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2206,12 +2217,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "833eec47-b27c-4f5e-83ad-091c8e63c9dd")
-	)
-	(junction
-		(at 200.66 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8f4700ee-8189-435e-9f77-530842f4c654")
 	)
 	(junction
 		(at 110.49 120.65)
@@ -2230,12 +2235,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ad9e7fe4-1053-48f5-8ab8-5b9cd75bf78c")
-	)
-	(junction
-		(at 200.66 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b8abfe10-6416-4535-8777-d466c7952efa")
 	)
 	(junction
 		(at 154.94 105.41)
@@ -2318,16 +2317,6 @@
 			(type default)
 		)
 		(uuid "0bf495dc-54b1-4b84-950a-eaeba133d370")
-	)
-	(wire
-		(pts
-			(xy 200.66 66.04) (xy 215.9 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0f38a6e5-1c22-44d5-b63d-9eada0cc5097")
 	)
 	(wire
 		(pts
@@ -2711,7 +2700,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 123.19) (xy 215.9 123.19)
+			(xy 187.96 123.19) (xy 200.66 123.19)
 		)
 		(stroke
 			(width 0)
@@ -3021,16 +3010,6 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 123.19) (xy 200.66 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f237ae1d-f064-4e46-9560-0434e416591e")
-	)
-	(wire
-		(pts
 			(xy 176.53 123.19) (xy 180.34 123.19)
 		)
 		(stroke
@@ -3051,6 +3030,16 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 66.04) (xy 215.9 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f83f3373-f805-4173-82cd-e6b7e6cae89b")
+	)
+	(wire
+		(pts
 			(xy 161.29 38.1) (xy 154.94 38.1)
 		)
 		(stroke
@@ -3058,6 +3047,16 @@
 			(type default)
 		)
 		(uuid "fa47b876-11c4-494d-996b-3b38c448f251")
+	)
+	(wire
+		(pts
+			(xy 200.66 123.19) (xy 215.9 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff8ec00b-eb8f-4cca-9293-edcd15a5b63c")
 	)
 	(global_label "V_{IN}L"
 		(shape output)
@@ -3128,7 +3127,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 165.1 107.188 90)
 			(effects
 				(font
@@ -3327,7 +3326,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 206.248 51.435 90)
 			(effects
 				(font
@@ -3394,7 +3393,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 196.342 51.435 90)
 			(effects
 				(font
@@ -3573,6 +3572,94 @@
 		)
 	)
 	(symbol
+		(lib_id "Diode:1N4148W")
+		(at 200.66 127 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1f497bf7-e279-4ed6-a23f-84957da01201")
+		(property "Reference" "D4"
+			(at 203.2 125.7299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1N4148W"
+			(at 203.2 128.2699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123"
+			(at 196.215 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/85748/1n4148w.pdf"
+			(at 200.66 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+			(at 200.66 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 200.66 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 200.66 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "608a6045-a2ce-4742-a6b3-ba380250faf4")
+		)
+		(pin "1"
+			(uuid "5eb32d2c-6d56-49da-ad84-4eae6c915ae4")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 184.15 66.04 270)
 		(unit 1)
@@ -3597,7 +3684,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 184.15 64.262 90)
 			(effects
 				(font
@@ -3700,6 +3787,94 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "#PWR038")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148W")
+		(at 200.66 69.85 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "276a6973-9a02-451e-81be-06c948b10501")
+		(property "Reference" "D2"
+			(at 203.2 68.5799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1N4148W"
+			(at 203.2 71.1199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123"
+			(at 196.215 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/85748/1n4148w.pdf"
+			(at 200.66 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+			(at 200.66 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 200.66 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 200.66 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "853aaabe-4433-4d86-b065-f9126c99f194")
+		)
+		(pin "1"
+			(uuid "999b7d8e-6a0c-4457-9201-b6456db65789")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -3861,7 +4036,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket"
 			(at 166.37 123.19 0)
 			(effects
 				(font
@@ -3982,7 +4157,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 74.168 90)
 			(effects
 				(font
@@ -4250,7 +4425,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket"
 			(at 55.245 101.6 0)
 			(effects
 				(font
@@ -4488,7 +4663,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4759df03-227a-483f-b639-e136e4afd273")
-		(property "Reference" "J9"
+		(property "Reference" "J2"
 			(at 103.505 52.07 0)
 			(effects
 				(font
@@ -4543,7 +4718,7 @@
 		(instances
 			(project ""
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "J9")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -4687,94 +4862,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D")
-		(at 200.66 119.38 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4d6aed4c-83ba-4939-893c-6e1e30eddb59")
-		(property "Reference" "D3"
-			(at 203.2 118.1099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D"
-			(at 203.2 120.6499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 200.66 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 200.66 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 200.66 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ef52a4fc-f3eb-4f44-9664-4bba68f8694e")
-		)
-		(pin "2"
-			(uuid "9928aabd-5ad5-44ce-9651-51f0a5b75b62")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "D3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 198.12 108.585 0)
 		(unit 1)
@@ -4799,7 +4886,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 196.342 108.585 90)
 			(effects
 				(font
@@ -4836,94 +4923,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "R16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D")
-		(at 200.66 69.85 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "53104c83-8779-4df5-b6e7-4dee456005c1")
-		(property "Reference" "D2"
-			(at 203.2 68.5799 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D"
-			(at 203.2 71.1199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 200.66 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 200.66 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 200.66 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "ed133917-ee49-4ad0-bb1d-3fd990bad70c")
-		)
-		(pin "1"
-			(uuid "e3aee67d-55e4-4a03-9f60-8631d4540529")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -5022,7 +5021,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 168.91 94.2848 0)
 			(effects
 				(font
@@ -5089,7 +5088,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 147.32 65.278 90)
 			(effects
 				(font
@@ -5156,7 +5155,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 184.15 121.412 90)
 			(effects
 				(font
@@ -5224,7 +5223,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 124.968 71.12 90)
 			(effects
 				(font
@@ -5291,7 +5290,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 206.248 108.585 90)
 			(effects
 				(font
@@ -5358,7 +5357,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 168.91 37.1348 0)
 			(effects
 				(font
@@ -5395,6 +5394,94 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148W")
+		(at 200.66 62.23 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6ce7ec2e-7bf4-4915-a648-653d1ec70311")
+		(property "Reference" "D1"
+			(at 203.2 60.9599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1N4148W"
+			(at 203.2 63.4999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123"
+			(at 196.215 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/85748/1n4148w.pdf"
+			(at 200.66 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+			(at 200.66 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 200.66 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 200.66 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "229454aa-c382-4f5b-a24e-a1104d6e17a0")
+		)
+		(pin "1"
+			(uuid "57365a8e-40b9-473d-8e14-5884c64759fa")
+		)
+		(instances
+			(project ""
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -5492,7 +5579,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 131.318 90)
 			(effects
 				(font
@@ -5625,7 +5712,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 79.248 90)
 			(effects
 				(font
@@ -5662,94 +5749,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "R14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D")
-		(at 200.66 127 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8f769af2-27f5-4697-9ba5-674266807144")
-		(property "Reference" "D4"
-			(at 203.2 125.7299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D"
-			(at 203.2 128.2699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 200.66 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7575647d-9f70-4cd6-88c3-3cae7ceef339")
-		)
-		(pin "1"
-			(uuid "5a4b434f-7da2-4db3-b887-5dd9107c96e7")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "D4")
 					(unit 1)
 				)
 			)
@@ -5850,7 +5849,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 118.11 122.428 90)
 			(effects
 				(font
@@ -5984,7 +5983,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 64.135 89.8398 0)
 			(effects
 				(font
@@ -6021,6 +6020,94 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "C13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148W")
+		(at 200.66 119.38 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c435c303-0299-4b35-9ab4-9600bd03854f")
+		(property "Reference" "D3"
+			(at 203.2 118.1099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1N4148W"
+			(at 203.2 120.6499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123"
+			(at 196.215 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.vishay.com/docs/85748/1n4148w.pdf"
+			(at 200.66 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+			(at 200.66 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 200.66 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 200.66 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7349038f-564a-467f-9309-a1478f680f0f")
+		)
+		(pin "1"
+			(uuid "7fe1ecb2-be52-4414-b500-37d1e31a1e06")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -6125,7 +6212,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 147.32 122.428 90)
 			(effects
 				(font
@@ -6162,94 +6249,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "R19")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D")
-		(at 200.66 62.23 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cc355739-c922-4655-823d-18bbecd7e45a")
-		(property "Reference" "D1"
-			(at 203.2 60.9599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "D"
-			(at 203.2 63.4999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 200.66 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 200.66 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 200.66 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "25e3673e-07ae-46c8-8ce9-29972ff13326")
-		)
-		(pin "2"
-			(uuid "9569e463-c32b-48b8-93bd-41a65709b826")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -6346,7 +6345,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 136.398 90)
 			(effects
 				(font
@@ -6480,7 +6479,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 119.888 71.12 90)
 			(effects
 				(font
@@ -6547,7 +6546,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 165.1 50.038 90)
 			(effects
 				(font
@@ -6615,7 +6614,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket"
 			(at 166.37 66.04 0)
 			(effects
 				(font
