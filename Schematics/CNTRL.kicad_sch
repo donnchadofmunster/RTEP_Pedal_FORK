@@ -1617,12 +1617,6 @@
 		(uuid "1851ec87-3fb9-4b9c-b4f9-6c5b0bba9cfa")
 	)
 	(junction
-		(at 133.35 96.52)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "23c002e6-6d8d-47c8-a6fd-2e8eaffa1e01")
-	)
-	(junction
 		(at 41.91 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1677,12 +1671,6 @@
 		(uuid "90de239d-f1db-48a3-a252-932fa05a7387")
 	)
 	(junction
-		(at 162.56 101.6)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "92eff513-bf92-4557-838c-d4f6573fecc8")
-	)
-	(junction
 		(at 55.88 181.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1705,12 +1693,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cc1700f1-8671-4665-aa4e-d1a278d53117")
-	)
-	(junction
-		(at 200.66 96.52)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cd9b9fa5-e41f-434c-8675-f1d4e3448c58")
 	)
 	(junction
 		(at 41.91 146.05)
@@ -1747,12 +1729,24 @@
 		(uuid "4e404c1f-c7de-4742-af06-f868bb3100de")
 	)
 	(no_connect
+		(at 82.55 184.15)
+		(uuid "51f15a20-b905-4074-99ec-875e935e830d")
+	)
+	(no_connect
 		(at 82.55 168.91)
 		(uuid "6a09ba04-ba22-44a9-b11e-ced415221973")
 	)
 	(no_connect
+		(at 82.55 179.07)
+		(uuid "71027472-7f9f-4deb-be95-8c3c38aa83d5")
+	)
+	(no_connect
 		(at 82.55 161.29)
 		(uuid "89958b0a-0b69-4b03-b4c6-f7625b523c5b")
+	)
+	(no_connect
+		(at 82.55 181.61)
+		(uuid "e8cd6b81-4281-470f-ae5f-64b7ee8dd387")
 	)
 	(no_connect
 		(at 82.55 158.75)
@@ -1850,16 +1844,6 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 96.52) (xy 190.5 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "10bc441f-12bc-441e-9478-87e3ecc299ce")
-	)
-	(wire
-		(pts
 			(xy 162.56 59.69) (xy 163.83 59.69)
 		)
 		(stroke
@@ -1950,16 +1934,6 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 96.52) (xy 203.2 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2c2c9757-bc49-4c96-b7bb-be531c6e45c0")
-	)
-	(wire
-		(pts
 			(xy 26.67 59.69) (xy 26.67 54.61)
 		)
 		(stroke
@@ -1967,16 +1941,6 @@
 			(type default)
 		)
 		(uuid "2effbe9c-881f-4409-9b6e-aaca8c6bf207")
-	)
-	(wire
-		(pts
-			(xy 130.81 96.52) (xy 133.35 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3185b875-cd1b-4ac6-b905-b6d193daad81")
 	)
 	(wire
 		(pts
@@ -2007,16 +1971,6 @@
 			(type default)
 		)
 		(uuid "359bd4cf-b588-4388-a0ef-0e04205f3598")
-	)
-	(wire
-		(pts
-			(xy 200.66 101.6) (xy 200.66 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3a9ea2ce-b488-4b1d-934d-00c1fd920677")
 	)
 	(wire
 		(pts
@@ -2090,16 +2044,6 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 99.06) (xy 148.59 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4f989b95-92fa-45bf-b017-c6bdbea1850f")
-	)
-	(wire
-		(pts
 			(xy 66.04 57.15) (xy 41.91 57.15)
 		)
 		(stroke
@@ -2140,26 +2084,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 91.44) (xy 133.35 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5aca0359-2147-4dec-9d95-40c61ed03395")
-	)
-	(wire
-		(pts
-			(xy 148.59 99.06) (xy 148.59 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5db94212-deab-4c4b-8329-40ea50181a34")
-	)
-	(wire
-		(pts
 			(xy 50.8 142.24) (xy 50.8 151.13)
 		)
 		(stroke
@@ -2180,16 +2104,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 96.52) (xy 144.78 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6390960e-411a-44f4-9eb6-fea4de9fd024")
-	)
-	(wire
-		(pts
 			(xy 55.88 190.5) (xy 55.88 189.23)
 		)
 		(stroke
@@ -2197,16 +2111,6 @@
 			(type default)
 		)
 		(uuid "63919324-0f7a-4278-90ef-3e52cdd8f879")
-	)
-	(wire
-		(pts
-			(xy 171.45 101.6) (xy 172.72 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "65637145-0040-4d56-869a-8814c63960e7")
 	)
 	(wire
 		(pts
@@ -2267,16 +2171,6 @@
 			(type default)
 		)
 		(uuid "7709cd86-2e02-45d3-a6fb-772f8781a9d9")
-	)
-	(wire
-		(pts
-			(xy 187.96 109.22) (xy 187.96 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "770cf77c-b426-40fd-918d-5ff65c24a23a")
 	)
 	(wire
 		(pts
@@ -2520,16 +2414,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 91.44) (xy 162.56 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c0b374b1-bdee-4110-90a2-4945cea82c44")
-	)
-	(wire
-		(pts
 			(xy 29.21 151.13) (xy 50.8 151.13)
 		)
 		(stroke
@@ -2537,16 +2421,6 @@
 			(type default)
 		)
 		(uuid "c1c8418b-2d67-4dcb-9294-3d285d38b9a6")
-	)
-	(wire
-		(pts
-			(xy 152.4 96.52) (xy 172.72 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c2d1b9c1-2c66-4039-b540-363256502e9e")
 	)
 	(wire
 		(pts
@@ -2590,16 +2464,6 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 91.44) (xy 200.66 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0eafffb-258f-4217-bc18-01205b309733")
-	)
-	(wire
-		(pts
 			(xy 33.02 143.51) (xy 57.15 143.51)
 		)
 		(stroke
@@ -2630,26 +2494,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 101.6) (xy 133.35 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e1382875-0995-4952-9c19-0bd934793b95")
-	)
-	(wire
-		(pts
-			(xy 162.56 101.6) (xy 163.83 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e281b12d-0f83-4c79-a871-50b7aa9c652f")
-	)
-	(wire
-		(pts
 			(xy 33.02 133.35) (xy 33.02 134.62)
 		)
 		(stroke
@@ -2667,16 +2511,6 @@
 			(type default)
 		)
 		(uuid "e5052766-a03d-4bd3-9104-76f3665e38cf")
-	)
-	(wire
-		(pts
-			(xy 160.02 101.6) (xy 162.56 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6d56b48-a2c7-48c0-a89d-d5d58038b677")
 	)
 	(wire
 		(pts
@@ -2737,16 +2571,6 @@
 			(type default)
 		)
 		(uuid "fa808753-0fdb-4ff0-a719-12ceef586221")
-	)
-	(wire
-		(pts
-			(xy 198.12 96.52) (xy 200.66 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd59ec21-de16-49d6-bf34-866062534a86")
 	)
 	(global_label "ENC1_SW"
 		(shape input)
@@ -2880,28 +2704,6 @@
 			)
 		)
 	)
-	(global_label "ENC4_SW"
-		(shape input)
-		(at 203.2 96.52 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "224e6c14-afd4-45af-bad7-238db172a1b9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 214.7727 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "ENC1_A"
 		(shape input)
 		(at 82.55 146.05 0)
@@ -2942,28 +2744,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "ENC4_B"
-		(shape input)
-		(at 160.02 101.6 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "302a5fd7-4b01-48f4-953a-751a9b45e077")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 149.8382 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -3096,28 +2876,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "ENC4_A"
-		(shape input)
-		(at 130.81 96.52 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "5ccb8e64-0901-426c-b394-c6a425bb7882")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 120.8096 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -3276,72 +3034,6 @@
 			)
 		)
 	)
-	(global_label "ENC4_B"
-		(shape input)
-		(at 82.55 184.15 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "bd08da35-4d64-4c2e-9281-a156324913ff")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 92.7318 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "ENC4_SW"
-		(shape input)
-		(at 82.55 179.07 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e2ccefd0-8ae7-4edf-97ee-ccf39810225c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 94.1227 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "ENC4_A"
-		(shape input)
-		(at 82.55 181.61 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e2e27e78-40a3-40c2-b576-d8fbdc1d6625")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 92.5504 181.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(symbol
 		(lib_id "power:+3V3")
 		(at 69.85 132.08 0)
@@ -3403,144 +3095,6 @@
 			(project ""
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR083")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 200.66 87.63 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "06ce48a6-5060-47ed-9cdd-88be7d2e7f75")
-		(property "Reference" "R51"
-			(at 203.2 86.3599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 203.2 88.8999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 202.438 87.63 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 200.66 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b990296a-e953-4f22-97f1-bacc406243fd")
-		)
-		(pin "1"
-			(uuid "b4502984-d248-410b-8971-b0c510df8fa1")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R51")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 194.31 96.52 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0af92906-aa0e-4ed4-a692-4f6e0cbf5e0d")
-		(property "Reference" "R55"
-			(at 194.31 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 194.31 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 194.31 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 194.31 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6319266a-ff63-487a-bdcb-34c7117d3c8a")
-		)
-		(pin "1"
-			(uuid "195decff-d561-4c23-b715-9aea85953012")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R55")
 					(unit 1)
 				)
 			)
@@ -3748,72 +3302,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 162.56 109.22 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1d7ba80c-dff2-44fe-bce5-a55ba9ff1eb2")
-		(property "Reference" "#PWR080"
-			(at 162.56 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 162.56 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 162.56 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 162.56 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0b2e1b3a-4159-4d78-8b1b-3c87695a1194")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR080")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 162.56 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3873,83 +3361,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR064")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:RotaryEncoder_Switch")
-		(at 180.34 99.06 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "22a6353f-6ebc-4d0b-aa9b-d4a512b62ced")
-		(property "Reference" "SW4"
-			(at 180.34 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "RotaryEncoder_Switch"
-			(at 180.34 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Rotary_Encoder:RotaryEncoder_Bourns_Vertical_PEC12R-3x17F-Sxxxx"
-			(at 176.53 94.996 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 180.34 92.456 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Rotary encoder, dual channel, incremental quadrate outputs, with switch"
-			(at 180.34 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "S2"
-			(uuid "6ff7902c-7ee0-4093-8e09-a94658aef542")
-		)
-		(pin "A"
-			(uuid "6e63537e-842a-4d22-8bde-f9546a2fdfc5")
-		)
-		(pin "S1"
-			(uuid "1214457c-e519-4a5f-9fae-6e6bfa291d2c")
-		)
-		(pin "B"
-			(uuid "fcae5b5f-dfe3-4cd6-9842-0e3d7c5b4f71")
-		)
-		(pin "C"
-			(uuid "ddf5c194-2742-465a-92d7-b9d84b430f01")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "SW4")
 					(unit 1)
 				)
 			)
@@ -4162,140 +3573,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 200.66 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2f0e9a15-d60a-4766-9979-97eea387c7d9")
-		(property "Reference" "#PWR072"
-			(at 200.66 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 200.66 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 200.66 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "63e972e7-0534-4dbd-83f5-2d8fa0a48023")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR072")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 148.59 96.52 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2f3bec6f-86c5-4c83-bddc-e3bc34412f5c")
-		(property "Reference" "R54"
-			(at 148.59 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 148.59 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 148.59 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 148.59 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 148.59 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "94994533-bb8c-4043-8eb6-e1b45ce79aa2")
-		)
-		(pin "1"
-			(uuid "3b7f3d89-6518-498b-9e09-f133945c889f")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R54")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 55.88 67.31 0)
 		(unit 1)
@@ -4356,72 +3633,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR059")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 133.35 109.22 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "31759812-9e3b-4e9b-bf67-386fbfcd981d")
-		(property "Reference" "#PWR078"
-			(at 133.35 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 133.35 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 133.35 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 133.35 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 133.35 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e3300627-32d3-4b50-891b-47b4255a73ce")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -4970,72 +4181,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 187.96 109.22 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4bff4386-fcd2-494b-b78d-d8dc9f9b10ce")
-		(property "Reference" "#PWR081"
-			(at 187.96 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 187.96 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 187.96 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 187.96 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 187.96 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a4ea96ee-c1b9-4d52-b9a1-3decf39e8400")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR081")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 26.67 83.82 0)
 		(unit 1)
@@ -5372,74 +4517,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 167.64 101.6 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5b181f10-9726-4760-936b-43c3052febf0")
-		(property "Reference" "R57"
-			(at 167.64 95.25 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 167.64 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 167.64 103.378 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 167.64 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 167.64 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "1938f8aa-be7e-4661-bda9-468f9f2d40df")
-		)
-		(pin "1"
-			(uuid "5205e6dd-3364-49be-a53e-37ecf7b663bc")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R57")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Polarized")
 		(at 106.68 137.16 0)
 		(unit 1)
@@ -5510,76 +4587,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 200.66 105.41 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "645349b3-d90d-43a8-8d01-f76c340c67b2")
-		(property "Reference" "C37"
-			(at 204.47 104.1399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.01u"
-			(at 204.47 106.6799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 201.6252 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 200.66 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "9023619e-0320-4ac0-9e79-a369721b888f")
-		)
-		(pin "1"
-			(uuid "957040ba-9623-4595-aac2-a42afa5d9b17")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "C37")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 93.98 67.31 0)
 		(unit 1)
@@ -5640,72 +4647,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR061")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 162.56 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "66007471-c0b6-4db3-9cb4-0a6aa1c23a9c")
-		(property "Reference" "#PWR071"
-			(at 162.56 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 162.56 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 162.56 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 162.56 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 162.56 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1588dc80-439b-4d96-8099-187d8edcea41")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -5974,76 +4915,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR054")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 162.56 87.63 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "89d0a753-91f7-4472-b2a0-26b506953670")
-		(property "Reference" "R50"
-			(at 165.1 86.3599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 165.1 88.8999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 164.338 87.63 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 162.56 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 162.56 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7e355978-4f1d-40b6-8ebe-8181bbdef1d5")
-		)
-		(pin "1"
-			(uuid "e4c95902-c1d9-41b9-8c60-7d032ddb8b48")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R50")
 					(unit 1)
 				)
 			)
@@ -7151,76 +6022,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 133.35 105.41 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b1606df5-8813-4b89-abf8-81f97e0a88a3")
-		(property "Reference" "C35"
-			(at 137.16 104.1399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.01u"
-			(at 137.16 106.6799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 134.3152 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 133.35 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 133.35 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "28a625d3-708b-468f-93f4-d0eb10963d63")
-		)
-		(pin "1"
-			(uuid "d31edcc9-2051-45f1-8793-f78f5aa888a0")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "C35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 50.8 138.43 0)
 		(unit 1)
@@ -7629,72 +6430,6 @@
 			(project ""
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR085")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 133.35 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c39930e7-ed02-4226-91d7-7577a618a175")
-		(property "Reference" "#PWR070"
-			(at 133.35 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 133.35 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 133.35 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 133.35 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 133.35 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "18064bc2-5a3e-48f7-93c7-e4b648cb512c")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR070")
 					(unit 1)
 				)
 			)
@@ -8245,138 +6980,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 148.59 109.22 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e9741dfc-1406-4ab0-bf60-761492d56760")
-		(property "Reference" "#PWR079"
-			(at 148.59 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 148.59 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 148.59 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 148.59 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 148.59 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ff47e987-714e-46b0-8de8-91677d48e343")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR079")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 200.66 109.22 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "eb5aed71-8771-4f33-8ae2-767ab6a5f790")
-		(property "Reference" "#PWR082"
-			(at 200.66 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 200.66 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 200.66 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8841653a-3383-4de7-aabf-34b20730c373")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "#PWR082")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:RotaryEncoder_Switch")
 		(at 180.34 57.15 0)
 		(unit 1)
@@ -8524,76 +7127,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 162.56 105.41 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f385a059-7f0c-4c5e-a3a4-12a55ac9f43b")
-		(property "Reference" "C36"
-			(at 166.37 104.1399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.01u"
-			(at 166.37 106.6799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 163.5252 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 162.56 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 162.56 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d3583ec1-e81f-47c7-9947-1a01dcd7a343")
-		)
-		(pin "1"
-			(uuid "0ebbd1e2-c9df-4fd7-a65d-8b7ec1ab2ddd")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "C36")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 81.28 67.31 0)
 		(unit 1)
@@ -8654,76 +7187,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
 					(reference "#PWR060")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 133.35 87.63 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f8d72655-031a-4b73-bda6-569c67eaa6b8")
-		(property "Reference" "R49"
-			(at 135.89 86.3599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 135.89 88.8999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 135.128 87.63 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 133.35 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 133.35 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "87eb8f5f-d7d7-4484-9891-fd35aea8d0aa")
-		)
-		(pin "1"
-			(uuid "176fa89d-421b-4684-a805-fe2ceb9fcab8")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/5d678f4e-03b5-43f5-b100-a64e850a5e5c"
-					(reference "R49")
 					(unit 1)
 				)
 			)

@@ -2165,7 +2165,7 @@
 		(uuid "1751468e-5183-44e9-acab-54ffff0aa944")
 	)
 	(junction
-		(at 52.705 90.805)
+		(at 50.8 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2f55f5ad-dd8a-4957-8ea2-ae1390dc9857")
@@ -2480,16 +2480,6 @@
 	)
 	(wire
 		(pts
-			(xy 65.405 90.805) (xy 65.405 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "34796622-9407-4564-8e65-cef3ba21b5fa")
-	)
-	(wire
-		(pts
 			(xy 110.49 58.42) (xy 124.46 58.42)
 		)
 		(stroke
@@ -2500,7 +2490,7 @@
 	)
 	(wire
 		(pts
-			(xy 56.515 90.805) (xy 52.705 90.805)
+			(xy 63.5 88.9) (xy 50.8 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2580,16 +2570,6 @@
 	)
 	(wire
 		(pts
-			(xy 65.405 90.805) (xy 64.135 90.805)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5d5a5d54-5822-431a-9e4b-39a235cdd909")
-	)
-	(wire
-		(pts
 			(xy 109.22 123.19) (xy 110.49 123.19)
 		)
 		(stroke
@@ -2647,6 +2627,16 @@
 			(type default)
 		)
 		(uuid "6d272c35-26a8-4879-927b-c0b4eaf520bd")
+	)
+	(wire
+		(pts
+			(xy 50.8 107.95) (xy 50.8 107.315)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d6af785-a4e9-4050-aa58-68066e047bdc")
 	)
 	(wire
 		(pts
@@ -2940,6 +2930,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 107.95) (xy 63.5 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc98723c-3f37-402d-955a-556e4436b551")
+	)
+	(wire
+		(pts
 			(xy 148.59 74.93) (xy 148.59 77.47)
 		)
 		(stroke
@@ -2950,7 +2950,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.705 90.805) (xy 52.705 93.98)
+			(xy 50.8 88.9) (xy 50.8 92.075)
 		)
 		(stroke
 			(width 0)
@@ -2970,7 +2970,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.705 86.36) (xy 52.705 90.805)
+			(xy 50.8 84.455) (xy 50.8 88.9)
 		)
 		(stroke
 			(width 0)
@@ -3793,6 +3793,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 63.5 107.95 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "24f2649a-c312-4847-9725-d217172b19b7")
+		(property "Reference" "#PWR071"
+			(at 63.5 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 63.5 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 63.5 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 63.5 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a7e6cc22-36cb-463e-94eb-35efb9903c6b")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "#PWR071")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Diode:1N4148W")
 		(at 200.66 69.85 270)
 		(unit 1)
@@ -4333,7 +4399,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 52.705 109.22 0)
+		(at 50.8 107.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4342,7 +4408,7 @@
 		(fields_autoplaced yes)
 		(uuid "3faa16cd-7c0e-4665-8c93-23e21bd5fbf9")
 		(property "Reference" "#PWR033"
-			(at 52.705 115.57 0)
+			(at 50.8 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4351,7 +4417,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 52.705 114.3 0)
+			(at 50.8 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4359,7 +4425,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 52.705 109.22 0)
+			(at 50.8 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4368,7 +4434,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.705 109.22 0)
+			(at 50.8 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4377,7 +4443,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 52.705 109.22 0)
+			(at 50.8 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4399,7 +4465,7 @@
 	)
 	(symbol
 		(lib_id "Device:Opamp_Dual")
-		(at 55.245 101.6 0)
+		(at 53.34 99.695 0)
 		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4408,7 +4474,7 @@
 		(fields_autoplaced yes)
 		(uuid "466c8f38-e741-4a7d-b074-79ea2ff22f69")
 		(property "Reference" "U3"
-			(at 53.975 100.3299 0)
+			(at 52.07 98.4249 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4417,7 +4483,7 @@
 			)
 		)
 		(property "Value" "Opamp_Dual"
-			(at 53.975 102.8699 0)
+			(at 52.07 100.9649 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4426,7 +4492,7 @@
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_Socket"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4435,7 +4501,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4444,7 +4510,7 @@
 			)
 		)
 		(property "Description" "Dual operational amplifier"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4453,7 +4519,7 @@
 			)
 		)
 		(property "Sim.Library" "${KICAD7_SYMBOL_DIR}/Simulation_SPICE.sp"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4462,7 +4528,7 @@
 			)
 		)
 		(property "Sim.Name" "kicad_builtin_opamp_dual"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4471,7 +4537,7 @@
 			)
 		)
 		(property "Sim.Device" "SUBCKT"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4480,7 +4546,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=out1 2=in1- 3=in1+ 4=vee 5=in2+ 6=in2- 7=out2 8=vcc"
-			(at 55.245 101.6 0)
+			(at 53.34 99.695 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4582,72 +4648,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "#PWR021")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 65.405 92.71 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "46f0177b-3ef3-44d2-964d-e8b42afd1161")
-		(property "Reference" "#PWR030"
-			(at 65.405 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 65.405 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 65.405 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 65.405 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 65.405 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8d5be618-564e-480c-9dc2-6e3b178e8e29")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -5554,6 +5554,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 63.5 92.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7b13dc85-556b-4c00-879b-d017f511098e")
+		(property "Reference" "C41"
+			(at 67.31 91.4399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 67.31 93.9799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 64.4652 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 63.5 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 63.5 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f3612060-cd36-417e-b18c-e1f6ce4f4427")
+		)
+		(pin "2"
+			(uuid "130d0e30-2dd1-49d7-a03a-327599ed06e9")
+		)
+		(instances
+			(project "Harmoniser HAT"
+				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
+					(reference "C41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_name "R_1")
 		(lib_id "Device:R")
 		(at 144.78 129.54 90)
@@ -5893,7 +5963,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 52.705 86.36 0)
+		(at 50.8 84.455 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5902,7 +5972,7 @@
 		(fields_autoplaced yes)
 		(uuid "9f0ca59e-3385-4986-97a5-edbe90cb7193")
 		(property "Reference" "#PWR029"
-			(at 52.705 90.17 0)
+			(at 50.8 88.265 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5911,7 +5981,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 52.705 81.28 0)
+			(at 50.8 79.375 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5919,7 +5989,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 52.705 86.36 0)
+			(at 50.8 84.455 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5928,7 +5998,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 52.705 86.36 0)
+			(at 50.8 84.455 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5937,7 +6007,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 52.705 86.36 0)
+			(at 50.8 84.455 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5952,74 +6022,6 @@
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
 					(reference "#PWR029")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 60.325 90.805 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b76e61d1-9fd0-47b0-b96d-37df30d0547c")
-		(property "Reference" "C13"
-			(at 59.436 83.82 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0.1u"
-			(at 59.436 86.36 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 64.135 89.8398 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 60.325 90.805 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor"
-			(at 60.325 90.805 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fa4b2bd4-4a27-4a81-af4a-49bda00322ba")
-		)
-		(pin "2"
-			(uuid "1eec859b-db69-4bcb-a6b2-dc889702d8db")
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053/3b32bbde-f207-4d45-b634-d2776b47a4e0"
-					(reference "C13")
 					(unit 1)
 				)
 			)
