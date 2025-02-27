@@ -25,11 +25,5 @@ if(NOT SNDFILE_FOUND)
     endif()
 endif()
 
+# Add the `src/` directory where the real targets are defined
 add_subdirectory(src)
-
-# Add an executable target
-add_executable(harmoniser_pedal src/main.cpp)
-
-# Include ALSA and libsndfile libraries
-target_include_directories(harmoniser_pedal PRIVATE ${ALSA_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS})
-target_link_libraries(harmoniser_pedal PRIVATE ${ALSA_LIBRARIES} ${SNDFILE_LIBRARIES} pthread)
