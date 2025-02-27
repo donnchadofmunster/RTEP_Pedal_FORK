@@ -12,3 +12,4 @@ _deps
 CMakeUserPresets.json
 code/build/
 .DS_Store
+.vscode
