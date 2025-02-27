@@ -5,6 +5,8 @@ script_directory=$(dirname "$0")
 
 cd "$script_directory"
 
+# Clean up previous build artifacts and create a new build directory
+rm -rf build
 mkdir -p build
 cd build
 
