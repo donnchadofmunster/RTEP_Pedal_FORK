@@ -44,15 +44,31 @@ void MockSamplingModule::readWavFile()
         return;
     }
 
-    samples.resize(sfinfo.frames);
-    sf_read_float(file, samples.data(), sfinfo.frames);
+    samples.resize(sfinfo.frames * sfinfo.channels); // Resize to accommodate all channels
+    sf_read_float(file, samples.data(), sfinfo.frames * sfinfo.channels);
     sf_close(file);
+
+    numChannels = sfinfo.channels; // Store the number of channels
 }
 
 void MockSamplingModule::processAudio()
 {
+    std::vector<std::vector<float>> channelData(numChannels);
+
+    // Separate samples into different channel vectors
+    for (size_t i = 0; i < samples.size(); i += numChannels)
+    {
+        for (int ch = 0; ch < numChannels; ++ch)
+        {
+            channelData[ch].push_back(samples[i + ch]);
+        }
+    }
+
+    // Invoke callbacks for each channel
     for (const auto &callback : callbacks)
     {
-        callback(samples);
+        callback(samples); // Send all channels interleaved
     }
 }
+
+int MockSamplingModule::getNumChannels() const { return numChannels; }

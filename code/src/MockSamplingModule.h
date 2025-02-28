@@ -19,6 +19,7 @@ public:
     void start();
     void stop();
     void registerCallback(SampleCallback callback);
+    int getNumChannels() const;
 
 private:
     void readWavFile();
@@ -29,6 +30,7 @@ private:
     std::string wavFilePath;
     std::atomic<bool> running;
     std::thread audioThread;
+    int numChannels;
 };
 
 #endif // MOCKSAMPLINGMODULE_H
