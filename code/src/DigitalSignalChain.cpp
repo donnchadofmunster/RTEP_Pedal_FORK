@@ -2,13 +2,14 @@
 
 void DigitalSignalChain::registerEffect(std::shared_ptr<Effect> effect)
 {
-    effects.registerEffect(effect);
+    effects.push_back(effect);
 }
 
-void DigitalSignalChain::applyEffects(float &sample)
+float DigitalSignalChain::applyEffects(float sample)
 {
-    for (auto &effect : effects)
+    for (const auto &effect : effects)
     {
-        effect->process(sample);
+        sample = effect->process(sample); // Ensure Effect has a valid `process()` method
     }
+    return sample;
 }

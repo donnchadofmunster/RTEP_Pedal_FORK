@@ -13,3 +13,4 @@ CMakeUserPresets.json
 code/build/
 .DS_Store
 .vscode
+code/assets/output.wav

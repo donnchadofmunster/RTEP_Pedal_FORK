@@ -1,5 +1,3 @@
-#!/bin/bash
-
 original_directory=$(pwd)
 script_directory=$(dirname "$0")
 
@@ -24,4 +22,11 @@ if [ $? -ne 0 ]; then
 fi
 
 cd "$original_directory"
-echo "Application built successfully"
+
+# Check if the application binary exists before printing success message
+if [ -f "build/harmoniser_pedal" ]; then
+    echo "Application built successfully"
+else
+    echo "Build completed, but executable not found. Check make_errors.log"
+    exit 1
+fi
