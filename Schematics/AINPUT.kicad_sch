@@ -6141,7 +6141,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_Audio:Jack_6.35mm_Neutrik_NMJ4HHD2_Horizontal"
+		(property "Footprint" "custom:NYS2152G"
 			(at 104.14 115.57 0)
 			(effects
 				(font
