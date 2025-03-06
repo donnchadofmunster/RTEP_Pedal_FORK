@@ -5,11 +5,13 @@ void DigitalSignalChain::registerEffect(std::shared_ptr<Effect> effect)
     effects.push_back(effect);
 }
 
-float DigitalSignalChain::applyEffects(float sample)
+void DigitalSignalChain::applyEffects(Sample &sample)
 {
+    float pcmValue = sample.getPcmValue(); // Store PCM value in a variable
     for (const auto &effect : effects)
     {
-        sample = effect->process(sample); // Ensure Effect has a valid `process()` method
+        pcmValue = effect->process(pcmValue);     // Process PCM value
+        sample.addEffect(typeid(*effect).name()); // Track applied effect
     }
-    return sample;
+    sample.setPcmValue(pcmValue); // Update sample with processed value
 }

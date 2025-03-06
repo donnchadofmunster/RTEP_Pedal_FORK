@@ -1,5 +1,5 @@
 # Define the main pedal library
-add_library(pedal_lib DigitalSignalChain.cpp)
+add_library(pedal_lib Sample.cpp DigitalSignalChain.cpp)
 
 # Ensure the library is linked correctly
 target_include_directories(pedal_lib PUBLIC ${CMAKE_SOURCE_DIR}/src)

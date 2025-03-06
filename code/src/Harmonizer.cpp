@@ -1,6 +1,8 @@
 #include "Harmonizer.h"
 
-void Harmonizer::process(float &sample)
+float Harmonizer::process(float &sample)
 {
     sample *= 1.5f;
+
+    return sample; // Return the processed sample
 }

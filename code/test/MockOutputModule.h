@@ -7,15 +7,16 @@
 #include <atomic>
 #include <functional>
 #include <sndfile.h>
+#include "Sample.h"
 
 /**
  * @class MockOutputModule
- * @brief Simulates an audio output module by writing audio data to a WAV file.
+ * @brief Simulates an audio output module by writing Sample objects to a WAV file.
  */
 class MockOutputModule
 {
 public:
-    using OutputCallback = std::function<void(const std::vector<float> &, int)>;
+    using OutputCallback = std::function<void(const Sample &)>;
 
     /**
      * @brief Constructor for MockOutputModule.
@@ -41,16 +42,15 @@ public:
 
     /**
      * @brief Registers a callback to be invoked when new samples are written.
-     * @param callback A function that takes sample data and the number of channels.
+     * @param callback A function that takes Sample objects.
      */
     void registerCallback(OutputCallback callback);
 
     /**
-     * @brief Writes audio samples to the output buffer and notifies callbacks.
-     * @param samples The vector of audio samples.
-     * @param numChannels Number of audio channels.
+     * @brief Writes a Sample object to the output buffer and notifies callbacks.
+     * @param sample The Sample object containing PCM data and metadata.
      */
-    void writeSamples(const std::vector<float> &samples, int numChannels);
+    void writeSample(const Sample &sample);
 
 private:
     /**
@@ -64,7 +64,7 @@ private:
     void writeWavFile();
 
     std::vector<OutputCallback> callbacks; ///< List of registered callbacks.
-    std::vector<float> outputBuffer;       ///< Buffer holding the output samples.
+    std::vector<Sample> outputBuffer;      ///< Buffer holding the output samples.
     int numChannels;                       ///< Number of audio channels.
     std::atomic<bool> running;             ///< Flag indicating whether output is running.
     std::thread outputThread;              ///< Thread handling output processing.

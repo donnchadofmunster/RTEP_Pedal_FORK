@@ -1,14 +1,7 @@
 #include "MockOutputModule.h"
 
 MockOutputModule::MockOutputModule(const std::string &outputFilePath)
-    : callbacks(),
-      outputBuffer(),
-      numChannels(0),
-      running(false),
-      outputThread(),
-      outputFilePath(outputFilePath)
-{
-}
+    : outputBuffer(), numChannels(0), running(false), outputThread(), outputFilePath(outputFilePath) {}
 
 MockOutputModule::~MockOutputModule()
 {
@@ -37,14 +30,18 @@ void MockOutputModule::stop()
     writeWavFile();
 }
 
-void MockOutputModule::writeSamples(const std::vector<float> &samples, int numChannels)
+void MockOutputModule::writeSample(const Sample &sample)
 {
-    this->numChannels = numChannels;
-    outputBuffer = samples;
+    outputBuffer.push_back(sample);
+
+    // Invoke real-time callbacks
     for (const auto &callback : callbacks)
     {
-        callback(outputBuffer, numChannels);
+        callback(sample);
     }
+
+    // Minimal processing delay for real-time simulation
+    std::this_thread::sleep_for(std::chrono::microseconds(100));
 }
 
 void MockOutputModule::processOutput()
@@ -53,7 +50,7 @@ void MockOutputModule::processOutput()
     {
         if (!outputBuffer.empty())
         {
-            std::cout << "Outputting " << outputBuffer.size() / numChannels << " frames with " << numChannels << " channels.\r" << std::flush;
+            std::cout << "Outputting " << outputBuffer.size() << " samples.\r" << std::flush;
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
@@ -76,7 +73,13 @@ void MockOutputModule::writeWavFile()
         return;
     }
 
-    sf_write_float(file, outputBuffer.data(), outputBuffer.size());
+    std::vector<float> pcmData;
+    for (const auto &sample : outputBuffer)
+    {
+        pcmData.push_back(sample.getPcmValue());
+    }
+
+    sf_write_float(file, pcmData.data(), pcmData.size());
     sf_close(file);
 
     std::cout << "WAV file written: " << outputFilePath << std::endl;

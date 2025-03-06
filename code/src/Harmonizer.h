@@ -5,6 +5,9 @@
 class Harmonizer : public Effect
 {
 public:
-    void process(float &sample) override;
+    float process(float &sample) {
+        // Your harmonizer processing logic here
+        // ...
+    }
 };
 #endif // HARMONIZER_H
