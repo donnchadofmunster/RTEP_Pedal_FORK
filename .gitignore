@@ -14,3 +14,5 @@ code/build/
 .DS_Store
 .vscode
 code/assets/output.wav
+code/output.wav
+code/MedievalLinger.wav
