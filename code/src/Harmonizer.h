@@ -2,10 +2,10 @@
 #define HARMONIZER_H
 
 #include <string>
-#include "../lib/stretch/signalsmith-stretch.h"
-#include "../lib/stretch/cmd/util/stopwatch.h"
-#include "../lib/stretch/cmd/util/memory-tracker.h"
-#include "../lib/stretch/cmd/util/wav.h"
+#include "../lib/signalsmith-stretch/signalsmith-stretch.h"
+#include "../lib/signalsmith-stretch/cmd/util/stopwatch.h"
+#include "../lib/signalsmith-stretch/cmd/util/memory-tracker.h"
+#include "../lib/signalsmith-stretch/cmd/util/wav.h"
 
 class Harmonizer {
 public:

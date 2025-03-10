@@ -67,7 +67,7 @@ bool Harmonizer::process() {
     double processSeconds = stopwatch.seconds(stopwatch.lap()); // Shows how long it took to process the audio
     double processRate = (inWav.length() / inWav.sampleRate) / processSeconds; // Shows how fast pitch shifting is compared to length of input
     double processPercent = 100 / processRate; // Shows the CPU usage
-    // reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
+    reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
     outWav.write(outputWav); // Creates the new .Wav file
     return true;
 }

@@ -1,4 +1,4 @@
-#include "../lib/stretch/cmd/util/memory-tracker.h"
+#include "../lib/signalsmith-stretch/cmd/util/memory-tracker.h"
 
 #if !defined(__has_include) || !__has_include(<dlfcn.h>)
 // Fallback if we don't have <dlfcn.h>, which we use to get the existing methods
