@@ -1,10 +1,16 @@
 #include "Harmonizer.h"
 #include <iostream>
 #include <cmath>
+#include <filesystem>
 
 // Constructor
 Harmonizer::Harmonizer(const std::string& inputWav, const std::string& outputWav, int semitones)
-    : inputWav(inputWav), outputWav(outputWav), semitones(semitones) {}
+    : inputWav(inputWav), outputWav(outputWav), semitones(semitones) 
+{
+    std::filesystem::path assetsPath = "assets";
+    this->inputWav = (assetsPath / inputWav).string();  // Use 'this->' to refer to the class member
+    this->outputWav = (assetsPath / outputWav).string();  // Use 'this->' to refer to the class member
+}
 
 void Harmonizer::updateInputs(const std::string& inputWav, const std::string& outputWav, int semitones) {
     this->inputWav = inputWav;
