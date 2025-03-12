@@ -1194,6 +1194,18 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "Drawn by Harvey McBurney, Nicolas Viale"
+		(exclude_from_sim no)
+		(at 210.82 169.926 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.6)
+				(bold yes)
+			)
+		)
+		(uuid "6323118a-47a6-4cea-aaa1-78e0e859bf97")
+	)
 	(text_box "M2.5 Mounting Holes"
 		(exclude_from_sim no)
 		(at 25.4 25.4 0)

@@ -1601,6 +1601,18 @@
 		)
 		(uuid "7903f521-04da-4008-967d-ad25bf51cbde")
 	)
+	(text "Drawn by Harvey McBurney, Nicolas Viale"
+		(exclude_from_sim no)
+		(at 209.804 169.672 0)
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.6)
+				(bold yes)
+			)
+		)
+		(uuid "defbb00f-a8a4-4860-bf77-5283ff48b6d8")
+	)
 	(no_connect
 		(at 118.745 111.76)
 		(uuid "02a7da86-aefe-46b1-9082-a6b01c3dc9f7")
