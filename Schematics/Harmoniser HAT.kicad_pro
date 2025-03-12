@@ -670,20 +670,8 @@
       "Root"
     ],
     [
-      "1e24c712-f0cf-4e13-a910-a1f2072b9310",
-      "PCM3060 CODEC"
-    ],
-    [
       "94150540-adfd-4870-80d6-c5485bc02207",
       "RPi GPIO"
-    ],
-    [
-      "3b32bbde-f207-4d45-b634-d2776b47a4e0",
-      "Audio Inputs"
-    ],
-    [
-      "95a9c2d0-fcb3-47f7-96a1-b730c3ba5238",
-      "Audio Outputs"
     ],
     [
       "5d678f4e-03b5-43f5-b100-a64e850a5e5c",
@@ -692,6 +680,10 @@
     [
       "0a2d2c39-e908-40d7-a327-42d9da6c4a7a",
       "Debug and Mounting Holes"
+    ],
+    [
+      "db253e30-8154-4877-8f9b-1111df5b5d19",
+      "CODEC-Board"
     ]
   ],
   "text_variables": {}

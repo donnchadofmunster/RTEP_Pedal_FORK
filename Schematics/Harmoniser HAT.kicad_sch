@@ -48,90 +48,6 @@
 		)
 	)
 	(sheet
-		(at 25.4 25.4)
-		(size 25.4 25.4)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "1e24c712-f0cf-4e13-a910-a1f2072b9310")
-		(property "Sheetname" "PCM3060 CODEC"
-			(at 25.4 24.6884 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "CODEC.kicad_sch"
-			(at 25.4 51.3846 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053"
-					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 101.6 25.4)
-		(size 25.4 25.4)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "3b32bbde-f207-4d45-b634-d2776b47a4e0")
-		(property "Sheetname" "Audio Inputs"
-			(at 101.6 24.6884 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "AINPUT.kicad_sch"
-			(at 101.6 51.3846 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "Harmoniser HAT"
-				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
 		(at 177.8 25.4)
 		(size 25.4 25.4)
 		(exclude_from_sim no)
@@ -216,8 +132,8 @@
 		)
 	)
 	(sheet
-		(at 139.7 25.4)
-		(size 25.4 25.4)
+		(at 25.4 23.241)
+		(size 25.4 24.892)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -230,9 +146,9 @@
 		(fill
 			(color 0 0 0 0.0000)
 		)
-		(uuid "95a9c2d0-fcb3-47f7-96a1-b730c3ba5238")
-		(property "Sheetname" "Audio Outputs"
-			(at 139.7 24.6884 0)
+		(uuid "db253e30-8154-4877-8f9b-1111df5b5d19")
+		(property "Sheetname" "CODEC-Board"
+			(at 25.4 22.5294 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -240,8 +156,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "AOUT.kicad_sch"
-			(at 139.7 51.3846 0)
+		(property "Sheetfile" "WM8649.kicad_sch"
+			(at 25.4 48.7176 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -252,7 +168,7 @@
 		(instances
 			(project "Harmoniser HAT"
 				(path "/41751dd2-97f9-4cc6-b9e6-b561e5949053"
-					(page "5")
+					(page "8")
 				)
 			)
 		)
