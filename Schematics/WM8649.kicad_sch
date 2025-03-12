@@ -1591,9 +1591,9 @@
 		)
 		(uuid a6bbdc9a-fd86-411f-9509-eea0bb65837a)
 	)
-	(text "WM8960"
+	(text "WM8960 - BOB21250 board"
 		(exclude_from_sim no)
-		(at 114.808 67.31 0)
+		(at 139.7 67.31 0)
 		(effects
 			(font
 				(size 5 5)
@@ -2101,7 +2101,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm"
 			(at 209.55 101.9048 0)
 			(effects
 				(font
@@ -2238,7 +2238,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x16_P2.54mm_Vertical"
 			(at 123.825 96.52 0)
 			(effects
 				(font
@@ -2955,7 +2955,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P5.00mm"
 			(at 203.2 99.3648 0)
 			(effects
 				(font
@@ -3159,7 +3159,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x16_P2.54mm_Vertical"
 			(at 161.29 96.52 0)
 			(effects
 				(font
