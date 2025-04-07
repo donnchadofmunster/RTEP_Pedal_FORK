@@ -8,8 +8,8 @@ Harmonizer::Harmonizer(const std::string& inputWav, const std::string& outputWav
     : inputWav(inputWav), outputWav(outputWav), semitones(semitones) 
 {
     std::filesystem::path assetsPath = "assets";
-    this->inputWav = (assetsPath / inputWav).string();  // Use 'this->' to refer to the class member
-    this->outputWav = (assetsPath / outputWav).string();  // Use 'this->' to refer to the class member
+    this->inputWav = (assetsPath / inputWav).string();  
+    this->outputWav = (assetsPath / outputWav).string();
 }
 
 void Harmonizer::updateInputs(const std::string& inputWav, const std::string& outputWav, int semitones) {
