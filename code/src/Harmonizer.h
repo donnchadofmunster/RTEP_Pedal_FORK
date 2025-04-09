@@ -22,7 +22,10 @@ public:
                       const std::vector<int>& semitones = {0});
     
     // Applies pitch shifting and creates a new output
-    bool process();
+    bool process(int iteration = 0);
+
+    // Creates a chord by pitch shifting and stacking the Wav files
+    bool createChord();
 
 private:
     std::string inputWav;
@@ -44,9 +47,6 @@ private:
     void processAudio();
     void reportMemoryUsage();
     void reportProcessingStats(double processSeconds, double processRate, double processPercent);
-
-    // Merges the outputs of the pitch shifted audio with the original audio to create a Chord
-    // void mergeOutputs(const std::vector<std::string>& wavFiles);
 };
 
 #endif // HARMONIZER_H

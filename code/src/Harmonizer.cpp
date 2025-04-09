@@ -17,7 +17,6 @@ void Harmonizer::updateInputs(const std::string& inputWav, const std::string& ou
     this->outputWav = outputWav;
     this->semitones = semitones;
 }
-    
 
 void Harmonizer::setupStretch(int currentSemitone) {
     if (!inWav.read(inputWav).warn()) { // If it can't read the file...
@@ -67,22 +66,26 @@ void Harmonizer::reportProcessingStats(double processSeconds, double processRate
 }
 
 bool Harmonizer::process(int iteration) {
-    setupStretch(semitones[0]); // Setup
+    setupStretch(semitones[iteration]); // Setup
+    printf("Processing %s with %d semitones\n", inputWav.c_str(), semitones[iteration]); // Prints the current file being processed
     stopwatch.start(); // Used to report on the time taken for pitch shifting, useful for testing
     processAudio();
     double processSeconds = stopwatch.seconds(stopwatch.lap()); // Shows how long it took to process the audio
     double processRate = (inWav.length() / inWav.sampleRate) / processSeconds; // Shows how fast pitch shifting is compared to length of input
     double processPercent = 100 / processRate; // Shows the CPU usage
     reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
+
+    std::filesystem::path assetsPath = "assets";
+    std::string outputFileName = "output" + std::to_string(iteration) + ".wav";
+    this->outputWav = (assetsPath / outputFileName).string();
     outWav.write(outputWav); // Creates the new .Wav file
+
     return true;
 }
 
 bool Harmonizer::createChord() {
-    for (int i = 0; i < semitones.size(); ++i) {
-        harmonizer.process(i);
+    for (size_t i = 0; i < semitones.size(); ++i) {
+        process(i);
     }
     return true;
 }
-
-// void Harmonizer:mergeOutputs()
