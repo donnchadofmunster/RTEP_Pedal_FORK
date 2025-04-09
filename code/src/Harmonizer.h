@@ -11,8 +11,10 @@ class Harmonizer {
 public:
     // Constructor: Takes in Input, Output and the Semitone value intended to pitch shift by
     Harmonizer(const std::string& inputWav = "input.wav", const std::string& outputWav = "output.wav", int semitones = 0);
+
     // Updates the inputs so new values can be used without creating a new object
     void updateInputs(const std::string& inputWav = "input.wav", const std::string& outputWav = "output.wav", int semitones = 0);
+    
     // Applies pitch shifting and creates a new output
     bool process();
 
