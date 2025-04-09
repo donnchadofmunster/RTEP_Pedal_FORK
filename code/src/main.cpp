@@ -5,7 +5,7 @@
 #include <thread>
 
 int main() {
-    Harmonizer harmonizer("input2.wav", "output.wav", 2);
+    Harmonizer harmonizer("input2.wav", "output.wav", {12});
     harmonizer.process();
     return 0;
 }
