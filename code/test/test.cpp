@@ -3,6 +3,7 @@
 #include "MockOutputModule.h"
 #include "DigitalSignalChain.h"
 #include "Sample.h"
+#include "EffectFactory.h"               // ✅ Add this
 #include <iostream>
 #include <iomanip>
 #include <thread>
@@ -35,9 +36,19 @@ int main()
     MockOutputModule mockOutput(outputWavFilePath);
     DigitalSignalChain dspChain;
 
-    // Capture number of channels
-    // int numChannels = mockSampler.getNumChannels();
+    // ✅ Register the OctaveDoubler effect from the factory
+    auto octaveEffect = EffectFactory::instance().createEffect("OctaveDoubler");
+    if (octaveEffect)
+    {
+        dspChain.registerEffect(octaveEffect);
+    }
+    else
+    {
+        std::cerr << "Error: OctaveDoubler effect not found in factory." << std::endl;
+        return 1;
+    }
 
+    // Register callback for each sample
     mockSampler.registerCallback([&dspChain, &mockOutput](const Sample &sample)
                                  { processSample(const_cast<Sample &>(sample), dspChain, mockOutput); });
 

@@ -31,10 +31,11 @@ private:
     void captureAudio();
 
     std::thread audioThread;               // Thread for audio processing
-    std::atomic<bool> running;             // Flag to indicate if capturing is running
-    snd_pcm_t *handle;                     // ALSA PCM handle for audio input
+
     unsigned int sampleRate;               // Sample rate in Hz
     unsigned int bufferSize;               // Buffer size for capturing audio
+    std::atomic<bool> running;             // Flag to indicate if capturing is running
+    snd_pcm_t *handle;                     // ALSA PCM handle for audio input
     std::vector<SampleCallback> callbacks; // List of registered callbacks
 };
 
