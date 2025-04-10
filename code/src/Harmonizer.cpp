@@ -68,12 +68,7 @@ void Harmonizer::reportProcessingStats(double processSeconds, double processRate
 bool Harmonizer::process(int iteration) {
     setupStretch(semitones[iteration]); // Setup
     printf("Processing %s with %d semitones\n", inputWav.c_str(), semitones[iteration]); // Prints the current file being processed
-    stopwatch.start(); // Used to report on the time taken for pitch shifting, useful for testing
     processAudio();
-    double processSeconds = stopwatch.seconds(stopwatch.lap()); // Shows how long it took to process the audio
-    double processRate = (inWav.length() / inWav.sampleRate) / processSeconds; // Shows how fast pitch shifting is compared to length of input
-    double processPercent = 100 / processRate; // Shows the CPU usage
-    reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
 
     std::filesystem::path assetsPath = "assets";
     std::string outputFileName = "output" + std::to_string(iteration) + ".wav";
@@ -83,7 +78,7 @@ bool Harmonizer::process(int iteration) {
     return true;
 }
 
-bool Harmonizer::createChord() {
+std::string Harmonizer::mergeWavs(const char* infilename, const char* infilename2, const char* outfilename) {
     static double data [1024] ;
     static double data2 [1024] ;
     static double outdata [1024] ;
@@ -93,6 +88,25 @@ bool Harmonizer::createChord() {
     SF_INFO sfinfo2 ;
     int readcount2 ;
 
+    infile = sf_open (infilename, SFM_READ, &sfinfo);
+    infile2 = sf_open (infilename2, SFM_READ, &sfinfo2);
+    outfile = sf_open (outfilename, SFM_WRITE, &sfinfo);
+
+    while ((readcount = sf_read_double (infile, data, 1024)) && (readcount2 = sf_read_double (infile2, data2, 1024))) { 
+        data_processing (data, readcount, sfinfo.channels) ;
+        data_processing(data2, readcount2, sfinfo2.channels) ;
+        for (int j = 0; j < 1024; ++j) {
+            outdata[j] = (data[j] + data2[j]) - (data[j] * data2[j]) / 65535;
+        }
+        sf_write_double (outfile, outdata , readcount) ;
+    };
+    std::filesystem::remove(infilename);
+    std::filesystem::remove(infilename2);
+    return outfilename;
+}
+
+bool Harmonizer::createChord() {
+    stopwatch.start(); // Used to report on the time taken for pitch shifting, useful for testing
     std::filesystem::path assetsPath = "assets";
 
     // Create the temporary pitch shifted WAV files
@@ -100,40 +114,32 @@ bool Harmonizer::createChord() {
         process(i);
     }
 
-    // Combine the pitch shifted versions into a single WAV file
-    for (size_t i = 1; i < semitones.size(); ++i) {
-        std::string inputFileNameOne = "output0.wav" ;
-        std::string inputFileNameTwo = "output" + std::to_string(i) + ".wav";
-        std::string outputFileName = "output.wav" ;
-        std::string fullPath1 = (assetsPath / inputFileNameOne).string();
-        std::string fullPath2 = (assetsPath / inputFileNameTwo).string();
-        std::string outPath = (assetsPath / outputFileName).string();
-        const char* infilename = fullPath1.c_str();
-        const char* infilename2 = fullPath2.c_str();
-        const char *outfilename = outPath.c_str();
+    if (semitones.size() > 1) {
+        std::string output = mergeWavs(
+            (assetsPath / "output0.wav").string().c_str(),
+            (assetsPath / "output1.wav").string().c_str(),
+            (assetsPath / "mergedOutput0.wav").string().c_str()
+        );
 
-        infile = sf_open (infilename, SFM_READ, &sfinfo);
-        infile2 = sf_open (infilename2, SFM_READ, &sfinfo2);
-        outfile = sf_open (outfilename, SFM_WRITE, &sfinfo);
+        std::string last_output = output;
 
-        while ((readcount = sf_read_double (infile, data, 1024)) && (readcount2 = sf_read_double (infile2, data2, 1024))) { 
-            data_processing (data, readcount, sfinfo.channels) ;
-            data_processing(data2, readcount2, sfinfo2.channels) ;
-            for (int j = 0; j < 1024; ++j) {
-                outdata[j] = (data[j] + data2[j]) - (data[j] * data2[j]) / 65535;
-            }
-            sf_write_double (outfile, outdata , readcount) ;
-        };
-
-        // Delete the temporary pitch shifted files
-        for (size_t i = 0; i < semitones.size(); ++i) {
-            std::string outputFileName = "output" + std::to_string(i) + ".wav";
-            std::string filePath = (assetsPath / outputFileName).string();
-            printf("Deleting %s\n", filePath.c_str());
-            std::filesystem::remove(filePath);
+        for (size_t i = 2; i < semitones.size(); ++i) {
+            std::string inputFilePath1 = (assetsPath / ("output" + std::to_string(i) + ".wav")).string();
+            std::string outputFilePath = (assetsPath / ("mergedOutput" + std::to_string(i) + ".wav")).string();
+            output = mergeWavs(inputFilePath1.c_str(), last_output.c_str(), outputFilePath.c_str());
+            last_output = output;
         }
+        std::filesystem::rename(last_output, assetsPath / "output.wav");
+    } else {
+        std::filesystem::rename(assetsPath / "output0.wav", assetsPath / "output.wav");
     }
+    
+    double processSeconds = stopwatch.seconds(stopwatch.lap()); // Shows how long it took to process the audio
+    double processRate = (inWav.length() / inWav.sampleRate) / processSeconds; // Shows how fast pitch shifting is compared to length of input
+    double processPercent = 100 / processRate; // Shows the CPU usage
+    reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
     return true;
+
 }
 
 void Harmonizer::data_processing(double *data, int count, int channels) { 

@@ -48,6 +48,7 @@ private:
     void reportMemoryUsage();
     void reportProcessingStats(double processSeconds, double processRate, double processPercent);
     void data_processing(double *data, int count, int channels);
+    std::string mergeWavs(const char* infilename, const char* infilename2, const char* outfilename);
 };
 
 #endif // HARMONIZER_H
