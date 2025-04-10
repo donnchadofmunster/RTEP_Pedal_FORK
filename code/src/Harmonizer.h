@@ -47,6 +47,7 @@ private:
     void processAudio();
     void reportMemoryUsage();
     void reportProcessingStats(double processSeconds, double processRate, double processPercent);
+    void data_processing(double *data, int count, int channels);
 };
 
 #endif // HARMONIZER_H
