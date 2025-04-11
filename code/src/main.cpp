@@ -5,7 +5,7 @@
 #include <thread>
 
 int main() {
-    Harmonizer harmonizer("input4.wav", "output.wav", {3});
+    Harmonizer harmonizer("input_440.wav", "output.wav", {3});
     harmonizer.createChord();
     return 0;
 }

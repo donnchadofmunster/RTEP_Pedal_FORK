@@ -95,23 +95,6 @@ extern "C" {
 	}
 }
 
-#include <new>
-
-void * operator new(size_t size) {
-	return malloc(size);
-}
-
-void * operator new[](size_t size) {
-	return malloc(size);
-}
-
-void operator delete(void *ptr) noexcept {
-	free(ptr);
-}
-
-void operator delete[](void *ptr) noexcept {
-	free(ptr);
-}
 
 signalsmith::MemoryTracker::MemoryTracker() : signalsmith::MemoryTracker::MemoryTracker(signalsmith::memory_tracker::memoryTrackerAllocCounter, signalsmith::memory_tracker::memoryTrackerFreeCounter) {}
 

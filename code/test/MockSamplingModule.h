@@ -1,43 +1,18 @@
-#ifndef MOCKSAMPLINGMODULE_H
-#define MOCKSAMPLINGMODULE_H
+#pragma once
 
-#include <vector>
-#include <functional>
 #include <string>
-#include <memory>
+#include <vector>
 #include <sndfile.h>
-#include <thread>
-#include <atomic>
-#include "Sample.h"
 
-class MockSamplingModule
-{
+class MockSamplingModule {
 public:
-    using SampleCallback = std::function<void(const Sample &)>;
-
-    MockSamplingModule(const std::string &wavFilePath);
-    ~MockSamplingModule();
-    void start();
-    void stop();
-    void registerCallback(SampleCallback callback);
-    int getNumChannels() const;
-
-    /**
-     * @brief Checks if the sampling module is currently running.
-     * @return True if the sampling module is running, otherwise false.
-     */
-    bool isRunning() const;
+    MockSamplingModule(const std::string& filePath);
+    bool getSample(float& outSample); // Returns true if a sample is available, false if done
 
 private:
-    void readWavFile();
-    void processAudio();
+    void loadWavFile();
 
-    std::vector<SampleCallback> callbacks;
     std::vector<float> samples;
-    std::string wavFilePath;
-    std::atomic<bool> running;
-    std::thread audioThread;
-    int numChannels;
+    std::size_t sampleIndex = 0;
+    int numChannels = 0;
 };
-
-#endif // MOCKSAMPLINGMODULE_H

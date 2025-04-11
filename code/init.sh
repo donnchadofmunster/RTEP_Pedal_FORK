@@ -5,8 +5,11 @@ sudo apt update
 sudo apt upgrade
 sudo apt install build-essential
 sudo apt install cmake
+sudo apt install gdb
 sudo apt install clang clang-tidy
 sudo apt install libsndfile1-dev pkg-config
+sudo apt install sndfile-programs
+sudo apt install sox
 sudo apt install libasound2-dev
 
 cd "$script_directory"

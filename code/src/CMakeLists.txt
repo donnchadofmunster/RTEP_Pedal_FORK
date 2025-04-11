@@ -1,16 +1,27 @@
-# Collect all .cpp files in the current directory
-file(GLOB SOURCES "*.cpp")
+# Collect all .cpp files in the current source directory
+file(GLOB SRC_SOURCES "*.cpp")
 
-# Define the main pedal library using all source files (except main.cpp)
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
-add_library(pedal_lib ${SOURCES})
+# Collect all .cpp files in the effects directory
+file(GLOB EFFECT_SOURCES "${CMAKE_SOURCE_DIR}/effects/*.cpp")
 
-# Include current source directory for headers
-target_include_directories(pedal_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Combine both sets of sources
+set(ALL_SOURCES ${SRC_SOURCES} ${EFFECT_SOURCES})
 
-# Link dependencies
-target_link_libraries(pedal_lib PRIVATE pthread PRIVATE sndfile)
+# Remove main.cpp from the library sources
+list(REMOVE_ITEM ALL_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
-# Define the executable and link the library
+# Define the main pedal library
+add_library(pedal_lib ${ALL_SOURCES})
+
+# Include directories for source and effects
+target_include_directories(pedal_lib PUBLIC
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/effects
+)
+
+# Link required libraries
+target_link_libraries(pedal_lib PRIVATE pthread sndfile)
+
+# Define the executable and link the pedal library
 add_executable(harmoniser_pedal main.cpp)
 target_link_libraries(harmoniser_pedal PRIVATE pedal_lib stdc++fs)

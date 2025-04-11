@@ -1,84 +1,41 @@
 #include "MockSamplingModule.h"
-#include "Sample.h"
 #include <iostream>
-#include <chrono>
-#include <thread>
 
-MockSamplingModule::MockSamplingModule(const std::string &wavFilePath)
-    : wavFilePath(wavFilePath), running(false)
-{
-    readWavFile();
-}
-
-MockSamplingModule::~MockSamplingModule()
-{
-    stop();
-}
-
-void MockSamplingModule::registerCallback(SampleCallback callback)
-{
-    callbacks.push_back(callback);
-}
-
-void MockSamplingModule::start()
-{
-    running = true;
-    audioThread = std::thread(&MockSamplingModule::processAudio, this);
-}
-
-void MockSamplingModule::stop()
-{
-    running = false;
-    if (audioThread.joinable())
-    {
-        audioThread.join();
+MockSamplingModule::MockSamplingModule(const std::string& filePath) {
+    SF_INFO sfinfo = {};
+    SNDFILE* file = sf_open(filePath.c_str(), SFM_READ, &sfinfo);
+    
+    if (!file) {
+        std::cerr << "[MockSamplingModule] Failed to open WAV file: " << sf_strerror(nullptr) << std::endl;
+        std::exit(EXIT_FAILURE);
     }
-}
-
-void MockSamplingModule::readWavFile()
-{
-    SNDFILE *file;
-    SF_INFO sfinfo;
-
-    file = sf_open(wavFilePath.c_str(), SFM_READ, &sfinfo);
-    if (!file)
-    {
-        std::cerr << "Error opening WAV file: " << wavFilePath << std::endl;
-        return;
-    }
-
-    samples.resize(sfinfo.frames * sfinfo.channels);
-    sf_read_float(file, samples.data(), sfinfo.frames * sfinfo.channels);
-    sf_close(file);
 
     numChannels = sfinfo.channels;
-}
+    std::size_t totalSamples = sfinfo.frames * numChannels;
 
-void MockSamplingModule::processAudio()
-{
-    const double sampleRate = 44100.0;
-    const double frameDuration = 1.0 / sampleRate;
+    samples.resize(totalSamples);
+    sf_count_t readCount = sf_read_float(file, samples.data(), totalSamples);
 
-    for (size_t i = 0; i < samples.size(); i += numChannels)
-    {
-        if (!running)
-            break;
-
-        double timeIndex = (i / numChannels) * frameDuration;
-        Sample sample(samples[i], timeIndex);
-
-        // Invoke callbacks immediately
-        for (const auto &callback : callbacks)
-        {
-            callback(sample);
-        }
-
-        // Simulate real-time delay
-        std::this_thread::sleep_for(std::chrono::microseconds(static_cast<int>(frameDuration * 1e6)));
+    if (readCount != static_cast<sf_count_t>(totalSamples)) {
+        std::cerr << "[MockSamplingModule] Incomplete WAV file read.\n";
+        std::exit(EXIT_FAILURE);
     }
+
+    sf_close(file);
 }
 
-bool MockSamplingModule::isRunning() const
-{
-    return running.load();
+bool MockSamplingModule::getSample(float& outSample) {
+    if (sampleIndex >= samples.size()) {
+        return false;
+    }
+
+    // Downmix to mono if necessary
+    float mono = 0.0f;
+    for (int ch = 0; ch < numChannels; ++ch) {
+        mono += samples[sampleIndex++];
+    }
+    mono /= numChannels;
+    outSample = mono;
+
+    return true;
 }

@@ -5,6 +5,7 @@
 #include <memory>
 #include "Effect.h"
 #include "Sample.h"
+#include <string>
 
 /**
  * @class DigitalSignalChain
@@ -13,6 +14,9 @@
 class DigitalSignalChain
 {
 public:
+
+
+    bool loadEffectsFromFile(const std::string& filepath); // Loads effects from file
     /**
      * @brief Registers an effect to be applied in the processing chain.
      * @param effect A shared pointer to an Effect instance.
@@ -26,7 +30,9 @@ public:
     void applyEffects(Sample &sample);
 
 private:
+
     std::vector<std::shared_ptr<Effect>> effects; ///< List of registered effects.
+
 };
 
 #endif // DIGITALSIGNALCHAIN_H

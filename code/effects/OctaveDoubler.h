@@ -4,6 +4,6 @@
 
 class OctaveDoubler : public Effect {
 public:
-    float process(float &sample) override;
-    virtual ~OctaveDoubler() = default;
+    float process(float sample) override;
+    ~OctaveDoubler() override;
 };

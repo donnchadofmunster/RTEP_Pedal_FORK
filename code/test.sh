@@ -1,1 +1,1 @@
-code/build/test/test
+gdb code/build/test/test
