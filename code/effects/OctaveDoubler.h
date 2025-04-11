@@ -1,9 +1,12 @@
 #pragma once
 #include "Effect.h"
-#include <cmath>
 
 class OctaveDoubler : public Effect {
 public:
+    OctaveDoubler();
     float process(float sample) override;
-    ~OctaveDoubler() override;
+    ~OctaveDoubler();
+
+private:
+    int lastSign;
 };

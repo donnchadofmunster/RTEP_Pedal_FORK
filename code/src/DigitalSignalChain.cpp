@@ -9,7 +9,7 @@ bool DigitalSignalChain::loadEffectsFromFile(const std::string& filepath)
 {
     std::ifstream infile(filepath);
     if (!infile.is_open()) {
-        std::cerr << "Failed to open effect config file: " << filepath << std::endl;
+        std::cerr << "[DigitalSignalChain] Failed to open effect config file: " << filepath << std::endl;
         return false;
     }
 
@@ -21,14 +21,14 @@ bool DigitalSignalChain::loadEffectsFromFile(const std::string& filepath)
 
         if (effectName.empty()) continue;
 
-        std::cout << "Loading effect: " << effectName << std::endl;
+        std::cout << "[DigitalSignalChain] Loading effect: " << effectName << std::endl;
 
         auto effect = EffectFactory::instance().createEffect(effectName);
         if (effect) {
             registerEffect(effect);
-            std::cout << "Registered effect: " << effectName << std::endl;
+            std::cout << "[DigitalSignalChain] Registered effect: " << effectName << std::endl;
         } else {
-            std::cerr << "Unknown effect: " << effectName << std::endl;
+            std::cerr << "[DigitalSignalChain] Unknown effect: " << effectName << std::endl;
         }
     }
 
@@ -47,8 +47,8 @@ void DigitalSignalChain::registerEffect(std::shared_ptr<Effect> effect)
 void DigitalSignalChain::applyEffects(Sample &sample)
 {
     float pcmValue = sample.getPcmValue();
-
-    for (auto &effect : effects) {
+    try{
+            for (auto &effect : effects) {
         if (!effect) {
             std::cerr << "Null effect encountered in signal chain!\n";
             continue;
@@ -58,6 +58,7 @@ void DigitalSignalChain::applyEffects(Sample &sample)
         sample.setPcmValue(processed);
         sample.addEffect(typeid(*effect).name());  // logs effect name
     }
-
-    sample.setPcmValue(pcmValue);  // optional: reset to original
+    }catch(...){
+        sample.setPcmValue(pcmValue);  // optional: reset to original
+    }
 }

@@ -55,18 +55,7 @@ int main()
     // Optional: call to anchor OctaveDoubler object file during linking (only needed if effect fails to register)
     ForceAllEffects();
 
-    // Retrieve the "OctaveDoubler" effect registered via REGISTER_EFFECT_AUTO
-    try {
-        auto effect = EffectFactory::instance().createEffect("OctaveDoubler");
-        if (!effect) {
-            throw std::runtime_error("[test.cpp] OctaveDoubler is not registered.");
-        }
-        std::cout << "[test.cpp] OctaveDoubler successfully registered.\n";
-        dspChain.registerEffect(effect);
-    } catch (const std::exception& e) {
-        std::cerr << "[ERROR] " << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
+    dspChain.loadEffectsFromFile("assets/effects_chain.txt");
 
     // Process audio sample-by-sample
     float pcm;
