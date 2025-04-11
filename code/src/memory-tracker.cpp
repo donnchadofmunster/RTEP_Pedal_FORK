@@ -87,10 +87,18 @@ extern "C" {
 	}
 
 	void free(void *ptr) {
-		void *originalPtr = signalsmith::memory_tracker::getAllocPointer(ptr);
-		size_t originalSize = signalsmith::memory_tracker::getAllocSize(ptr);
-		signalsmith::memory_tracker::memoryTrackerFreeCounter += originalSize;
-
+		if (!ptr) return;
+		
+		void *originalPtr;
+		size_t originalSize;
+		
+		try {
+			originalPtr = signalsmith::memory_tracker::getAllocPointer(ptr);
+			originalSize = signalsmith::memory_tracker::getAllocSize(ptr);
+			signalsmith::memory_tracker::memoryTrackerFreeCounter += originalSize;
+		} catch (...) {
+			originalPtr = ptr;  // not tracked
+		}
 		signalsmith::memory_tracker::callOriginal(signalsmith::memory_tracker::originalFree, "free", originalPtr);
 	}
 }

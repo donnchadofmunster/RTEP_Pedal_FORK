@@ -102,6 +102,11 @@ std::string Harmonizer::mergeWavs(const char* infilename, const char* infilename
     };
     std::filesystem::remove(infilename);
     std::filesystem::remove(infilename2);
+
+    sf_close(infile);
+    sf_close(infile2);
+    sf_close(outfile);
+    
     return outfilename;
 }
 
