@@ -1,1 +1,1 @@
-./build/test/test ./assets/input4.wav ./assets/output.wav
+sudo valgrind  --track-origins=yes --leak-check=full --show-leak-kinds=all ./build/test/test ./assets/input_440.wav ./assets/output.wav 

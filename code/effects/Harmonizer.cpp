@@ -1,14 +1,15 @@
 #include "Harmonizer.h"
+#include "EffectRegistration.h"
 #include <iostream>
 #include <cmath>
 #include <filesystem>
 
 // Constructor
 Harmonizer::Harmonizer(const std::string& inputWav, const std::string& outputWav, const std::vector<int>& semitones)
-    : inputWav(inputWav), outputWav(outputWav), semitones(semitones) 
+    : inputWav(inputWav), outputWav(outputWav), semitones(semitones)
 {
     std::filesystem::path assetsPath = "assets";
-    this->inputWav = (assetsPath / inputWav).string();  
+    this->inputWav = (assetsPath / inputWav).string();
     this->outputWav = (assetsPath / outputWav).string();
 }
 
@@ -18,16 +19,61 @@ void Harmonizer::updateInputs(const std::string& inputWav, const std::string& ou
     this->semitones = semitones;
 }
 
+void Harmonizer::initRealtimeStretch() {
+    if (stretchInitialized) return;
+
+    sampleRate = 44100;
+    stretch.presetDefault(1, sampleRate);
+
+    inputBuffer.resize(blockSize);
+    outputBuffer.resize(blockSize);
+    outputBuffer.assign(blockSize, 0.0f);
+    inputWriteIndex = 0;
+    outputReadIndex = outputBuffer.size();  // start with zeroes
+    stretchInitialized = true;
+}
+
+float Harmonizer::process(float sample, float setting) {
+    initRealtimeStretch();
+
+    if (lastSemitoneSetting != setting) {
+        stretch.setTransposeSemitones(setting, tonality / sampleRate);
+        lastSemitoneSetting = setting;
+    }
+
+    // Add sample to input buffer
+    inputBuffer[inputWriteIndex++] = sample;
+
+    // If we still have processed output to return
+    if (outputReadIndex < outputBuffer.size()) {
+        return outputBuffer[outputReadIndex++];
+    }
+
+    // If input buffer full, process a new block
+    if (inputWriteIndex >= blockSize) {
+        float* inputs[1] = { inputBuffer.data() };
+        float* outputs[1] = { outputBuffer.data() };
+
+        stretch.process(inputs, blockSize, outputs, blockSize);
+        outputReadIndex = 0;
+        inputWriteIndex = 0;
+        return outputBuffer[outputReadIndex++];
+    }
+
+    // Otherwise, output zero or last good value
+    return 0.0f;
+}
+
 void Harmonizer::setupStretch(int currentSemitone) {
-    if (!inWav.read(inputWav).warn()) { // If it can't read the file...
+    if (!inWav.read(inputWav).warn()) {
         std::cerr << "Error reading input WAV file!" << std::endl;
         return;
     }
-    
+
     size_t inputLength = inWav.samples.size() / inWav.channels;
     outWav.channels = inWav.channels;
     outWav.sampleRate = inWav.sampleRate;
-    
+
     int outputLength = std::round(inputLength * time);
 
     stretch.presetDefault(inWav.channels, inWav.sampleRate);
@@ -47,11 +93,24 @@ void Harmonizer::processAudio() {
 
     stretch.seek(inWav, stretch.inputLatency(), 1 / time);
     inWav.offset += stretch.inputLatency();
-    
+
     stretch.process(inWav, inputLength, outWav, outputLength);
     outWav.offset += outputLength;
     stretch.flush(outWav, stretch.outputLatency());
     outWav.offset -= outputLength;
+}
+
+bool Harmonizer::process(int iteration) {
+    setupStretch(semitones[iteration]);
+    printf("Processing %s with %d semitones\n", inputWav.c_str(), semitones[iteration]);
+    processAudio();
+
+    std::filesystem::path assetsPath = "assets";
+    std::string outputFileName = "output" + std::to_string(iteration) + ".wav";
+    this->outputWav = (assetsPath / outputFileName).string();
+    outWav.write(outputWav);
+
+    return true;
 }
 
 void Harmonizer::reportMemoryUsage() {
@@ -65,56 +124,44 @@ void Harmonizer::reportProcessingStats(double processSeconds, double processRate
     reportMemoryUsage();
 }
 
-bool Harmonizer::process(int iteration) {
-    setupStretch(semitones[iteration]); // Setup
-    printf("Processing %s with %d semitones\n", inputWav.c_str(), semitones[iteration]); // Prints the current file being processed
-    processAudio();
-
-    std::filesystem::path assetsPath = "assets";
-    std::string outputFileName = "output" + std::to_string(iteration) + ".wav";
-    this->outputWav = (assetsPath / outputFileName).string();
-    outWav.write(outputWav); // Creates the new .Wav file
-
-    return true;
-}
-
 std::string Harmonizer::mergeWavs(const char* infilename, const char* infilename2, const char* outfilename) {
-    static double data [1024] ;
-    static double data2 [1024] ;
-    static double outdata [1024] ;
-    SNDFILE *infile, *outfile, *infile2 ;
-    SF_INFO sfinfo ;
-    int readcount ;
-    SF_INFO sfinfo2 ;
-    int readcount2 ;
+    static double data[1024];
+    static double data2[1024];
+    static double outdata[1024];
+    SNDFILE *infile, *outfile, *infile2;
+    SF_INFO sfinfo;
+    int readcount;
+    SF_INFO sfinfo2;
+    int readcount2;
 
-    infile = sf_open (infilename, SFM_READ, &sfinfo);
-    infile2 = sf_open (infilename2, SFM_READ, &sfinfo2);
-    outfile = sf_open (outfilename, SFM_WRITE, &sfinfo);
+    infile = sf_open(infilename, SFM_READ, &sfinfo);
+    infile2 = sf_open(infilename2, SFM_READ, &sfinfo2);
+    outfile = sf_open(outfilename, SFM_WRITE, &sfinfo);
 
-    while ((readcount = sf_read_double (infile, data, 1024)) && (readcount2 = sf_read_double (infile2, data2, 1024))) { 
-        data_processing (data, readcount, sfinfo.channels) ;
-        data_processing(data2, readcount2, sfinfo2.channels) ;
+    while ((readcount = sf_read_double(infile, data, 1024)) &&
+           (readcount2 = sf_read_double(infile2, data2, 1024))) {
+        data_processing(data, readcount, sfinfo.channels);
+        data_processing(data2, readcount2, sfinfo2.channels);
         for (int j = 0; j < 1024; ++j) {
             outdata[j] = (data[j] + data2[j]) - (data[j] * data2[j]) / 65535;
         }
-        sf_write_double (outfile, outdata , readcount) ;
-    };
+        sf_write_double(outfile, outdata, readcount);
+    }
+
     std::filesystem::remove(infilename);
     std::filesystem::remove(infilename2);
 
     sf_close(infile);
     sf_close(infile2);
     sf_close(outfile);
-    
+
     return outfilename;
 }
 
 bool Harmonizer::createChord() {
-    stopwatch.start(); // Used to report on the time taken for pitch shifting, useful for testing
+    stopwatch.start();
     std::filesystem::path assetsPath = "assets";
 
-    // Create the temporary pitch shifted WAV files
     for (size_t i = 0; i < semitones.size(); ++i) {
         process(i);
     }
@@ -138,22 +185,21 @@ bool Harmonizer::createChord() {
     } else {
         std::filesystem::rename(assetsPath / "output0.wav", assetsPath / "output.wav");
     }
-    
-    double processSeconds = stopwatch.seconds(stopwatch.lap()); // Shows how long it took to process the audio
-    double processRate = (inWav.length() / inWav.sampleRate) / processSeconds; // Shows how fast pitch shifting is compared to length of input
-    double processPercent = 100 / processRate; // Shows the CPU usage
-    reportProcessingStats(processSeconds, processRate, processPercent); // Displays the stats of the pitch shifting
+
+    double processSeconds = stopwatch.seconds(stopwatch.lap());
+    double processRate = (inWav.length() / inWav.sampleRate) / processSeconds;
+    double processPercent = 100 / processRate;
+    reportProcessingStats(processSeconds, processRate, processPercent);
     return true;
-
 }
 
-void Harmonizer::data_processing(double *data, int count, int channels) { 
-    double channel_gain [6] = { 1, 1, 1, 1, 1, 1 } ;
-    int k, chan ;
-  
-    for (chan = 0 ; chan < channels ; chan ++)
-      for (k = chan ; k < count ; k+= channels)
-        data [k] *= channel_gain [chan] ;
-  
-    return ;
+void Harmonizer::data_processing(double* data, int count, int channels) {
+    double channel_gain[6] = {1, 1, 1, 1, 1, 1};
+    int k, chan;
+
+    for (chan = 0; chan < channels; chan++)
+        for (k = chan; k < count; k += channels)
+            data[k] *= channel_gain[chan];
 }
+
+REGISTER_EFFECT_AUTO(Harmonizer);

@@ -4,12 +4,13 @@
 #include <string>
 #include <vector> // Ensure vector is included
 #include <sndfile.h>
+#include "Effect.h"
 #include "../lib/signalsmith-stretch/signalsmith-stretch.h"
 #include "../lib/signalsmith-stretch/cmd/util/stopwatch.h"
 #include "../lib/signalsmith-stretch/cmd/util/memory-tracker.h"
 #include "../lib/signalsmith-stretch/cmd/util/wav.h"
 
-class Harmonizer {
+class Harmonizer : public Effect {
 public:
     // Constructor: Takes in Input, Output, and the Semitone values intended to pitch shift by
     Harmonizer(const std::string& inputWav = "input.wav", 
@@ -27,7 +28,20 @@ public:
     // Creates a chord by pitch shifting and stacking the Wav files
     bool createChord();
 
+    float process(float sample, float setting) override;
+
 private:
+    bool stretchInitialized = false;
+    float lastSemitoneSetting = std::numeric_limits<float>::quiet_NaN();
+    std::vector<float> inputBuffer;
+    std::vector<float> outputBuffer;
+    size_t inputWriteIndex = 0;
+    size_t outputReadIndex = 0;
+    size_t blockSize = 64; // Small block size for low-latency
+    int sampleRate = 44100;
+
+    void initRealtimeStretch();
+
     std::string inputWav;
     std::string outputWav;
     std::vector<int> semitones; // Change this to a regular vector, not a reference

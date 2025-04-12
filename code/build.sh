@@ -24,7 +24,7 @@ fi
 cd "$original_directory"
 
 # Check if the application binary exists before printing success message
-if [ -f "code/build/src/harmoniser_pedal" ]; then
+if [ -f "./build/src/harmoniser_pedal" ]; then
     echo "Application built successfully"
 else
     echo "Build completed, but executable not found. Check make_errors.log"
