@@ -30,5 +30,7 @@ if(NOT SNDFILE_FOUND)
     endif()
 endif()
 
+enable_testing()
+
 # Add the `src/` directory where the real targets are defined
 add_subdirectory(src)

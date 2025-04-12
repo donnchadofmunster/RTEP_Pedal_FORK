@@ -42,5 +42,5 @@ target_include_directories(func_test PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(func_test PRIVATE test_lib pedal_lib)
 
 # Enable test discovery and add unit tests directory
-enable_testing()
+
 add_subdirectory(unit_tests)
