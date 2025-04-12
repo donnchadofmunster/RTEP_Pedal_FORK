@@ -19,14 +19,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential cmake libsndfile1-dev libasound2-dev libgtest-dev
-
-          # Manually build GTest if system GTest headers are available but libs are not
-          cd /usr/src/gtest
-          sudo cmake .
-          sudo make
-          sudo cp lib/*.a /usr/lib
-
-          chmod +x code/init.sh
+          
+          chmod +x ./code/init.sh
           ./code/init.sh
 
       - name: Build
