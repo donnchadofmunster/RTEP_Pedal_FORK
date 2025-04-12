@@ -19,9 +19,9 @@ extern void ForceAllEffects();  // defined in ForceEffects.cpp
  * @param dspChain The digital signal chain containing the effects
  * @param mockOutput The output module for writing processed samples
  */
-void processSample(Sample& sample, DigitalSignalChain& dspChain, MockOutputModule& mockOutput)
+void processSample(Sample& sample, DigitalSignalChain& dspChain, MockOutputModule& mockOutput, float setting = 2.0)
 {
-    dspChain.applyEffects(sample);
+    dspChain.applyEffects(sample, setting);
 
     std::cout << "[test.cpp] Time: " << sample.getTimeIndex() << "s, PCM: "
               << std::fixed << std::setprecision(4) << sample.getPcmValue();
@@ -39,15 +39,18 @@ void processSample(Sample& sample, DigitalSignalChain& dspChain, MockOutputModul
  * @brief Entry point for the real-time harmoniser pedal test.
  * Loads an input WAV, registers a DSP effect, processes each sample, and writes to output.
  */
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "Real-Time Harmoniser Pedal: Testing Mode\n";
 
-    // File paths
-    const std::string inputWavFilePath = "assets/input_440.wav";
-    const std::string outputWavFilePath = "assets/output.wav";
+     if (argc < 3) {
+        std::cerr << "[Usage] " << argv[0] << " <input.wav> <output.wav>\n";
+        return EXIT_FAILURE;
+    }
 
-    // Module construction
+    const std::string inputWavFilePath = argv[1];
+    const std::string outputWavFilePath = argv[2];
+
     MockSamplingModule mockSampler(inputWavFilePath);
     MockOutputModule mockOutput(outputWavFilePath);
     DigitalSignalChain dspChain;

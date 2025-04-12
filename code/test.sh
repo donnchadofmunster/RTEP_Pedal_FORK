@@ -1,1 +1,1 @@
-gdb code/build/test/test
+./build/test/test ./assets/input4.wav ./assets/output.wav

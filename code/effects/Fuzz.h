@@ -4,6 +4,6 @@
 class Fuzz : public Effect {
 public:
     Fuzz();
-    float process(float sample) override;
+    float process(float sample, float setting) override;
     ~Fuzz();
 };

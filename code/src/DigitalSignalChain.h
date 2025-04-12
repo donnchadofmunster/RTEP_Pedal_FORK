@@ -27,7 +27,7 @@ public:
      * @brief Applies all registered effects to a Sample object.
      * @param sample The input Sample to process.
      */
-    void applyEffects(Sample &sample);
+    void applyEffects(Sample &sample, float setting);
 
 private:
 

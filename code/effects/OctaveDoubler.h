@@ -4,7 +4,7 @@
 class OctaveDoubler : public Effect {
 public:
     OctaveDoubler();
-    float process(float sample) override;
+    float process(float sample, float setting) override;
     ~OctaveDoubler();
 
 private:

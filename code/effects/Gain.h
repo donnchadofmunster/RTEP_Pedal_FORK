@@ -4,6 +4,6 @@
 class Gain : public Effect {
 public:
     Gain();
-    float process(float sample) override;
+    float process(float sample, float setting) override;
     ~Gain();
 };

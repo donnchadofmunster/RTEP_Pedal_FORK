@@ -5,7 +5,7 @@
 
 OctaveDoubler::OctaveDoubler() : lastSign(1) {}
 
-float OctaveDoubler::process(float sample) {
+float OctaveDoubler::process(float sample, float setting = 3.0) {
     // Flip the waveform every time the signal crosses zero (very primitive doubling)
     int currentSign = (sample >= 0.0f) ? 1 : -1;
     float doubledSample = (currentSign != lastSign) ? -sample : sample;

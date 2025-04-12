@@ -5,8 +5,8 @@
 
 Gain::Gain() {} 
 
-float Gain::process(float sample){
-    const float gain = 0.01f;
+float Gain::process(float sample, float setting = 3.0){
+    const float gain = 0.01f * setting;
     return sample*gain;
 }
 

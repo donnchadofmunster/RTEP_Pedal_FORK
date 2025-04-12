@@ -5,8 +5,8 @@
 
 Fuzz::Fuzz() {} 
 
-float Fuzz::process(float sample){
-    const float threshold = 0.01f;
+float Fuzz::process(float sample, float setting = 3.0){
+    const float threshold = 0.01f * setting;
     if (sample > threshold) return threshold;
     if (sample < -threshold) return -threshold;
     return sample;

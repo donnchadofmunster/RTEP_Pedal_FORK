@@ -44,7 +44,7 @@ void DigitalSignalChain::registerEffect(std::shared_ptr<Effect> effect)
     effects.push_back(effect);
 }
 
-void DigitalSignalChain::applyEffects(Sample &sample)
+void DigitalSignalChain::applyEffects(Sample &sample, float setting = 3.0)
 {
     float pcmValue = sample.getPcmValue();
     try{
@@ -54,7 +54,7 @@ void DigitalSignalChain::applyEffects(Sample &sample)
             continue;
         }
 
-        float processed = effect->process(sample.getPcmValue());
+        float processed = effect->process(sample.getPcmValue(), setting);
         sample.setPcmValue(processed);
         sample.addEffect(typeid(*effect).name());  // logs effect name
     }
