@@ -25,7 +25,7 @@ jobs:
 
       - name: Build
         run: |
-          chmod +x code/build.sh
+          chmod +x ./code/build.sh
           ./code/build.sh > build.log 2>&1
 
       - name: Upload build log
