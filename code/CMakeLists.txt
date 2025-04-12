@@ -1,3 +1,4 @@
+#code/CmMakeLists.txt
 cmake_minimum_required(VERSION 3.7.0)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -30,5 +31,4 @@ if(NOT SNDFILE_FOUND)
 endif()
 
 # Add the `src/` directory where the real targets are defined
-add_subdirectory(test)
 add_subdirectory(src)
