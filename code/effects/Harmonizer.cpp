@@ -1,66 +1,66 @@
 #include "Harmonizer.h"
 #include "EffectRegistration.h"
 #include <iostream>
+#include <chrono>
 #include <cmath>
 #include <filesystem>
+#include <algorithm>
 
-// Constructor
 Harmonizer::Harmonizer(const std::string& inputWav, const std::string& outputWav, const std::vector<int>& semitones)
-    : inputWav(inputWav), outputWav(outputWav), semitones(semitones)
-{
-    std::filesystem::path assetsPath = "assets";
-    this->inputWav = (assetsPath / inputWav).string();
-    this->outputWav = (assetsPath / outputWav).string();
-}
+    : inputWav("assets/" + inputWav),
+      outputWav("assets/" + outputWav),
+      semitones(semitones) {}
 
-void Harmonizer::updateInputs(const std::string& inputWav, const std::string& outputWav, const std::vector<int>& semitones) {
-    this->inputWav = inputWav;
-    this->outputWav = outputWav;
-    this->semitones = semitones;
+void Harmonizer::updateInputs(const std::string& in, const std::string& out, const std::vector<int>& newSemitones) {
+    inputWav = in;
+    outputWav = out;
+    semitones = newSemitones;
 }
 
 void Harmonizer::initRealtimeStretch() {
     if (stretchInitialized) return;
 
-    sampleRate = 44100;
+
     stretch.presetDefault(1, sampleRate);
 
     inputBuffer.resize(blockSize);
-    outputBuffer.resize(blockSize);
     outputBuffer.assign(blockSize, 0.0f);
+
     inputWriteIndex = 0;
-    outputReadIndex = outputBuffer.size();  // start with zeroes
+    outputReadIndex = outputBuffer.size();  // start empty
+
     stretchInitialized = true;
 }
 
 float Harmonizer::process(float sample, float setting) {
     initRealtimeStretch();
 
-    if (lastSemitoneSetting != setting) {
-        stretch.setTransposeSemitones(setting, tonality / sampleRate);
-        lastSemitoneSetting = setting;
+    // Only track first and last sample time
+    if (samplesProcessed++ == 0) {
+        realtimeStart = std::chrono::high_resolution_clock::now();
     }
 
-    // Add sample to input buffer
     inputBuffer[inputWriteIndex++] = sample;
 
-    // If we still have processed output to return
     if (outputReadIndex < outputBuffer.size()) {
         return outputBuffer[outputReadIndex++];
     }
 
-    // If input buffer full, process a new block
     if (inputWriteIndex >= blockSize) {
+        if (lastSemitoneSetting != setting) {
+            stretch.setTransposeSemitones(setting, tonality / sampleRate);
+            lastSemitoneSetting = setting;
+        }
+
         float* inputs[1] = { inputBuffer.data() };
         float* outputs[1] = { outputBuffer.data() };
-
         stretch.process(inputs, blockSize, outputs, blockSize);
-        outputReadIndex = 0;
+
         inputWriteIndex = 0;
+        outputReadIndex = 0;
         return outputBuffer[outputReadIndex++];
     }
 
-    // Otherwise, output zero or last good value
     return 0.0f;
 }
 
@@ -70,26 +70,23 @@ void Harmonizer::setupStretch(int currentSemitone) {
         return;
     }
 
-    size_t inputLength = inWav.samples.size() / inWav.channels;
+    const size_t inputLength = inWav.samples.size() / inWav.channels;
     outWav.channels = inWav.channels;
     outWav.sampleRate = inWav.sampleRate;
 
-    int outputLength = std::round(inputLength * time);
-
+    const int outputLength = std::round(inputLength * time);
     stretch.presetDefault(inWav.channels, inWav.sampleRate);
     stretch.setTransposeSemitones(currentSemitone, tonality / inWav.sampleRate);
 
-    size_t paddedInputLength = inputLength + stretch.inputLatency();
-    inWav.samples.resize(paddedInputLength * inWav.channels);
+    inWav.samples.resize((inputLength + stretch.inputLatency()) * inWav.channels);
 
-    int tailSamples = exactLength ? stretch.outputLatency() : (stretch.outputLatency() + stretch.inputLatency());
-    int paddedOutputLength = outputLength + tailSamples;
-    outWav.samples.resize(paddedOutputLength * outWav.channels);
+    const int tailSamples = exactLength ? stretch.outputLatency() : (stretch.outputLatency() + stretch.inputLatency());
+    outWav.samples.resize((outputLength + tailSamples) * outWav.channels);
 }
 
 void Harmonizer::processAudio() {
-    size_t inputLength = inWav.samples.size() / inWav.channels;
-    size_t outputLength = std::round(inputLength * time);
+    const size_t inputLength = inWav.samples.size() / inWav.channels;
+    const size_t outputLength = std::round(inputLength * time);
 
     stretch.seek(inWav, stretch.inputLatency(), 1 / time);
     inWav.offset += stretch.inputLatency();
@@ -102,104 +99,95 @@ void Harmonizer::processAudio() {
 
 bool Harmonizer::process(int iteration) {
     setupStretch(semitones[iteration]);
-    printf("Processing %s with %d semitones\n", inputWav.c_str(), semitones[iteration]);
+    std::cout << "Processing " << inputWav << " with " << semitones[iteration] << " semitones\n";
+
     processAudio();
 
-    std::filesystem::path assetsPath = "assets";
-    std::string outputFileName = "output" + std::to_string(iteration) + ".wav";
-    this->outputWav = (assetsPath / outputFileName).string();
+    outputWav = "assets/output" + std::to_string(iteration) + ".wav";
     outWav.write(outputWav);
-
     return true;
 }
 
-void Harmonizer::reportMemoryUsage() {
+void Harmonizer::reportProcessingStats(double seconds, double rate, double cpu) {
+    std::cout << "Process:\n\t" << seconds << "s, "
+              << rate << "x realtime, "
+              << cpu << "% CPU\n";
+
     if (processMemory.implemented) {
-        std::cout << "\tallocated " << (processMemory.allocBytes / 1000) << "kB, freed " << (processMemory.freeBytes / 1000) << "kB\n";
+        std::cout << "\tallocated " << (processMemory.allocBytes / 1000)
+                  << "kB, freed " << (processMemory.freeBytes / 1000) << "kB\n";
     }
 }
 
-void Harmonizer::reportProcessingStats(double processSeconds, double processRate, double processPercent) {
-    std::cout << "Process:\n\t" << processSeconds << "s, " << processRate << "x realtime, " << processPercent << "% CPU\n";
-    reportMemoryUsage();
-}
+std::string Harmonizer::mergeWavs(const char* file1, const char* file2, const char* outfile) {
+    static double data1[1024], data2[1024], mixed[1024];
+    SF_INFO sfinfo1 = {}, sfinfo2 = {};
+    SNDFILE *in1 = sf_open(file1, SFM_READ, &sfinfo1);
+    SNDFILE *in2 = sf_open(file2, SFM_READ, &sfinfo2);
+    SNDFILE *out = sf_open(outfile, SFM_WRITE, &sfinfo1);
 
-std::string Harmonizer::mergeWavs(const char* infilename, const char* infilename2, const char* outfilename) {
-    static double data[1024];
-    static double data2[1024];
-    static double outdata[1024];
-    SNDFILE *infile, *outfile, *infile2;
-    SF_INFO sfinfo;
-    int readcount;
-    SF_INFO sfinfo2;
-    int readcount2;
-
-    infile = sf_open(infilename, SFM_READ, &sfinfo);
-    infile2 = sf_open(infilename2, SFM_READ, &sfinfo2);
-    outfile = sf_open(outfilename, SFM_WRITE, &sfinfo);
-
-    while ((readcount = sf_read_double(infile, data, 1024)) &&
-           (readcount2 = sf_read_double(infile2, data2, 1024))) {
-        data_processing(data, readcount, sfinfo.channels);
-        data_processing(data2, readcount2, sfinfo2.channels);
-        for (int j = 0; j < 1024; ++j) {
-            outdata[j] = (data[j] + data2[j]) - (data[j] * data2[j]) / 65535;
+    int read1, read2;
+    while ((read1 = sf_read_double(in1, data1, 1024)) &&
+           (read2 = sf_read_double(in2, data2, 1024))) {
+        for (int i = 0; i < read1; ++i) {
+            mixed[i] = std::clamp((data1[i] + data2[i]) * 0.5, -1.0, 1.0);
         }
-        sf_write_double(outfile, outdata, readcount);
+        sf_write_double(out, mixed, read1);
     }
 
-    std::filesystem::remove(infilename);
-    std::filesystem::remove(infilename2);
+    std::filesystem::remove(file1);
+    std::filesystem::remove(file2);
 
-    sf_close(infile);
-    sf_close(infile2);
-    sf_close(outfile);
-
-    return outfilename;
+    sf_close(in1); sf_close(in2); sf_close(out);
+    return std::string(outfile);
 }
 
 bool Harmonizer::createChord() {
     stopwatch.start();
-    std::filesystem::path assetsPath = "assets";
 
+    std::vector<std::string> outputs;
     for (size_t i = 0; i < semitones.size(); ++i) {
         process(i);
+        outputs.emplace_back("assets/output" + std::to_string(i) + ".wav");
     }
 
-    if (semitones.size() > 1) {
-        std::string output = mergeWavs(
-            (assetsPath / "output0.wav").string().c_str(),
-            (assetsPath / "output1.wav").string().c_str(),
-            (assetsPath / "mergedOutput0.wav").string().c_str()
-        );
-
-        std::string last_output = output;
-
-        for (size_t i = 2; i < semitones.size(); ++i) {
-            std::string inputFilePath1 = (assetsPath / ("output" + std::to_string(i) + ".wav")).string();
-            std::string outputFilePath = (assetsPath / ("mergedOutput" + std::to_string(i) + ".wav")).string();
-            output = mergeWavs(inputFilePath1.c_str(), last_output.c_str(), outputFilePath.c_str());
-            last_output = output;
-        }
-        std::filesystem::rename(last_output, assetsPath / "output.wav");
-    } else {
-        std::filesystem::rename(assetsPath / "output0.wav", assetsPath / "output.wav");
+    std::string final = outputs[0];
+    for (size_t i = 1; i < outputs.size(); ++i) {
+        std::string merged = "assets/merged" + std::to_string(i) + ".wav";
+        final = mergeWavs(final.c_str(), outputs[i].c_str(), merged.c_str());
     }
 
-    double processSeconds = stopwatch.seconds(stopwatch.lap());
-    double processRate = (inWav.length() / inWav.sampleRate) / processSeconds;
-    double processPercent = 100 / processRate;
-    reportProcessingStats(processSeconds, processRate, processPercent);
+    std::filesystem::rename(final, "assets/output.wav");
+
+    double seconds = stopwatch.seconds(stopwatch.lap());
+    double rate = (inWav.length() / inWav.sampleRate) / seconds;
+    double cpu = 100.0 / rate;
+
+    reportProcessingStats(seconds, rate, cpu);
     return true;
 }
 
 void Harmonizer::data_processing(double* data, int count, int channels) {
-    double channel_gain[6] = {1, 1, 1, 1, 1, 1};
-    int k, chan;
+    for (int ch = 0; ch < channels; ++ch)
+        for (int i = ch; i < count; i += channels)
+            data[i] *= 1.0;
+}
 
-    for (chan = 0; chan < channels; chan++)
-        for (k = chan; k < count; k += channels)
-            data[k] *= channel_gain[chan];
+Harmonizer::~Harmonizer() {
+    using namespace std::chrono;
+
+    if (samplesProcessed > 0) {
+        auto end = high_resolution_clock::now();
+        double elapsed = duration<double>(end - realtimeStart).count();
+        double perSampleUs = (elapsed / samplesProcessed) * 1e6;
+        double realtimeRatio = (samplesProcessed / static_cast<double>(sampleRate)) / elapsed;
+
+        std::cout << "[Harmonizer] Real-time stretch stats:\n";
+        std::cout << "\tSamples processed: " << samplesProcessed << "\n";
+        std::cout << "\tElapsed time: " << elapsed << " s\n";
+        std::cout << "\tPer sample: " << perSampleUs << " µs\n";
+        std::cout << "\tRealtime factor: " << realtimeRatio << "x\n";
+    }
 }
 
 REGISTER_EFFECT_AUTO(Harmonizer);

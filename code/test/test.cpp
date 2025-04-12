@@ -23,12 +23,9 @@ void processSample(Sample& sample, DigitalSignalChain& dspChain, MockOutputModul
 {
     dspChain.applyEffects(sample, setting);
 
-    std::cout << "[test.cpp] Time: " << sample.getTimeIndex() << "s, PCM: "
-              << std::fixed << std::setprecision(4) << sample.getPcmValue();
+    // std::cout << "[test.cpp] Time: " << sample.getTimeIndex() << "s, PCM: " << std::fixed << std::setprecision(4) << sample.getPcmValue();
 
-    for (const auto& effect : sample.getAppliedEffects()) {
-        std::cout << " [" << effect << "]";
-    }
+    //for (const auto& effect : sample.getAppliedEffects()) {std::cout << " [" << effect << "]";}
 
     std::cout << "\r" << std::flush;
 
