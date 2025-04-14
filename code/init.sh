@@ -13,10 +13,19 @@ sudo apt install sndfile-programs
 sudo apt install sox
 sudo apt install libasound2-dev
 
-cd "$script_directory"
-cd "lib"
+cd "$script_directory/lib"
 
-git clone https://github.com/Signalsmith-Audio/signalsmith-stretch.git
+# If directory exists and is not a git repo, remove it
+if [ -d "signalsmith-stretch" ]; then
+  if [ ! -d "signalsmith-stretch/.git" ]; then
+    rm -rf signalsmith-stretch
+  fi
+fi
+
+# Clone if not already present
+if [ ! -d "signalsmith-stretch" ]; then
+  git clone https://github.com/Signalsmith-Audio/signalsmith-stretch.git
+fi
 
 cd "$original_directory"
 
