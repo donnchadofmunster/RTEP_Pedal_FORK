@@ -1,18 +1,18 @@
 original_directory=$(pwd)
 script_directory=$(dirname "$0")
 
-sudo apt update
-sudo apt upgrade
-sudo apt install build-essential
-sudo apt install cmake
-sudo apt install gdb
-sudo apt install clang clang-tidy
-sudo apt install libgtest-dev
-sudo apt install libsndfile1-dev pkg-config
-sudo apt install sndfile-programs
-sudo apt install sox
-sudo apt install libasound2-dev
-sudo apt autoremove
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+sudo apt-get install cmake
+sudo apt-get install gdb
+sudo apt-get install clang clang-tidy
+sudo apt-get install libgtest-dev
+sudo apt-get install libsndfile1-dev pkg-config
+sudo apt-get install sndfile-programs
+sudo apt-get install sox
+sudo apt-get install libasound2-dev
+sudo apt-get autoremove
 
 cd "$script_directory/lib"
 
