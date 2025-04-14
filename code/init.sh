@@ -12,6 +12,7 @@ sudo apt install libsndfile1-dev pkg-config
 sudo apt install sndfile-programs
 sudo apt install sox
 sudo apt install libasound2-dev
+sudo apt autoremove
 
 cd "$script_directory/lib"
 
@@ -24,7 +25,7 @@ fi
 
 # Clone if not already present
 if [ ! -d "signalsmith-stretch" ]; then
-  git clone https://github.com/Signalsmith-Audio/signalsmith-stretch.git
+  git submodule add -f https://github.com/Signalsmith-Audio/signalsmith-stretch.git ./signalsmith-stretch
 fi
 
 cd "$original_directory"
