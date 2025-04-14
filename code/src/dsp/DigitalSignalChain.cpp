@@ -7,23 +7,22 @@
 #include <mutex>
 #include <cstring>
 
-
+// Constructor initializes both signal chains with empty effect slots
 DigitalSignalChain::DigitalSignalChain()
 {
-    // Initialize both chains as empty
     for (auto &chain : chains)
     {
         for (auto &slot : chain.effects)
         {
-            slot.effect = nullptr;
+            slot.effect.reset(); // use smart pointer
             std::memset(slot.name, 0, sizeof(slot.name));
         }
         chain.count = 0;
     }
-    activeChainIndex.store(0);
+    activeChainIndex.store(0); // default to first chain
 }
 
-// Loads effects from file and prepares an inactive chain buffer for hot-swapping
+// Loads effect names from file and builds an inactive chain, then swaps it in
 bool DigitalSignalChain::loadEffectsFromFile(const std::string &filepath)
 {
     std::ifstream infile(filepath);
@@ -40,17 +39,17 @@ bool DigitalSignalChain::loadEffectsFromFile(const std::string &filepath)
     std::string effectName;
     while (std::getline(infile, effectName) && chain.count < MAX_EFFECTS)
     {
+        // Trim leading/trailing whitespace
         effectName.erase(0, effectName.find_first_not_of(" \t\n\r"));
         effectName.erase(effectName.find_last_not_of(" \t\n\r") + 1);
-
         if (effectName.empty())
             continue;
 
         std::cout << "[DigitalSignalChain] Loading effect: " << effectName << std::endl;
-        auto effect = EffectFactory::instance().createEffect(effectName);
-        if (effect)
+        auto effectPtr = EffectFactory::instance().createEffect(effectName);
+        if (effectPtr)
         {
-            chain.effects[chain.count].effect = effect; // Raw pointer is safe for real-time, effect is owned elsewhere
+            chain.effects[chain.count].effect = effectPtr; // smart pointer
             std::strncpy(chain.effects[chain.count].name, effectName.c_str(), sizeof(chain.effects[chain.count].name) - 1);
             chain.count++;
             std::cout << "[DigitalSignalChain] Registered effect: " << effectName << std::endl;
@@ -61,34 +60,32 @@ bool DigitalSignalChain::loadEffectsFromFile(const std::string &filepath)
         }
     }
 
-    // Atomically switch to the new chain
     activeChainIndex.store(inactive);
     return true;
 }
 
-// Apply all effects in the currently active chain
+// Applies the effect chain to an audio sample
 void DigitalSignalChain::applyEffects(Sample &sample, float setting)
 {
-    float pcmValue = sample.getPcmValue();
-
-    size_t index = activeChainIndex.load();
-    const Chain &chain = chains[index];
+    float originalValue = sample.getPcmValue();
+    size_t activeIndex = activeChainIndex.load();
+    const Chain &chain = chains[activeIndex];
 
     try
     {
         for (size_t i = 0; i < chain.count; ++i)
         {
-            auto &effect = chain.effects[i].effect;
-            if (!effect)
+            const auto &slot = chain.effects[i];
+            if (!slot.effect)
                 continue;
 
-            float processed = effect->process(sample.getPcmValue(), setting);
-            sample.setPcmValue(processed);
-            sample.addEffect(chain.effects[i].name);
+            float result = slot.effect->process(sample.getPcmValue(), setting);
+            sample.setPcmValue(result);
+            sample.addEffect(slot.name);
         }
     }
     catch (...)
     {
-        sample.setPcmValue(pcmValue); // Fallback to original if error occurs
+        sample.setPcmValue(originalValue); // Recover in case of exception
     }
 }

@@ -16,14 +16,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
+        working-directory: code/
         run: |
-          chmod +x ./code/init.sh
-          ./code/init.sh
+          chmod +x ./init.sh
+          ./init.sh
 
       - name: Build
+        working-directory: code/
         run: |
-          chmod +x ./code/build.sh
-          ./code/build.sh > build.log 2>&1 || (cat build.log && exit 1)
+          chmod +x ./build.sh
+          ./build.sh > build.log 2>&1 || (cat build.log && exit 1)
+
       - name: Upload build log
         uses: actions/upload-artifact@v4
         with:
@@ -50,9 +53,10 @@ jobs:
           path: code/build
 
       - name: Run unit tests
-        working-directory: code/build/src/test/unit_tests
+        working-directory: code/
         run: |
-          ctest --output-on-failure
+          chmod +x ./unit_test.sh
+          sudo ./unit_test.sh 
 
   lint:
     runs-on: ubuntu-latest
