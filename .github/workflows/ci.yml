@@ -55,6 +55,7 @@ jobs:
       - name: Run unit tests
         working-directory: code/
         run: |
+          chmod +x ./build/src/test/unit_tests/unit_tests
           chmod +x ./unit_test.sh
           sudo ./unit_test.sh 
 
