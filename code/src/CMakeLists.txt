@@ -40,3 +40,8 @@ target_link_libraries(shred_pedal PRIVATE pedal_lib stdc++fs)
 
 # Add tests (integration + unit)
 add_subdirectory(test)
+
+## ALSA
+include_directories(${ALSA_INCLUDE_DIRS})
+find_package(ALSA REQUIRED)
+target_link_libraries(harmoniser_pedal PRIVATE ${ALSA_LIBRARIES})
