@@ -49,9 +49,9 @@ public:
     const std::vector<std::string> &getAppliedEffects() const;
 
 private:
-    float pcmValue;                          ///< The PCM value of the sample.
+    int16_t  pcmValue;                          ///< The PCM value of the sample.
     double timeIndex;                        ///< The time index of the sample.
     std::vector<std::string> appliedEffects; ///< List of applied effects.
 };
 
-#endif // SAMPLE_H
+#endif // SAMPLE_H  

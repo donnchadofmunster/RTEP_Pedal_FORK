@@ -65,8 +65,12 @@ void * getAllocPointer(void *ptr) {
 }} // namespaces
 
 extern "C" {
+	static thread_local bool in_malloc = false;
 	void * malloc(size_t size) {
+		if (in_malloc) return nullptr;
+		in_malloc = true;
 		void *ptr = signalsmith::memory_tracker::callOriginal(signalsmith::memory_tracker::originalMalloc, "malloc", size + signalsmith::memory_tracker::extraInfoBytes);
+		in_malloc = false;
 		return signalsmith::memory_tracker::storeAllocInfo((unsigned char *)ptr + signalsmith::memory_tracker::extraInfoBytes, ptr, size);
 	}
 

@@ -4,6 +4,8 @@
 extern "C" void ForceLink_OctaveDoubler_Effect();
 extern "C" void ForceLink_Fuzz_Effect();
 extern "C" void ForceLink_Gain_Effect();
+extern "C" void ForceLink_Harmonizer_Effect();
+
 
 void ForceAllEffects() {
     std::cout << "[ForceEffects] Linking OctaveDoubler\n";
@@ -12,5 +14,7 @@ void ForceAllEffects() {
     ForceLink_Fuzz_Effect();
     std::cout << "[ForceEffects] Linking Gain\n";
     ForceLink_Gain_Effect();
+    std::cout << "[ForceEffects] Linking Harmonizer\n";
+    ForceLink_Harmonizer_Effect();
     // Future effects just get auto-added here (or auto-discovered in a generator)
 }
