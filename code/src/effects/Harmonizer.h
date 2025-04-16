@@ -8,7 +8,7 @@
 #include "Effect.h"
 #include "../lib/signalsmith-stretch/signalsmith-stretch.h"
 #include "../lib/signalsmith-stretch/cmd/util/stopwatch.h"
-#include "../lib/signalsmith-stretch/cmd/util/memory-tracker.h"
+// #include "../lib/signalsmith-stretch/cmd/util/memory-tracker.h"
 #include "../lib/signalsmith-stretch/cmd/util/wav.h"
 
 /**
@@ -98,8 +98,8 @@ private:
     signalsmith::stretch::SignalsmithStretch<float> stretch;
 
     // === Profiling & Memory ===
-    signalsmith::MemoryTracker initMemory;
-    signalsmith::MemoryTracker processMemory;
+    // signalsmith::MemoryTracker initMemory;
+    // signalsmith::MemoryTracker processMemory;
     signalsmith::Stopwatch stopwatch;
 
     // === Internal helpers ===

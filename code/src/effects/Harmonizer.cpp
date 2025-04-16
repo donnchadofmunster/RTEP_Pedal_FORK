@@ -124,15 +124,15 @@ bool Harmonizer::process(int iteration)
 }
 
 // Stats logger after file-based or streaming harmonisation
-void Harmonizer::reportProcessingStats(double seconds, double rate, double cpu)
-{
-    std::cout << "Process:\n\t" << seconds << "s, " << rate << "x realtime, " << cpu << "% CPU\n";
-    if (processMemory.implemented)
-    {
-        std::cout << "\tallocated " << (processMemory.allocBytes / 1000)
-                  << "kB, freed " << (processMemory.freeBytes / 1000) << "kB\n";
-    }
-}
+// void Harmonizer::reportProcessingStats(double seconds, double rate, double cpu)
+// {
+//     std::cout << "Process:\n\t" << seconds << "s, " << rate << "x realtime, " << cpu << "% CPU\n";
+//     if (processMemory.implemented)
+//     {
+//         std::cout << "\tallocated " << (processMemory.allocBytes / 1000)
+//                   << "kB, freed " << (processMemory.freeBytes / 1000) << "kB\n";
+//     }
+// }
 
 // Merges two WAVs into a single file
 // std::string Harmonizer::mergeWavs(const char *file1, const char *file2, const char *outfile)
