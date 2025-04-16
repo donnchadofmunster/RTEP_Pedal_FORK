@@ -67,7 +67,8 @@ private:
     bool stretchInitialized = false;
     float lastSemitoneSetting = std::numeric_limits<float>::quiet_NaN();
     std::vector<float> inputBuffer;
-    std::vector<float> outputBuffer;
+    // std::vector<float> outputBuffer;
+    std::vector<std::vector<float>> outputBuffers;
     size_t inputWriteIndex = 0;
     size_t outputReadIndex = 0;
     size_t blockSize = 64;
@@ -108,6 +109,8 @@ private:
     void reportMemoryUsage();
     void reportProcessingStats(double processSeconds, double processRate, double processPercent);
     void data_processing(double* data, int count, int channels);
+    std::vector<signalsmith::stretch::SignalsmithStretch<float>> stretches;
+
 
     /**
      * @brief Merges two WAV files into one by blending their contents.

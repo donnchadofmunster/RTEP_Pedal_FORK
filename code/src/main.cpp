@@ -18,7 +18,6 @@ constexpr int BUFFER_SIZE = FRAMES * CHANNELS;
 Sample processSample(Sample& sample, DigitalSignalChain& dspChain, float setting, snd_pcm_t *playbackHandle)
 {
     dspChain.applyEffects(sample, setting);
-    std::cout << "\r" << std::flush;
     return sample;
 }
 
@@ -50,7 +49,7 @@ int main() {
         for (snd_pcm_uframes_t i = 0; i < BUFFER_SIZE; ++i) {
             timeIndex += timeStep;
             Sample sample(buffer[i], timeIndex);
-            buffer[i] = processSample(sample, dspChain, 2.0, playbackHandle).getPcmValue();
+            buffer[i] = processSample(sample, dspChain, 0.0, playbackHandle).getPcmValue();
         }
         snd_pcm_writei(playbackHandle, buffer, FRAMES);
     }
