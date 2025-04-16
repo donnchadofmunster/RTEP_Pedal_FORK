@@ -1,47 +1,70 @@
-# src/CMakeLists.txt
+#src/CMakeLists.txt
+# --- Collect all relevant source files in subdirectories ---
 
-# Collect all .cpp files in subdirectories (except test)
-file(GLOB SRC_SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
-file(GLOB DISPLAY_SOURCES "${CMAKE_SOURCE_DIR}/src/display/*.cpp")
-file(GLOB DSP_SOURCES "${CMAKE_SOURCE_DIR}/src/dsp/*.cpp")
-file(GLOB SAMPLING_SOURCES "${CMAKE_SOURCE_DIR}/src/sampling/*.cpp")
-file(GLOB EFFECT_SOURCES "${CMAKE_SOURCE_DIR}/src/effects/*.cpp")
+# Top-level .cpp files (excluding main.cpp)
+file(GLOB SRC_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-# Combine all source files
+# Display-related modules
+file(GLOB DISPLAY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/display/*.cpp")
+
+# DSP (Digital Signal Processing) code, including ForceEffects.cpp
+file(GLOB DSP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/dsp/*.cpp")
+
+# Sampling logic (e.g. audio input)
+file(GLOB SAMPLING_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/sampling/*.cpp")
+
+# Audio effects, each typically registers itself with the factory
+file(GLOB EFFECT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/effects/*.cpp")
+
+
+# --- Exclude main.cpp from the library (linked separately in executable) ---
+list(REMOVE_ITEM SRC_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
+
+
+# --- Combine all source files into one list ---
 set(ALL_SOURCES
     ${SRC_SOURCES}
     ${DISPLAY_SOURCES}
     ${DSP_SOURCES}
     ${SAMPLING_SOURCES}
     ${EFFECT_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/dsp/ForceEffects.cpp  # Ensures all effects are linked
 )
 
-# Remove main.cpp so it isn't part of the library
-list(REMOVE_ITEM ALL_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
-# Define the main pedal library
+# --- Define the main library for the pedal ---
+# This library includes all core modules, display, dsp, effects, etc.
 add_library(pedal_lib ${ALL_SOURCES})
 
-# Include directories
+
+# --- Include directories so headers can be found when linking this library ---
 target_include_directories(pedal_lib PUBLIC
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/src/display
-    ${CMAKE_SOURCE_DIR}/src/dsp
-    ${CMAKE_SOURCE_DIR}/src/sampling
-    ${CMAKE_SOURCE_DIR}/src/effects
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/server
+    ${CMAKE_CURRENT_SOURCE_DIR}/display
+    ${CMAKE_CURRENT_SOURCE_DIR}/dsp
+    ${CMAKE_CURRENT_SOURCE_DIR}/sampling
+    ${CMAKE_CURRENT_SOURCE_DIR}/effects
 )
 
-# Link required libraries
-target_link_libraries(pedal_lib PRIVATE pthread sndfile)
 
-# Main executable
-add_executable(shred_pedal main.cpp ${CMAKE_SOURCE_DIR}/src/dsp/ForceEffects.cpp ${EFFECT_SOURCES})
-target_link_libraries(shred_pedal PRIVATE pedal_lib stdc++fs)
+# --- Link third-party dependencies used by this library ---
+# pthread: multithreading
+# sndfile: audio file I/O
+target_link_libraries(pedal_lib PRIVATE pthread ${SNDFILE_LIBRARIES} ${ALSA_LIBRARIES})
 
-# Add tests (integration + unit)
+
+# --- Define the main application executable ---
+# This is the real-time pedal program that runs on the Pi
+add_executable(shred_pedal main.cpp)
+
+# Include ALSA and SNDFILE headers for main if needed
+target_include_directories(shred_pedal PRIVATE ${ALSA_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS})
+
+# Link the main executable with pedal_lib and filesystem
+target_link_libraries(shred_pedal PRIVATE pedal_lib stdc++fs ${SNDFILE_LIBRARIES} ${ALSA_LIBRARIES})
+
+
+# --- Include and build the test directory ---
+# This will build func_test and any unit tests defined
 add_subdirectory(test)
-
-## ALSA
-include_directories(${ALSA_INCLUDE_DIRS})
-find_package(ALSA REQUIRED)
-target_link_libraries(shred_pedal PRIVATE ${ALSA_LIBRARIES})
