@@ -51,7 +51,7 @@ public:
      * @brief Generates a chord by layering multiple pitch-shifted versions of the input WAV.
      * @return True on success.
      */
-    bool createChord();
+    // bool createChord();
 
     /**
      * @brief Processes an individual sample in real-time mode.
@@ -116,7 +116,7 @@ private:
      * @param outfilename Destination merged WAV.
      * @return Path to the resulting merged file.
      */
-    std::string mergeWavs(const char* infilename, const char* infilename2, const char* outfilename);
+    // std::string mergeWavs(const char* infilename, const char* infilename2, const char* outfilename);
 };
 
 #endif // HARMONIZER_H

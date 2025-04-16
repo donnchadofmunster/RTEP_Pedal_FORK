@@ -135,61 +135,61 @@ void Harmonizer::reportProcessingStats(double seconds, double rate, double cpu)
 }
 
 // Merges two WAVs into a single file
-std::string Harmonizer::mergeWavs(const char *file1, const char *file2, const char *outfile)
-{
-    static double data1[1024], data2[1024], mixed[1024];
-    SF_INFO sfinfo1 = {}, sfinfo2 = {};
-    SNDFILE *in1 = sf_open(file1, SFM_READ, &sfinfo1);
-    SNDFILE *in2 = sf_open(file2, SFM_READ, &sfinfo2);
-    SNDFILE *out = sf_open(outfile, SFM_WRITE, &sfinfo1);
+// std::string Harmonizer::mergeWavs(const char *file1, const char *file2, const char *outfile)
+// {
+//     static double data1[1024], data2[1024], mixed[1024];
+//     SF_INFO sfinfo1 = {}, sfinfo2 = {};
+//     SNDFILE *in1 = sf_open(file1, SFM_READ, &sfinfo1);
+//     SNDFILE *in2 = sf_open(file2, SFM_READ, &sfinfo2);
+//     SNDFILE *out = sf_open(outfile, SFM_WRITE, &sfinfo1);
 
-    int read1, read2;
-    while ((read1 = sf_read_double(in1, data1, 1024)) &&
-           (read2 = sf_read_double(in2, data2, 1024)))
-    {
-        for (int i = 0; i < read1; ++i)
-        {
-            mixed[i] = std::clamp((data1[i] + data2[i]) * 0.5, -1.0, 1.0);
-        }
-        sf_write_double(out, mixed, read1);
-    }
+//     int read1, read2;
+//     while ((read1 = sf_read_double(in1, data1, 1024)) &&
+//            (read2 = sf_read_double(in2, data2, 1024)))
+//     {
+//         for (int i = 0; i < read1; ++i)
+//         {
+//             mixed[i] = std::clamp((data1[i] + data2[i]) * 0.5, -1.0, 1.0);
+//         }
+//         sf_write_double(out, mixed, read1);
+//     }
 
-    std::filesystem::remove(file1);
-    std::filesystem::remove(file2);
+//     std::filesystem::remove(file1);
+//     std::filesystem::remove(file2);
 
-    sf_close(in1);
-    sf_close(in2);
-    sf_close(out);
-    return std::string(outfile);
-}
+//     sf_close(in1);
+//     sf_close(in2);
+//     sf_close(out);
+//     return std::string(outfile);
+// }
 
 // Mixes harmonised voices to build a chord
-bool Harmonizer::createChord()
-{
-    stopwatch.start();
+// bool Harmonizer::createChord()
+// {
+//     stopwatch.start();
 
-    std::vector<std::string> outputs;
-    for (size_t i = 0; i < semitones.size(); ++i)
-    {
-        process(i);
-        outputs.emplace_back("assets/output" + std::to_string(i) + ".wav");
-    }
+//     std::vector<std::string> outputs;
+//     for (size_t i = 0; i < semitones.size(); ++i)
+//     {
+//         process(i);
+//         outputs.emplace_back("assets/output" + std::to_string(i) + ".wav");
+//     }
 
-    std::string final = outputs[0];
-    for (size_t i = 1; i < outputs.size(); ++i)
-    {
-        std::string merged = "assets/merged" + std::to_string(i) + ".wav";
-        final = mergeWavs(final.c_str(), outputs[i].c_str(), merged.c_str());
-    }
+//     std::string final = outputs[0];
+//     for (size_t i = 1; i < outputs.size(); ++i)
+//     {
+//         std::string merged = "assets/merged" + std::to_string(i) + ".wav";
+//         final = mergeWavs(final.c_str(), outputs[i].c_str(), merged.c_str());
+//     }
 
-    std::filesystem::rename(final, "assets/output.wav");
+//     std::filesystem::rename(final, "assets/output.wav");
 
-    double seconds = stopwatch.seconds(stopwatch.lap());
-    double rate = (inWav.length() / inWav.sampleRate) / seconds;
-    double cpu = 100.0 / rate;
-    reportProcessingStats(seconds, rate, cpu);
-    return true;
-}
+//     double seconds = stopwatch.seconds(stopwatch.lap());
+//     double rate = (inWav.length() / inWav.sampleRate) / seconds;
+//     double cpu = 100.0 / rate;
+//     reportProcessingStats(seconds, rate, cpu);
+//     return true;
+// }
 
 // Dummy processing hook (placeholder)
 void Harmonizer::data_processing(double *data, int count, int channels)
