@@ -14868,7 +14868,7 @@
 			)
 		)
 	)
-	(global_label "OUT_L"
+	(global_label "OUT_R"
 		(shape output)
 		(at 152.4 139.7 180)
 		(fields_autoplaced yes)
@@ -14880,7 +14880,7 @@
 		)
 		(uuid "c0eb278a-73f7-459c-8144-0052b44109e4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.7905 139.7 0)
+			(at 143.5486 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14890,7 +14890,7 @@
 			)
 		)
 	)
-	(global_label "OUT_R"
+	(global_label "OUT_L"
 		(shape output)
 		(at 152.4 142.24 180)
 		(fields_autoplaced yes)
@@ -14902,7 +14902,7 @@
 		)
 		(uuid "ddfc50a5-cc57-481f-a9f8-c004fb29a009")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.5486 142.24 0)
+			(at 143.7905 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
