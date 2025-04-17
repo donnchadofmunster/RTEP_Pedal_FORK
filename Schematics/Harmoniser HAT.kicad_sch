@@ -6,7 +6,7 @@
 	(paper "A4")
 	(lib_symbols)
 	(sheet
-		(at 215.9 25.4)
+		(at 63.5 63.5)
 		(size 25.4 25.4)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22,7 +22,7 @@
 		)
 		(uuid "0a2d2c39-e908-40d7-a327-42d9da6c4a7a")
 		(property "Sheetname" "Debug and Mounting Holes"
-			(at 215.9 24.6884 0)
+			(at 63.5 62.7884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31,7 +31,7 @@
 			)
 		)
 		(property "Sheetfile" "MISC.kicad_sch"
-			(at 215.9 51.3846 0)
+			(at 63.5 89.4846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48,7 +48,7 @@
 		)
 	)
 	(sheet
-		(at 177.8 25.4)
+		(at 25.4 63.5)
 		(size 25.4 25.4)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -64,7 +64,7 @@
 		)
 		(uuid "5d678f4e-03b5-43f5-b100-a64e850a5e5c")
 		(property "Sheetname" "Control"
-			(at 177.8 24.6884 0)
+			(at 25.4 62.7884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -73,7 +73,7 @@
 			)
 		)
 		(property "Sheetfile" "CNTRL.kicad_sch"
-			(at 177.8 51.3846 0)
+			(at 25.4 89.4846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -90,7 +90,7 @@
 		)
 	)
 	(sheet
-		(at 63.5 25.4)
+		(at 25.4 25.4)
 		(size 25.4 25.4)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -106,7 +106,7 @@
 		)
 		(uuid "94150540-adfd-4870-80d6-c5485bc02207")
 		(property "Sheetname" "RPi GPIO"
-			(at 63.5 24.6884 0)
+			(at 25.4 24.6884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -115,7 +115,7 @@
 			)
 		)
 		(property "Sheetfile" "RPI.kicad_sch"
-			(at 63.5 51.3846 0)
+			(at 25.4 51.3846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -132,7 +132,7 @@
 		)
 	)
 	(sheet
-		(at 25.4 23.241)
+		(at 63.5 25.781)
 		(size 25.4 24.892)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -148,7 +148,7 @@
 		)
 		(uuid "db253e30-8154-4877-8f9b-1111df5b5d19")
 		(property "Sheetname" "CODEC-Board"
-			(at 25.4 22.5294 0)
+			(at 63.5 25.0694 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -157,7 +157,7 @@
 			)
 		)
 		(property "Sheetfile" "WM8649.kicad_sch"
-			(at 25.4 48.7176 0)
+			(at 63.5 51.2576 0)
 			(effects
 				(font
 					(size 1.27 1.27)
