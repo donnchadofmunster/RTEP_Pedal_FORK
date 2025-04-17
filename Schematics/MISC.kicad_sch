@@ -1226,14 +1226,14 @@
 		)
 		(uuid "68ff9e1a-3fa0-4be0-9ee1-6f3b4893eabe")
 	)
-	(text_box "Power Probe Points"
+	(text_box "Serial Probe Points"
 		(exclude_from_sim no)
 		(at 114.3 25.4 0)
 		(size 38.1 38.1)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
-			(type default)
+			(type solid)
 		)
 		(fill
 			(type none)
