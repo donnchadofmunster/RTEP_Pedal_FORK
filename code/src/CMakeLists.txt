@@ -7,6 +7,9 @@ file(GLOB SRC_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 # Display-related modules
 file(GLOB DISPLAY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/display/*.cpp")
 
+# Config modules
+file(GLOB OPTIONS_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/options/*.cpp")
+
 # DSP (Digital Signal Processing) code, including ForceEffects.cpp
 file(GLOB DSP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/dsp/*.cpp")
 
@@ -25,6 +28,7 @@ list(REMOVE_ITEM SRC_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 set(ALL_SOURCES
     ${SRC_SOURCES}
     ${DISPLAY_SOURCES}
+    ${OPTIONS_SOURCES}
     ${DSP_SOURCES}
     ${SAMPLING_SOURCES}
     ${EFFECT_SOURCES}
@@ -42,6 +46,7 @@ target_include_directories(pedal_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/server
     ${CMAKE_CURRENT_SOURCE_DIR}/display
+    ${CMAKE_CURRENT_SOURCE_DIR}/options
     ${CMAKE_CURRENT_SOURCE_DIR}/dsp
     ${CMAKE_CURRENT_SOURCE_DIR}/sampling
     ${CMAKE_CURRENT_SOURCE_DIR}/effects
