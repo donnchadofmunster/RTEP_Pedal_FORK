@@ -1,77 +1,75 @@
 #include <iostream>
 #include <iomanip>
-#include <string>
+#include <csignal>
 #include "MockSamplingModule.h"
 #include "MockOutputModule.h"
 #include "DigitalSignalChain.h"
 #include "Sample.h"
 #include "EffectFactory.h"
-#include "OctaveDoubler.h"
+#include "Config.h"
 
-// Optional linker anchor for safety — may be removed if REGISTER_EFFECT_AUTO is working reliably.
-extern void ForceAllEffects();  // defined in ForceEffects.cpp
+// Optional linker anchor — ensures effects get registered
+extern void ForceAllEffects(); // defined in ForceEffects.cpp
+
+constexpr double SAMPLE_RATE = 44100.0;
+constexpr double TIME_STEP = 1.0 / SAMPLE_RATE;
 
 /**
- * @brief Processes a single audio sample by applying all registered DSP effects,
- *        logging it to console, and writing it to the output module.
- *
- * @param sample The audio sample to process
- * @param dspChain The digital signal chain containing the effects
- * @param mockOutput The output module for writing processed samples
+ * @brief Processes a single sample, applies DSP, and writes to output
  */
-void processSample(Sample& sample, DigitalSignalChain& dspChain, MockOutputModule& mockOutput, float setting = 2.0)
+void processSample(Sample &sample, DigitalSignalChain &dspChain, MockOutputModule &output)
 {
-    dspChain.applyEffects(sample, setting);
-
-    // std::cout << "[test.cpp] Time: " << sample.getTimeIndex() << "s, PCM: " << std::fixed << std::setprecision(4) << sample.getPcmValue();
-
-    //for (const auto& effect : sample.getAppliedEffects()) {std::cout << " [" << effect << "]";}
-
-    std::cout << "\r" << std::flush;
-
-    mockOutput.writeSample(sample);
+    dspChain.applyEffects(sample);
+    output.writeSample(sample);
 }
 
 /**
- * @brief Entry point for the real-time harmoniser pedal test.
- * Loads an input WAV, registers a DSP effect, processes each sample, and writes to output.
+ * @brief Main test harness for processing a WAV through real-time effects
  */
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    std::cout << "Real-Time Harmoniser Pedal: Testing Mode\n";
+    std::cout << "[test.cpp] Real-Time Harmoniser Pedal - Integration Test\n";
 
-     if (argc < 3) {
+    if (argc < 3)
+    {
         std::cerr << "[Usage] " << argv[0] << " <input.wav> <output.wav>\n";
         return EXIT_FAILURE;
     }
 
+    // === Parse args ===
     const std::string inputWavFilePath = argv[1];
     const std::string outputWavFilePath = argv[2];
 
-    MockSamplingModule mockSampler(inputWavFilePath);
-    MockOutputModule mockOutput(outputWavFilePath);
-    DigitalSignalChain dspChain;
+    // === Initialise system ===
+    ForceAllEffects();                      // Register all effects
+    Config &config = Config::getInstance(); // Singleton config
+    config.registerSignalHandler();         // Enable SIGUSR1 update
+    DigitalSignalChain dspChain;            // Create chain (auto-registers all effects)
+    config.loadFromFile("./assets/config.cfg");
+    dspChain.configureEffects(config);      // Apply initial configuration
 
-    // Optional: call to anchor OctaveDoubler object file during linking (only needed if effect fails to register)
-    ForceAllEffects();
+    MockSamplingModule input(inputWavFilePath);
+    MockOutputModule output(outputWavFilePath);
 
-    dspChain.loadEffectsFromFile("assets/effects_chain.txt");
-
-    // Process audio sample-by-sample
     float pcm;
     double timeIndex = 0.0;
-    constexpr double sampleRate = 44100.0;
-    constexpr double timeStep = 1.0 / sampleRate;
 
-    while (mockSampler.getSample(pcm)) {
+    while (input.getSample(pcm))
+    {
+        if (config.hasUpdate())
+        {
+            std::cout << "\n[test.cpp] Config updated! Reconfiguring effects...\n";
+            dspChain.configureEffects(config);
+        }
+
         Sample sample(pcm, timeIndex);
-        processSample(sample, dspChain, mockOutput);
-        timeIndex += timeStep;
+        processSample(sample, dspChain, output);
+        timeIndex += TIME_STEP;
     }
 
-    std::cout << "\n [test.cpp]  All samples processed. Writing output file...\n";
-    mockOutput.saveToFile();
+    std::cout << "\n[test.cpp] All samples processed. Writing output file...\n";
+    output.saveToFile();
+    std::cout << "[test.cpp] Done.\n";
 
-    std::cout << "[test.cpp]  Done.\n";
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -16,6 +16,16 @@ void EffectFactory::registerEffect(const std::string& name, Creator creator) {
     registry[name] = creator;
 }
 
+std::vector<std::string> EffectFactory::getAllRegisteredEffectNames() const
+{
+    std::vector<std::string> names;
+    for (const auto &entry : registry)
+    {
+        names.push_back(entry.first);
+    }
+    return names;
+}
+
 std::shared_ptr<Effect> EffectFactory::createEffect(const std::string& name) const {
     auto it = registry.find(name);
     if (it != registry.end()) {

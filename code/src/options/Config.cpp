@@ -86,6 +86,84 @@ T Config::get(const std::string &key, const T &defaultValue) const
     }
 }
 
+bool Config::loadFromFile(const std::string &filename)
+{
+    std::ifstream file(filename);
+    if (!file.is_open())
+    {
+        std::cerr << "[Config] Failed to open file: " << filename << "\n";
+        return false;
+    }
+
+    std::cerr << "[Config] Loading initial config from: " << filename << "\n";
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        // Remove comments and leading/trailing whitespace
+        auto comment = line.find('#');
+        if (comment != std::string::npos)
+            line = line.substr(0, comment);
+
+        line.erase(0, line.find_first_not_of(" \t\r\n"));
+        line.erase(line.find_last_not_of(" \t\r\n") + 1);
+
+        if (line.empty())
+            continue;
+
+        std::stringstream ss(line);
+        std::string key, onStr, value;
+
+        if (!std::getline(ss, key, ','))
+            continue;
+        if (!std::getline(ss, onStr, ','))
+            continue;
+        if (!std::getline(ss, value))
+            continue;
+
+        // Trim fields
+        key.erase(0, key.find_first_not_of(" \t"));
+        key.erase(key.find_last_not_of(" \t") + 1);
+        onStr.erase(0, onStr.find_first_not_of(" \t"));
+        onStr.erase(onStr.find_last_not_of(" \t") + 1);
+        value.erase(0, value.find_first_not_of(" \t"));
+        value.erase(value.find_last_not_of(" \t") + 1);
+
+        // Parse activation flag
+        bool enabled = (onStr == "true" || onStr == "1");
+
+        // Infer value type
+        std::any typedValue;
+        try
+        {
+            if (value.find(' ') != std::string::npos)
+            {
+                typedValue = value; // likely a list
+            }
+            else if (value == "true" || value == "false")
+            {
+                typedValue = (value == "true");
+            }
+            else if (value.find('.') != std::string::npos)
+            {
+                typedValue = std::stof(value);
+            }
+            else
+            {
+                typedValue = std::stoi(value);
+            }
+        }
+        catch (...)
+        {
+            typedValue = value; // fallback to raw string
+        }
+        std::cout << "[Config] Setting " << key << ": " << enabled << "\n";
+        set(key, enabled, typedValue);
+    }
+
+    return true;
+}
+
 // Explicit template instantiations
 template int Config::get<int>(const std::string &, const int &) const;
 template float Config::get<float>(const std::string &, const float &) const;

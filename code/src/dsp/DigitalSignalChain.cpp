@@ -1,71 +1,63 @@
 #include "DigitalSignalChain.h"
 #include "EffectFactory.h"
-#include <fstream>
-#include <sstream>
 #include <iostream>
-#include <typeinfo>
-#include <mutex>
 #include <cstring>
+#include <unordered_set>
 
-// Constructor initializes both signal chains with empty effect slots
+// Constructor: initialise both chains to empty slots
 DigitalSignalChain::DigitalSignalChain()
 {
     for (auto &chain : chains)
     {
         for (auto &slot : chain.effects)
         {
-            slot.effect.reset(); // use smart pointer
+            slot.effect.reset();
             std::memset(slot.name, 0, sizeof(slot.name));
         }
         chain.count = 0;
     }
-    activeChainIndex.store(0); // default to first chain
+    activeChainIndex.store(0);
+    registerAllEffects(); // Register all effects into active chain
 }
 
-// Loads effect names from file and builds an inactive chain, then swaps it in
-bool DigitalSignalChain::loadEffectsFromFile(const std::string &filepath)
+// Register all effects from the factory
+void DigitalSignalChain::registerAllEffects()
 {
-    std::ifstream infile(filepath);
-    if (!infile.is_open())
-    {
-        std::cerr << "[DigitalSignalChain] Failed to open effect config file: " << filepath << std::endl;
-        return false;
-    }
-
-    size_t inactive = (activeChainIndex.load() + 1) % 2;
-    Chain &chain = chains[inactive];
+    size_t active = activeChainIndex.load();
+    Chain &chain = chains[active];
     chain.count = 0;
 
-    std::string effectName;
-    while (std::getline(infile, effectName) && chain.count < MAX_EFFECTS)
+    auto &factory = EffectFactory::instance();
+    auto allNames = factory.getAllRegisteredEffectNames();
+
+    std::unordered_set<std::string> registered;
+
+    for (const auto &effectName : allNames)
     {
-        // Trim leading/trailing whitespace
-        effectName.erase(0, effectName.find_first_not_of(" \t\n\r"));
-        effectName.erase(effectName.find_last_not_of(" \t\n\r") + 1);
-        if (effectName.empty())
+        if (chain.count >= MAX_EFFECTS)
+            break;
+
+        // Avoid duplicates
+        if (!registered.insert(effectName).second)
             continue;
 
-        std::cout << "[DigitalSignalChain] Loading effect: " << effectName << std::endl;
-        auto effectPtr = EffectFactory::instance().createEffect(effectName);
+        auto effectPtr = factory.createEffect(effectName);
         if (effectPtr)
         {
-            chain.effects[chain.count].effect = effectPtr; // smart pointer
+            chain.effects[chain.count].effect = effectPtr;
             std::strncpy(chain.effects[chain.count].name, effectName.c_str(), sizeof(chain.effects[chain.count].name) - 1);
             chain.count++;
-            std::cout << "[DigitalSignalChain] Registered effect: " << effectName << std::endl;
+            std::cout << "[DigitalSignalChain] Registered effect: " << effectName << "\n";
         }
         else
         {
-            std::cerr << "[DigitalSignalChain] Unknown effect: " << effectName << std::endl;
+            std::cerr << "[DigitalSignalChain] Failed to create effect: " << effectName << "\n";
         }
     }
-
-    activeChainIndex.store(inactive);
-    return true;
 }
 
-// Applies the effect chain to an audio sample
-void DigitalSignalChain::applyEffects(Sample &sample, float setting)
+// Applies active effects to a sample
+void DigitalSignalChain::applyEffects(Sample &sample)
 {
     float originalValue = sample.getPcmValue();
     size_t activeIndex = activeChainIndex.load();
@@ -76,16 +68,52 @@ void DigitalSignalChain::applyEffects(Sample &sample, float setting)
         for (size_t i = 0; i < chain.count; ++i)
         {
             const auto &slot = chain.effects[i];
-            if (!slot.effect)
+            if (!slot.effect || !slot.effect->isActive())
+            {
+                //std::cout << "[DigitalSignalChain] Skipping process...\n Value: " << originalValue << "\n";
                 continue;
-
-            float result = slot.effect->process(sample.getPcmValue(), setting);
-            sample.setPcmValue(result);
-            sample.addEffect(slot.name);
+            }
+            else
+            {
+                float result = slot.effect->process(sample.getPcmValue());
+                sample.setPcmValue(result);
+                sample.addEffect(slot.name);
+            }
         }
     }
     catch (...)
     {
-        sample.setPcmValue(originalValue); // Recover in case of exception
+        sample.setPcmValue(originalValue); // fail-safe
     }
+}
+
+// Apply configuration to each effect
+void DigitalSignalChain::configureEffects(Config &config)
+{
+    if (!config.hasUpdate())
+        return;
+
+    size_t activeIndex = activeChainIndex.load();
+    Chain &chain = chains[activeIndex];
+
+    std::cout << "[DigitalSignalChain] Configuring " << chain.count << " effect(s)\n";
+
+    for (size_t i = 0; i < chain.count; ++i)
+    {
+        auto &slot = chain.effects[i];
+        if (!slot.effect)
+            continue;
+
+        try
+        {
+            slot.effect->configure(config);
+            std::cout << "[DigitalSignalChain] Configured: " << slot.name << "\n";
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "[DigitalSignalChain] Error configuring " << slot.name << ": " << e.what() << "\n";
+        }
+    }
+
+    config.clearUpdate(); // Clear update flag after successful configuration
 }

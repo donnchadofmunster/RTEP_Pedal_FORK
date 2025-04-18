@@ -4,6 +4,9 @@
 class Fuzz : public Effect {
 public:
     Fuzz();
-    float process(float sample, float setting) override;
+    float process(float sample) override;
     ~Fuzz();
+
+protected:
+    void parseConfig(const Config &config) override;
 };

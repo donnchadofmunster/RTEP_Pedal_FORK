@@ -43,6 +43,8 @@ public:
      */
     std::shared_ptr<Effect> createEffect(const std::string& name) const;
 
+    std::vector<std::string> getAllRegisteredEffectNames() const;
+
 private:
     std::map<std::string, Creator> registry; ///< Internal mapping of effect names to constructor functions
 };

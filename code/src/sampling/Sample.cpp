@@ -1,6 +1,13 @@
 #include "Sample.h"
+#include <iostream>
 
-Sample::Sample(float pcmValue, double timeIndex) : pcmValue(pcmValue), timeIndex(timeIndex) {}
+Sample::Sample(float inValue, double timeIndex)
+{
+    //std::cout << "[Sample] Initilialising with value: " << inValue << "\n";
+    this->pcmValue = inValue;
+    this->timeIndex = timeIndex;
+    //std::cout << "[Sample] Initilialised with value: " << this->pcmValue << "\n";
+}
 
 float Sample::getPcmValue() const
 {

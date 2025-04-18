@@ -26,20 +26,22 @@ public:
     DigitalSignalChain();
 
     /**
-     * @brief Loads a chain of effects from a text file.
-     * @param filepath Path to the effect configuration file.
-     * @return True if loading succeeded, false otherwise.
-     */
-    bool loadEffectsFromFile(const std::string &filepath);
-
-    /**
      * @brief Applies the currently active chain of effects to a sample.
      * @param sample The audio sample to be processed.
-     * @param setting A global control value passed to each effect.
      */
-    void applyEffects(Sample &sample, float setting);
+    void applyEffects(Sample &sample);
+
+    /**
+     * @brief Updates all effects given a Config object
+     * @param config The Configuration object to be used.
+     */
+    void configureEffects(Config &config);
 
 private:
+    /**
+     * @brief Registers all effects from factory
+     */
+    void registerAllEffects();
     struct EffectSlot
     {
         std::shared_ptr<Effect> effect; ///< shared pointer to an effect (shared ownership lives elsewhere)

@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include <shared_mutex>
+#include <fstream>
 #include <atomic>
 #include <csignal>
 #include <any>
@@ -32,6 +33,9 @@ public:
 
     // Register signal handler
     static void registerSignalHandler();
+
+    //Load values from .cfg file
+    bool loadFromFile(const std::string &filename);
 
 private:
     Config(); // Private constructor

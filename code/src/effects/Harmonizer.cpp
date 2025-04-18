@@ -9,7 +9,10 @@
 Harmonizer::Harmonizer(const std::string &inputWav, const std::string &outputWav, const std::vector<int> &semitones)
     : inputWav("assets/" + inputWav),
       outputWav("assets/" + outputWav),
-      semitones(semitones) {}
+      semitones(semitones)
+{
+    IsActive = false;
+}
 
 void Harmonizer::updateInputs(const std::string &in, const std::string &out, const std::vector<int> &newSemitones)
 {
@@ -24,20 +27,24 @@ void Harmonizer::initRealtimeStretch()
 
     stretches.resize(semitones.size());
     outputBuffers.resize(semitones.size());
-    for (size_t i = 0; i < semitones.size(); ++i) {
+    for (size_t i = 0; i < semitones.size(); ++i)
+    {
         stretches[i].presetDefault(1, sampleRate);
         outputBuffers[i].assign(blockSize, 0.0f);
     }
+
     inputBuffer.resize(blockSize);
     inputWriteIndex = 0;
     outputReadIndex = blockSize;
     stretchInitialized = true;
-
 }
 
-float Harmonizer::process(float sample, float setting)
+float Harmonizer::process(float sample)
 {
-    semitones = {0, 4, 7, 12};
+    if (!IsActive)
+    {
+        return sample;
+    }
     initRealtimeStretch();
 
     if (samplesProcessed++ == 0)
@@ -50,7 +57,7 @@ float Harmonizer::process(float sample, float setting)
     if (outputReadIndex < blockSize)
     {
         float mixed = 0.0f;
-        for (const auto& buffer : outputBuffers)
+        for (const auto &buffer : outputBuffers)
         {
             mixed += buffer[outputReadIndex];
         }
@@ -60,19 +67,20 @@ float Harmonizer::process(float sample, float setting)
 
     if (inputWriteIndex >= blockSize)
     {
-        float* inputs[1] = { inputBuffer.data() };
-        for (size_t i = 0; i < semitones.size(); ++i) {
-            stretches[i].setTransposeSemitones(setting + semitones[i], tonality / sampleRate);
-            float* outputs[1] = { outputBuffers[i].data() };
+
+        float *inputs[1] = {inputBuffer.data()};
+        for (size_t i = 0; i < semitones.size(); ++i)
+        {
+            stretches[i].setTransposeSemitones(semitones[i], tonality / sampleRate);
+            float *outputs[1] = {outputBuffers[i].data()};
             stretches[i].process(inputs, blockSize, outputs, blockSize);
         }
-        
 
         inputWriteIndex = 0;
         outputReadIndex = 0;
 
         float mixed = 0.0f;
-        for (const auto& buffer : outputBuffers)
+        for (const auto &buffer : outputBuffers)
         {
             mixed += buffer[outputReadIndex];
         }
@@ -135,6 +143,34 @@ void Harmonizer::data_processing(double *data, int count, int channels)
     for (int ch = 0; ch < channels; ++ch)
         for (int i = ch; i < count; i += channels)
             data[i] *= 1.0;
+}
+
+void Harmonizer::parseConfig(const Config &config)
+{
+    IsActive = config.contains("harmonizer");
+
+    std::string intervalsStr = config.get<std::string>("harmonizer", "0");
+    std::stringstream ss(intervalsStr);
+    std::string token;
+    semitones.clear();
+
+    std::cout << "[Harmonizer] Raw interval string: \"" << intervalsStr << "\"\n";
+
+    while (ss >> token) // space-separated
+    {
+        try
+        {
+            int val = std::stoi(token);
+            semitones.push_back(val);
+            std::cout << "[Harmonizer] Parsed semitone: " << val << "\n";
+        }
+        catch (...)
+        {
+            std::cerr << "[Harmonizer] Warning: invalid interval \"" << token << "\"\n";
+        }
+    }
+
+    std::cout << "[Harmonizer] Total intervals loaded: " << semitones.size() << "\n";
 }
 
 Harmonizer::~Harmonizer()

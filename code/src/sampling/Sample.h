@@ -13,10 +13,10 @@ class Sample
 public:
     /**
      * @brief Constructor for Sample.
-     * @param pcmValue The PCM value of the sample.
+     * @param inValue The PCM value of the sample.
      * @param timeIndex The time index of the sample in the audio stream.
      */
-    Sample(float pcmValue, double timeIndex);
+    Sample(float inValue, double timeIndex);
 
     /**
      * @brief Gets the PCM value of the sample.
@@ -49,7 +49,7 @@ public:
     const std::vector<std::string> &getAppliedEffects() const;
 
 private:
-    int16_t  pcmValue;                          ///< The PCM value of the sample.
+    float  pcmValue;                          ///< The PCM value of the sample.
     double timeIndex;                        ///< The time index of the sample.
     std::vector<std::string> appliedEffects; ///< List of applied effects.
 };

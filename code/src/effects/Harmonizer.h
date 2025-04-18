@@ -59,7 +59,7 @@ public:
      * @param setting Semitone shift (float value).
      * @return The pitch-shifted output sample.
      */
-    float process(float sample, float setting) override;
+    float process(float sample) override;
     
     ~Harmonizer();
 private:
@@ -120,6 +120,9 @@ private:
      * @return Path to the resulting merged file.
      */
     // std::string mergeWavs(const char* infilename, const char* infilename2, const char* outfilename);
+
+protected:
+    void parseConfig(const Config &config) override;
 };
 
 #endif // HARMONIZER_H
