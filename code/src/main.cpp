@@ -1,4 +1,3 @@
-#include <alsa/asoundlib.h>
 #include <iostream>
 #include <iomanip>
 #include <thread>
@@ -8,15 +7,21 @@
 #include "Sample.h"
 #include "EffectFactory.h"
 #include "Config.h"
+#include "AudioIO.h" // New audio abstraction layer
 
 extern void ForceAllEffects();
 
 constexpr unsigned int SAMPLE_RATE = 44100;
-constexpr snd_pcm_format_t FORMAT = SND_PCM_FORMAT_S16_LE;
-constexpr unsigned int CHANNELS = 1;
-constexpr snd_pcm_uframes_t FRAMES = 11;
-constexpr int BUFFER_SIZE = FRAMES * CHANNELS;
+constexpr unsigned int FRAMES = 11;
+constexpr int BUFFER_SIZE = FRAMES; // Mono (1 channel), already interleaved
 
+/**
+ * @brief Processes a single audio sample through the DSP chain.
+ *
+ * @param sample The audio sample object.
+ * @param dspChain The configured DSP chain.
+ * @return The processed sample.
+ */
 Sample processSample(Sample &sample, DigitalSignalChain &dspChain)
 {
     dspChain.applyEffects(sample);
@@ -24,7 +29,9 @@ Sample processSample(Sample &sample, DigitalSignalChain &dspChain)
 }
 
 /**
- * @brief Dedicated thread that blocks on SIGUSR1 using signalfd and updates effects.
+ * @brief Thread that blocks on SIGUSR1 using signalfd and triggers configuration reload.
+ *
+ * @param dspChain The digital signal chain to reconfigure.
  */
 void configUpdateThread(DigitalSignalChain &dspChain)
 {
@@ -48,47 +55,52 @@ void configUpdateThread(DigitalSignalChain &dspChain)
         if (s != sizeof(fdsi))
             continue;
 
-        std::cerr << "[ConfigThread] SIGUSR1 received. Reconfiguring effects.\n";
+        std::cerr << "[ConfigThread] SIGUSR1 received. Reconfiguring effects...\n";
         dspChain.configureEffects(config);
     }
 }
 
 int main()
 {
-    snd_pcm_t *captureHandle, *playbackHandle;
-    int16_t buffer[BUFFER_SIZE];
-
-    double timeIndex = 0.0;
-    const double timeStep = 1.0 / SAMPLE_RATE;
-
-    // Block SIGUSR1 in this thread (main + audio)
+    // Block SIGUSR1 in main and audio thread
     sigset_t mask;
     sigemptyset(&mask);
     sigaddset(&mask, SIGUSR1);
     pthread_sigmask(SIG_BLOCK, &mask, nullptr);
 
-    // Initialise and preload effects
-    std::cout << "[Init] Registering and loading effects\n";
-    ForceAllEffects();
+    std::cout << "[Init] Registering and loading effects...\n";
+    ForceAllEffects(); // Statically register all effects
     DigitalSignalChain dspChain;
-    
-    // Launch the config signal thread
+
+    // Launch configuration watcher thread
     std::thread configThread(configUpdateThread, std::ref(dspChain));
 
-    // Open ALSA devices
-    snd_pcm_open(&captureHandle, "default", SND_PCM_STREAM_CAPTURE, 0);
-    snd_pcm_open(&playbackHandle, "default", SND_PCM_STREAM_PLAYBACK, 0);
-    snd_pcm_set_params(captureHandle, FORMAT, SND_PCM_ACCESS_RW_INTERLEAVED,
-                       CHANNELS, SAMPLE_RATE, 1, 1000);
-    snd_pcm_set_params(playbackHandle, FORMAT, SND_PCM_ACCESS_RW_INTERLEAVED,
-                       CHANNELS, SAMPLE_RATE, 1, 1000);
+    // Load initial configuration file (optional)
+    Config &config = Config::getInstance();
+    config.loadFromFile("config.cfg");
+    dspChain.configureEffects(config);
 
-    std::cout << "Starting real-time audio loop...\n";
+    // Audio I/O module
+    AudioIO audio;
+    if (!audio.init())
+    {
+        std::cerr << "[AudioIO] Failed to initialise audio device.\n";
+        return 1;
+    }
 
-    // Real-time loop
+    std::cout << "[Init] Starting real-time audio loop...\n";
+
+    int16_t buffer[BUFFER_SIZE];
+    double timeIndex = 0.0;
+    const double timeStep = 1.0 / SAMPLE_RATE;
+
     while (true)
     {
-        snd_pcm_readi(captureHandle, buffer, FRAMES);
+        if (!audio.readBuffer(buffer))
+        {
+            std::cerr << "[AudioIO] Failed to read audio.\n";
+            continue;
+        }
 
         for (snd_pcm_uframes_t i = 0; i < BUFFER_SIZE; ++i)
         {
@@ -97,11 +109,14 @@ int main()
             buffer[i] = processSample(sample, dspChain).getPcmValue();
         }
 
-        snd_pcm_writei(playbackHandle, buffer, FRAMES);
+        if (!audio.writeBuffer(buffer))
+        {
+            std::cerr << "[AudioIO] Failed to write audio.\n";
+            continue;
+        }
     }
 
+    audio.cleanup();
     configThread.join();
-    snd_pcm_close(captureHandle);
-    snd_pcm_close(playbackHandle);
     return 0;
 }

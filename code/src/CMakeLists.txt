@@ -13,6 +13,9 @@ file(GLOB UI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/ui/*.cpp")
 # DSP (Digital Signal Processing) code, including ForceEffects.cpp
 file(GLOB DSP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/dsp/*.cpp")
 
+# Options and Configuration Logic
+file(GLOB CFG_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/options/*.cpp")
+
 # Sampling logic (e.g. audio input)
 file(GLOB SAMPLING_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/sampling/*.cpp")
 
@@ -29,6 +32,7 @@ set(ALL_SOURCES
     ${SRC_SOURCES}
     ${UI_SOURCES}
     ${DSP_SOURCES}
+    ${CFG_SOURCES}
     ${SAMPLING_SOURCES}
     ${EFFECT_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/dsp/ForceEffects.cpp  # Ensures all effects are linked
@@ -46,6 +50,7 @@ target_include_directories(pedal_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/server
     ${CMAKE_CURRENT_SOURCE_DIR}/ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/options
     ${CMAKE_CURRENT_SOURCE_DIR}/dsp
     ${CMAKE_CURRENT_SOURCE_DIR}/sampling
     ${CMAKE_CURRENT_SOURCE_DIR}/effects
