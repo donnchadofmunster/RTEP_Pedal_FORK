@@ -31,8 +31,8 @@ fi
 cd "$original_directory"
 
 # Enable SPI, I2C
-sudo raspi-config nonint do_spi 1
-sudo raspi-config nonint do_i2c 1
+sudo raspi-config nonint do_spi 0
+sudo raspi-config nonint do_i2c 0
 
 # Enable I2S if not already enabled
 if ! grep -q "^dtparam=i2s=on" /boot/firmware/config.txt; then
