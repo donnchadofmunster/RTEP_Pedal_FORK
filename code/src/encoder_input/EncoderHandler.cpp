@@ -1,4 +1,5 @@
 #include "EncoderHandler.h"
+#include "../ui/UIHandler.h" // Adjusted path to locate UIHandler.h
 
 // constructor
 EncoderHandler::EncoderHandler(MCP23017Driver * driver){}
@@ -42,21 +43,21 @@ void EncoderHandler::processEvent(){
 				if(gpb_read&MCP23017Driver::ENC_PUSH[0])
 				{
 					std::cout << "[EncHandler.cpp] button 1 pressed\n";
-					//uiHandler::Update(EncoderHandler::ENC_1,EncoderHandler::ENC_PUSH);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_1,EncoderHandler::ENC_PUSH);
 				}
 				break;
 			case MCP23017Driver::ENC_PUSH[1]:
 				if(gpb_read&MCP23017Driver::ENC_PUSH[1])
 				{
 					std::cout << "[EncHandler.cpp] button 2 pressed\n";
-					//uiHandler::Update(EncoderHandler::ENC_2,EncoderHandler::ENC_PUSH);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_2,EncoderHandler::ENC_PUSH);
 				}
 				break;
 			case MCP23017Driver::ENC_PUSH[2]:
 				if(gpb_read&MCP23017Driver::ENC_PUSH[2])
 				{
 					std::cout << "[EncHandler.cpp] button 3 pressed\n";
-					//uiHandler::Update(EncoderHandler::ENC_3,EncoderHandler::ENC_PUSH);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_3,EncoderHandler::ENC_PUSH);
 				}
 				break;
 			default:
@@ -70,11 +71,11 @@ void EncoderHandler::processEvent(){
 				if (result == EncoderHandler::ENC_LEFT )
 				{
 					std::cout << "[EncHandler.cpp] encoder 1 turned left\n";
-					//uiHandler::Update(EncoderHandler::ENC_1,EncoderHandler::ENC_LEFT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_1,EncoderHandler::ENC_LEFT);
 				} else if (result == EncoderHandler::ENC_RIGHT)
 				{
 					std::cout << "[EncHandler.cpp] encoder 1 turned right\n";
-					//uiHandler::Update(EncoderHandler::ENC_1,EncoderHandler::ENC_RIGHT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_1,EncoderHandler::ENC_RIGHT);
 				}
 				break;
 			case MCP23017Driver::ENC_A[1]:
@@ -82,11 +83,11 @@ void EncoderHandler::processEvent(){
 				if (result == EncoderHandler::ENC_LEFT )
 				{
 					std::cout << "[EncHandler.cpp] encoder 2 turned left\n";
-					//uiHandler::Update(EncoderHandler::ENC_2,EncoderHandler::ENC_LEFT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_2,EncoderHandler::ENC_LEFT);
 				} else if (result == EncoderHandler::ENC_RIGHT)
 				{
 					std::cout << "[EncHandler.cpp] encoder 2 turned right\n";
-					//uiHandler::Update(EncoderHandler::ENC_2,EncoderHandler::ENC_RIGHT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_2,EncoderHandler::ENC_RIGHT);
 				} else
 				break;
 			case MCP23017Driver::ENC_A[2]:
@@ -94,11 +95,11 @@ void EncoderHandler::processEvent(){
 				if (result == EncoderHandler::ENC_LEFT )
 				{
 					std::cout << "[EncHandler.cpp] encoder 3 turned left\n";
-					//uiHandler::Update(EncoderHandler::ENC_3,EncoderHandler::ENC_LEFT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_3,EncoderHandler::ENC_LEFT);
 				} else if (result == EncoderHandler::ENC_RIGHT)
 				{
 					std::cout << "[EncHandler.cpp] encoder 3 turned right\n";
-					//uiHandler::Update(EncoderHandler::ENC_3,EncoderHandler::ENC_RIGHT);
+					UIHandler::getInstance().handleEncoder(EncoderHandler::ENC_3,EncoderHandler::ENC_RIGHT);
 				} else
 				break;
 			default:

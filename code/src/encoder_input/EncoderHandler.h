@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <signal.h>
 #include <sys/time.h>
-#include <gpioevent.h>
+#include "../gpio_event/gpioevent.h"
 
 #include "MCP23017Driver.h"
 

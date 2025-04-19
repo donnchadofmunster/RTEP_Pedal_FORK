@@ -93,11 +93,11 @@ void DEV_Delay_ms(UDOUBLE xms)
 #endif
 }
 
-/* static void DEV_GPIO_Init(void)
+static void DEV_GPIO_Init(void)
 {
     DEV_GPIO_Mode(OLED_RST, 1);
     DEV_GPIO_Mode(OLED_DC, 1);
-} */
+} 
 
 /******************************************************************************
 function:	Module Initialize, the library and initialize the pins, SPI protocol
