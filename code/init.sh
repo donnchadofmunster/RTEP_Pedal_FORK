@@ -29,6 +29,15 @@ if [ ! -d "signalsmith-stretch" ]; then
   git submodule add -f https://github.com/Signalsmith-Audio/signalsmith-stretch.git ./signalsmith-stretch
 fi
 
+# Clone and build lgpio if not already done
+if [ ! -d "lg" ]; then
+  git clone https://github.com/joan2937/lg
+fi
+
+cd lg
+make
+sudo make install
+
 cd "$original_directory"
 
 # Enable SPI, I2C
