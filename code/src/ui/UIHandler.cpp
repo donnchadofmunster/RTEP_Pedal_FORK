@@ -4,10 +4,6 @@
 #include <cmath>
 #include <algorithm>
 
-
-// For timestamp generation
-using namespace std::chrono;
-
 // Static singleton instance
 UIHandler& UIHandler::getInstance() {
     static UIHandler instance;
@@ -47,23 +43,30 @@ bool UIHandler::init() {
 }
 
 void UIHandler::update() {
+    std::cout << "Updating display..." << std::endl;
+    
     // Set cursor position on piano keyboard
     display.setCursor(cursorPosition);
     
     // Set selected notes for harmonizer
+    std::cout << "  Harmonizer enabled: " << (effects[0].isEnabled ? "YES" : "NO") 
+             << ", semitone count: " << effects[0].semitoneCount << std::endl;
+             
     if (effects[0].isEnabled && effects[0].semitoneCount > 0) {
+        std::cout << "  Sending semitones to display: ";
+        for (int i = 0; i < effects[0].semitoneCount; i++) {
+            std::cout << effects[0].semitones[i] << " ";
+        }
+        std::cout << std::endl;
+        
         display.setSelectedNotes(effects[0].semitones.data(), effects[0].semitoneCount);
     } else {
+        std::cout << "  No semitones to display" << std::endl;
         display.setSelectedNotes(nullptr, 0);
     }
     
-    // Get the currently selected effect (Fuzz or Gain)
-    const std::string& effectName = effects[currentEffectIndex].name;
-    float effectValue = effects[currentEffectIndex].currentValue;
-    bool isEnabled = effects[currentEffectIndex].isEnabled;
-    
-    // Update the display with current effect information
-    display.update(effectName.c_str(), effectValue, isEnabled);
+    // Rest of method
+    // ...
 }
 
 void UIHandler::handleEncoder(int encoderID, int action) {
@@ -216,31 +219,46 @@ void UIHandler::updateConfig() {
 }
 
 void UIHandler::loadFromConfig() {
+    std::cout << "=== LOADING CONFIG SETTINGS ===" << std::endl;
+    
     for (auto& effect : effects) {
         bool isEnabled = config.contains(effect.configKey);
         effect.isEnabled = isEnabled;
         
+        std::cout << "Effect: " << effect.name << ", Enabled: " << (isEnabled ? "YES" : "NO") << std::endl;
+        
         if (effect.type == EffectParam::TYPE_SEMITONES) {
-            // For harmonizer, parse the semitones from string
             if (isEnabled) {
                 std::string harmonizer = config.get<std::string>(effect.configKey, "");
+                std::cout << "  Raw harmonizer string: '" << harmonizer << "'" << std::endl;
+                
                 parseSemitonesString(harmonizer, effect.semitones, effect.semitoneCount);
+                
+                std::cout << "  Loaded " << effect.semitoneCount << " semitones: ";
+                for (int i = 0; i < effect.semitoneCount; i++) {
+                    std::cout << effect.semitones[i] << " ";
+                }
+                std::cout << std::endl;
             } else {
                 effect.semitoneCount = 0;
+                std::cout << "  Harmonizer disabled, no semitones loaded" << std::endl;
             }
         } 
-        else if (effect.type == EffectParam::TYPE_FLOAT) {
-            // For float parameters
-            effect.currentValue = config.get<float>(effect.configKey, 
-                                                   (effect.minValue + effect.maxValue) / 2.0f);
-        }
-        else if (effect.type == EffectParam::TYPE_INT) {
-            // For int parameters
-            float value = config.get<int>(effect.configKey, 
-                                        static_cast<int>((effect.minValue + effect.maxValue) / 2.0f));
+        else if (effect.type == EffectParam::TYPE_FLOAT || effect.type == EffectParam::TYPE_INT) {
+            // Get value based on type
+            float value;
+            if (effect.type == EffectParam::TYPE_FLOAT) {
+                value = config.get<float>(effect.configKey, (effect.minValue + effect.maxValue) / 2.0f);
+            } else {
+                value = config.get<int>(effect.configKey, static_cast<int>((effect.minValue + effect.maxValue) / 2.0f));
+            }
+            
+            std::cout << "  Parameter value loaded: " << value << std::endl;
             effect.currentValue = value;
         }
     }
+    
+    std::cout << "=== CONFIG LOADING COMPLETE ===" << std::endl;
 }
 
 std::string UIHandler::semitonesToString(const std::array<int, EffectParam::MAX_SEMITONES>& semitones, int count) {
