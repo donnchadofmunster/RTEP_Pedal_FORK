@@ -19,6 +19,7 @@ extern void ForceAllEffects();
 constexpr unsigned int SAMPLE_RATE = 44100;
 constexpr unsigned int FRAMES = 11;
 constexpr int BUFFER_SIZE = FRAMES; // Mono (1 channel), already interleaved
+MCP23017Driver MCP;
 
 /**
  * @brief Processes a single audio sample through the DSP chain.
@@ -70,6 +71,16 @@ void configUpdateThread(DigitalSignalChain &dspChain)
 
 int main()
 {
+    // SET UP ENCODERS
+    EncoderHandler encoder(&MCP);
+    GPIOPin gpiopin;
+
+    encoder.begin(800);
+
+    gpiopin.registerCallback(&encoder);
+    const int gpioPinNo = 27;
+	gpiopin.start(gpioPinNo);	
+
     // Block SIGUSR1 in main and audio thread
     sigset_t mask;
     sigemptyset(&mask);
@@ -99,7 +110,7 @@ int main()
 
     // Load initial configuration file (optional)
     Config &config = Config::getInstance();
-    config.loadFromFile("assets/config.cfg");
+    config.loadFromFile("./assets/config.cfg");
     dspChain.configureEffects(config);
 
     // Audio I/O module
@@ -137,5 +148,6 @@ int main()
 
     audio.cleanup();
     configThread.join();
+    gpiopin.stop();
     return 0;
 }
