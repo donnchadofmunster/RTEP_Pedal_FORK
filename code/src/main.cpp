@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "AudioIO.h" // New audio abstraction layer
+#include "ui/UIHandler.h" // Include UIHandler header
+#include "encoder_input/EncoderHandler.h"
 
 extern void ForceAllEffects();
 
@@ -60,6 +62,9 @@ void configUpdateThread(DigitalSignalChain &dspChain)
 
         std::cerr << "[ConfigThread] SIGUSR1 received. Reconfiguring effects...\n";
         dspChain.configureEffects(config);
+    // Ensure UIHandler is properly included and used
+    UIHandler::getInstance().update();
+
     }
 }
 
@@ -73,14 +78,28 @@ int main()
 
     std::cout << "[Init] Registering and loading effects...\n";
     ForceAllEffects(); // Statically register all effects
+    UIHandler& uiHandler = UIHandler::getInstance();
+    if (!uiHandler.init()) {
+        std::cerr << "[Init] Failed to initialize UI handler.\n";
+        return 1;
+    }    
     DigitalSignalChain dspChain;
+
+    MCP23017Driver* mcpDriver = new MCP23017Driver();
+    if (!mcpDriver->begin()) {
+        std::cerr << "[Init] Failed to initialize MCP23017 driver.\n";
+        return 1;
+    }
+    EncoderHandler encoderHandler(mcpDriver);    
+    encoderHandler.begin(10000);
+    std::cout << "[Init] Encoder handler initialized successfully.\n";
 
     // Launch configuration watcher thread
     std::thread configThread(configUpdateThread, std::ref(dspChain));
 
     // Load initial configuration file (optional)
     Config &config = Config::getInstance();
-    config.loadFromFile("assets/config.cfg");
+    config.loadFromFile("config.cfg");
     dspChain.configureEffects(config);
 
     // Audio I/O module
@@ -94,6 +113,9 @@ int main()
     std::cout << "[Init] Starting real-time audio loop...\n";
 
     int16_t buffer[BUFFER_SIZE];
+    double timeIndex = 0.0;
+    const double timeStep = 1.0 / SAMPLE_RATE;
+
     while (true)
     {
         if (!audio.readBuffer(buffer))
@@ -104,7 +126,8 @@ int main()
 
         for (snd_pcm_uframes_t i = 0; i < BUFFER_SIZE; ++i)
         {
-            Sample sample(buffer[i]);
+            timeIndex += timeStep;
+            Sample sample(buffer[i], timeIndex);
             buffer[i] = processSample(sample, dspChain).getPcmValue();
         }
 
