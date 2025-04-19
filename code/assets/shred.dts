@@ -1,0 +1,69 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = <&i2c1>;
+        __overlay__ {
+            status = "okay";
+
+            wm8960: wm8960@1a {
+                compatible = "wlf,wm8960";
+                reg = <0x1a>;
+                clocks = <&clocks 1>; // Dummy clock
+                #sound-dai-cells = <0>;
+            };
+
+            mcp23017: gpioexp@20 {
+                compatible = "microchip,mcp23017";
+                reg = <0x20>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                interrupt-controller;
+                #interrupt-cells = <2>;
+            };
+        };
+    };
+
+    fragment@1 {
+        target-path = "/";
+        __overlay__ {
+            sound {
+                compatible = "simple-audio-card";
+                simple-audio-card,name = "shreddle";
+                simple-audio-card,format = "i2s";
+                simple-audio-card,bitclock-master = <&cpu_dai>;
+                simple-audio-card,frame-master = <&cpu_dai>;
+
+                simple-audio-card,cpu {
+                    sound-dai = <&i2s>;
+                };
+
+                cpu_dai: simple-audio-card,codec {
+                    sound-dai = <&wm8960>;
+                };
+            };
+        };
+    };
+
+    fragment@2 {
+        target = <&gpio>;
+        __overlay__ {
+            int1: gpio17_int {
+                gpio-hog; // prevents any other use of this pin 
+                gpios = <17 0>; // Interrupt 1 (Encoder Switches)
+                input;
+                line-name = "INT_GPIO17";
+            };
+
+            int2: gpio27_int {
+                gpio-hog; // prevents any other use of this pin 
+                gpios = <27 0>; // Interrupt 2 (Encoder Movement)
+                input;
+                line-name = "INT_GPIO27";
+            };
+        };
+    };
+};
