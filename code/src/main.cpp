@@ -7,6 +7,9 @@
 #include "Sample.h"
 #include "EffectFactory.h"
 #include "Config.h"
+#include <gpiod.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "AudioIO.h" // New audio abstraction layer
 
 extern void ForceAllEffects();

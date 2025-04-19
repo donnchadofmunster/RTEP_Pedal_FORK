@@ -1,12 +1,17 @@
 #include <iostream>
 #include <iomanip>
 #include <csignal>
+#include <gpiod.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "MockSamplingModule.h"
 #include "MockOutputModule.h"
 #include "DigitalSignalChain.h"
 #include "Sample.h"
 #include "EffectFactory.h"
 #include "Config.h"
+#include "EncoderHandler.h"
+#include "gpioevent.h"
 
 // Optional linker anchor — ensures effects get registered
 extern void ForceAllEffects(); // defined in ForceEffects.cpp

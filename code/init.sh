@@ -12,6 +12,7 @@ sudo apt-get install libsndfile1-dev pkg-config
 sudo apt-get install sndfile-programs
 sudo apt-get install sox
 sudo apt-get install libasound2-dev
+sudo apt-get install libgpiod-dev
 sudo apt-get autoremove
 
 cd "$script_directory/lib"

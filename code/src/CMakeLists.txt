@@ -22,6 +22,10 @@ file(GLOB SAMPLING_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/sampling/*.cpp")
 # Audio effects, each typically registers itself with the factory
 file(GLOB EFFECT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/effects/*.cpp")
 
+# Encoder Input and Handler
+file(GLOB INPUT_SOURCES "${CMAKE_SOURCE_DIR}/src/encoder_input/*.cpp")
+file(GLOB GPIO_SOURCES "${CMAKE_SOURCE_DIR}/src/gpio_event/*.cpp")
+
 
 # --- Exclude main.cpp from the library (linked separately in executable) ---
 list(REMOVE_ITEM SRC_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
@@ -35,6 +39,8 @@ set(ALL_SOURCES
     ${CFG_SOURCES}
     ${SAMPLING_SOURCES}
     ${EFFECT_SOURCES}
+    ${INPUT_SOURCES}
+    ${GPIO_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/dsp/ForceEffects.cpp  # Ensures all effects are linked
 )
 
@@ -54,6 +60,8 @@ target_include_directories(pedal_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/dsp
     ${CMAKE_CURRENT_SOURCE_DIR}/sampling
     ${CMAKE_CURRENT_SOURCE_DIR}/effects
+    ${CMAKE_SOURCE_DIR}/src/encoder_input
+    ${CMAKE_SOURCE_DIR}/src/gpio_event
 )
 
 
@@ -61,7 +69,7 @@ target_include_directories(pedal_lib PUBLIC
 # pthread: multithreading
 # sndfile: audio file I/O
 # lgpio: GPIO library
-target_link_libraries(pedal_lib PRIVATE pthread ${SNDFILE_LIBRARIES} ${ALSA_LIBRARIES} lgpio)
+target_link_libraries(pedal_lib PRIVATE pthread ${SNDFILE_LIBRARIES} ${ALSA_LIBRARIES} lgpio gpiod)
 # --- Define the main application executable ---
 # This is the real-time pedal program that runs on the Pi
 add_executable(shred_pedal main.cpp)
