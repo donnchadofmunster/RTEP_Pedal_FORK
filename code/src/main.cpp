@@ -80,7 +80,7 @@ int main()
 
     // Load initial configuration file (optional)
     Config &config = Config::getInstance();
-    config.loadFromFile("config.cfg");
+    config.loadFromFile("assets/config.cfg");
     dspChain.configureEffects(config);
 
     // Audio I/O module
@@ -94,9 +94,6 @@ int main()
     std::cout << "[Init] Starting real-time audio loop...\n";
 
     int16_t buffer[BUFFER_SIZE];
-    double timeIndex = 0.0;
-    const double timeStep = 1.0 / SAMPLE_RATE;
-
     while (true)
     {
         if (!audio.readBuffer(buffer))
@@ -107,8 +104,7 @@ int main()
 
         for (snd_pcm_uframes_t i = 0; i < BUFFER_SIZE; ++i)
         {
-            timeIndex += timeStep;
-            Sample sample(buffer[i], timeIndex);
+            Sample sample(buffer[i]);
             buffer[i] = processSample(sample, dspChain).getPcmValue();
         }
 

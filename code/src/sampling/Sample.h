@@ -14,9 +14,8 @@ public:
     /**
      * @brief Constructor for Sample.
      * @param inValue The PCM value of the sample.
-     * @param timeIndex The time index of the sample in the audio stream.
      */
-    Sample(float inValue, double timeIndex);
+    Sample(float inValue);
 
     /**
      * @brief Gets the PCM value of the sample.
@@ -29,12 +28,6 @@ public:
      * @param value The new PCM value.
      */
     void setPcmValue(float value);
-
-    /**
-     * @brief Gets the time index of the sample.
-     * @return The time index.
-     */
-    double getTimeIndex() const;
 
     /**
      * @brief Adds an effect name to the list of applied effects.
@@ -50,7 +43,6 @@ public:
 
 private:
     float  pcmValue;                          ///< The PCM value of the sample.
-    double timeIndex;                        ///< The time index of the sample.
     std::vector<std::string> appliedEffects; ///< List of applied effects.
 };
 

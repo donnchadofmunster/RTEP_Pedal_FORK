@@ -35,23 +35,22 @@ protected:
 
 TEST(SampleUnitTest, ConstructorInitialisesCorrectly)
 {
-    Sample s(0.75f, 3.14);
+    Sample s(0.75f);
     std::cout << "[unit_test] Sample made with value: " << s.getPcmValue() << "\n";
     EXPECT_FLOAT_EQ(s.getPcmValue(), 0.75f);
-    EXPECT_DOUBLE_EQ(s.getTimeIndex(), 3.14);
     EXPECT_TRUE(s.getAppliedEffects().empty());
 }
 
 TEST(SampleUnitTest, PcmValueSetterGetter)
 {
-    Sample s(0.0f, 0.0);
+    Sample s(0.0f);
     s.setPcmValue(1.23f);
     EXPECT_FLOAT_EQ(s.getPcmValue(), 1.23f);
 }
 
 TEST(SampleUnitTest, AppliedEffectCanBeAddedAndRetrieved)
 {
-    Sample s(0.0f, 0.0);
+    Sample s(0.0f);
     s.addEffect("Gain");
     s.addEffect("Fuzz");
 
@@ -65,23 +64,16 @@ TEST(SampleUnitTest, AppliedEffectCanBeAddedAndRetrieved)
 
 TEST_F(DSPTest, SampleEffectListIsNotEmpty)
 {
-    Sample s1(0.5f, 0.0);
+    Sample s1(0.5f);
     chain->applyEffects(s1);
     EXPECT_FALSE(s1.getAppliedEffects().empty());
 }
 
 TEST_F(DSPTest, SamplePCMIsTransformed)
 {
-    Sample s2(0.5f, 0.0);
+    Sample s2(0.5f);
     chain->applyEffects(s2);
     EXPECT_NE(s2.getPcmValue(), 0.5f);
-}
-
-TEST_F(DSPTest, SamplePreservesTimeIndex)
-{
-    Sample s3(0.5f, 1.23);
-    chain->applyEffects(s3);
-    EXPECT_DOUBLE_EQ(s3.getTimeIndex(), 1.23);
 }
 
 // --- End-to-end mock IO flow ---
@@ -96,7 +88,7 @@ TEST_F(DSPTest, MockSamplerReadsSamples)
 TEST_F(DSPTest, MockOutputWritesSamples)
 {
     MockOutputModule mockOutput(ASSET_PATH + "/output_test.wav");
-    Sample s5(0.42f, 0.0);
+    Sample s5(0.42f);
     EXPECT_NO_THROW(mockOutput.writeSample(s5));
     EXPECT_NO_THROW(mockOutput.saveToFile());
 }
@@ -107,15 +99,11 @@ TEST_F(DSPTest, FullMockIOPipelineRunsSuccessfully)
     MockOutputModule mockOutput(ASSET_PATH + "/output_test.wav");
 
     float pcm;
-    double timeIndex = 0.0;
-    const double timeStep = 1.0 / 44100.0;
-
     while (mockSampler.getSample(pcm))
     {
-        Sample s6(pcm, timeIndex);
+        Sample s6(pcm);
         chain->applyEffects(s6);
         mockOutput.writeSample(s6);
-        timeIndex += timeStep;
     }
 
     EXPECT_NO_THROW(mockOutput.saveToFile());
@@ -129,7 +117,7 @@ TEST_F(DSPTest, WirePreservesSignalWhenAllEffectsDisabled)
     config->set("fuzz", false, 100.0f);
 
     chain->configureEffects(*config);
-    Sample s7(0.5f, 0.0);
+    Sample s7(0.5f);
     std::cout << "[unit_tests.cpp] Value: ";
     std::cout << std::to_string(s7.getPcmValue());
     std::cout << "\n";
@@ -144,7 +132,7 @@ TEST_F(DSPTest, Gain100PercentPreservesAmplitude)
 
     chain->configureEffects(*config);
 
-    Sample s(1.0f, 0.0);
+    Sample s(1.0f);
     chain->applyEffects(s);
     EXPECT_NEAR(s.getPcmValue(), 1.0f, 0.01f);
 }
@@ -156,7 +144,7 @@ TEST_F(DSPTest, FuzzClampsAmplitudeOverThreshold)
 
     chain->configureEffects(*config);
 
-    Sample s(1.0f, 0.0);
+    Sample s(1.0f);
     chain->applyEffects(s);
     EXPECT_NEAR(s.getPcmValue(), 0.01f, 0.001f);
 }
@@ -168,7 +156,7 @@ TEST_F(DSPTest, Gain200PercentDoublesSample)
 
     chain->configureEffects(*config);
 
-    Sample s(0.5f, 0.0);
+    Sample s(0.5);
     chain->applyEffects(s);
     EXPECT_NEAR(s.getPcmValue(), 1.0f, 0.01f);
 }

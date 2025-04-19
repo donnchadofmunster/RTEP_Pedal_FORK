@@ -15,10 +15,6 @@
 
 // Optional linker anchor — ensures effects get registered
 extern void ForceAllEffects(); // defined in ForceEffects.cpp
-
-constexpr double SAMPLE_RATE = 44100.0;
-constexpr double TIME_STEP = 1.0 / SAMPLE_RATE;
-
 /**
  * @brief Processes a single sample, applies DSP, and writes to output
  */
@@ -57,7 +53,6 @@ int main(int argc, char *argv[])
     MockOutputModule output(outputWavFilePath);
 
     float pcm;
-    double timeIndex = 0.0;
 
     while (input.getSample(pcm))
     {
@@ -67,9 +62,8 @@ int main(int argc, char *argv[])
             dspChain.configureEffects(config);
         }
 
-        Sample sample(pcm, timeIndex);
+        Sample sample(pcm);
         processSample(sample, dspChain, output);
-        timeIndex += TIME_STEP;
     }
 
     std::cout << "\n[test.cpp] All samples processed. Writing output file...\n";
