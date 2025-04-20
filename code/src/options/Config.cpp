@@ -11,13 +11,13 @@ std::atomic<Config *> Config::instance{nullptr};
 Config::Config()
 {
     updated.store(false);
-    instance.store(this);
 }
 
 Config &Config::getInstance()
 {
     static Config singleton;
     return singleton;
+    instance.store(&singleton);
 }
 
 void Config::signalHandler(int sig)

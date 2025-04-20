@@ -63,8 +63,8 @@ void configUpdateThread(DigitalSignalChain &dspChain)
 
         std::cerr << "[ConfigThread] SIGUSR1 received. Reconfiguring effects...\n";
         dspChain.configureEffects(config);
-    // Ensure UIHandler is properly included and used
-    UIHandler::getInstance().update();
+
+        UIHandler::getInstance().update();
 
     }
 }
@@ -72,6 +72,7 @@ void configUpdateThread(DigitalSignalChain &dspChain)
 int main()
 {
     // SET UP ENCODERS
+    DigitalSignalChain dspChain;
     EncoderHandler encoder(&MCP);
     GPIOPin gpiopin;
 
@@ -89,12 +90,6 @@ int main()
 
     std::cout << "[Init] Registering and loading effects...\n";
     ForceAllEffects(); // Statically register all effects
-    UIHandler& uiHandler = UIHandler::getInstance();
-    if (!uiHandler.init()) {
-        std::cerr << "[Init] Failed to initialize UI handler.\n";
-        return 1;
-    }    
-    DigitalSignalChain dspChain;
 
     MCP23017Driver* mcpDriver = new MCP23017Driver();
     if (!mcpDriver->begin()) {
@@ -112,7 +107,11 @@ int main()
     Config &config = Config::getInstance();
     config.loadFromFile("./assets/config.cfg");
     dspChain.configureEffects(config);
-
+    UIHandler& uiHandler = UIHandler::getInstance();
+    if (!uiHandler.init(dspChain)) {
+        std::cerr << "[Init] Failed to initialize UI handler.\n";
+        return 1;
+    }    
     // Audio I/O module
     AudioIO audio;
     if (!audio.init())

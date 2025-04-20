@@ -53,7 +53,7 @@ int Display::getWhiteKeyXPosition(int cursor) {
     int key_offset = cursor_index - zero_index;
 
     // Each white key is 6 pixels wide
-    return KEY0_X_POSITION + (key_offset * 6);
+    return KEY0_X_POSITION + (key_offset * 6)+3;
 }
 
 // Get black key x position based on cursor value

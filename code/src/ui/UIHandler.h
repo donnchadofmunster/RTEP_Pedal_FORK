@@ -4,6 +4,7 @@
 #include "Display.h"
 #include "../options/Config.h"
 #include "../gpio_event/gpioevent.h"
+#include "DigitalSignalChain.h"
 #include <string>
 #include <vector>
 #include <array>
@@ -18,7 +19,7 @@ public:
     static UIHandler& getInstance();
 
     // Initialize UI subsystems
-    bool init();
+    bool init(DigitalSignalChain &dspChain);
 
     // Update display based on current state
     void update();
@@ -43,6 +44,7 @@ public:
 
 private:
     // Private constructor for singleton
+    DigitalSignalChain *dspChain;
     UIHandler();
     ~UIHandler();
     

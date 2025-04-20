@@ -26,8 +26,9 @@ UIHandler::~UIHandler() {
     // Cleanup resources if needed
 }
 
-bool UIHandler::init() {
+bool UIHandler::init(DigitalSignalChain &dspChain) {
     // Initialize the display
+    this->dspChain = &dspChain;
     if (!display.init()) {
         std::cerr << "Failed to initialize display" << std::endl;
         return false;
@@ -64,9 +65,14 @@ void UIHandler::update() {
         std::cout << "  No semitones to display" << std::endl;
         display.setSelectedNotes(nullptr, 0);
     }
+    const auto& effect = effects[currentEffectIndex];
     
-    // Rest of method
-    // ...
+    std::cout << "  Updating display with effect: " << effect.name 
+             << ", value: " << effect.currentValue 
+             << ", enabled: " << effect.isEnabled << std::endl;
+    
+    // Update the display with current effect information
+    display.update(effect.name.c_str(), effect.currentValue, effect.isEnabled);
 }
 
 void UIHandler::handleEncoder(int encoderID, int action) {
@@ -163,7 +169,7 @@ void UIHandler::handleEffectEditEncoder(EncoderAction action) {
         }
     }
     else if (action == ACTION_PUSH) {
-        // Could implement a "reset to default" feature here if desired
+        // Could implement a "reset to default" feature here
         // For now, does nothing
     }
 }
@@ -211,6 +217,8 @@ void UIHandler::updateConfig() {
             // For harmonizer, convert semitones to string representation
             std::string semitonesStr = semitonesToString(effect.semitones, effect.semitoneCount);
             config.set(effect.configKey, effect.isEnabled, semitonesStr);
+            this->dspChain->configureEffects(config); // Apply changes to DSP chain
+            
         } else {
             // For numeric parameters, store the raw value
             config.set(effect.configKey, effect.isEnabled, effect.currentValue);
@@ -222,44 +230,85 @@ void UIHandler::loadFromConfig() {
     std::cout << "=== LOADING CONFIG SETTINGS ===" << std::endl;
     
     for (auto& effect : effects) {
-        bool isEnabled = config.contains(effect.configKey);
-        effect.isEnabled = isEnabled;
+        // Try both approaches to get the value - directly or via string-based lookup
+        bool isEnabled = false;
         
-        std::cout << "Effect: " << effect.name << ", Enabled: " << (isEnabled ? "YES" : "NO") << std::endl;
-        
-        if (effect.type == EffectParam::TYPE_SEMITONES) {
-            if (isEnabled) {
-                std::string harmonizer = config.get<std::string>(effect.configKey, "");
-                std::cout << "  Raw harmonizer string: '" << harmonizer << "'" << std::endl;
+        // Check if the key exists in any form
+        if (config.contains(effect.configKey)) {
+            isEnabled = true;  // If contains() returns true, it's enabled by definition
+            
+            std::cout << "Effect: " << effect.name << " found in config, Enabled: YES" << std::endl;
+            
+            
+            // Process value based on effect type
+            if (effect.type == EffectParam::TYPE_SEMITONES) {
+                std::string rawValue = config.get<std::string>(effect.configKey, "");
+                std::cout << "  Raw harmonizer string: '" << rawValue << "'" << std::endl;
                 
-                parseSemitonesString(harmonizer, effect.semitones, effect.semitoneCount);
+                // Parse the semitones
+                parseSemitonesString(rawValue, effect.semitones, effect.semitoneCount);
                 
-                std::cout << "  Loaded " << effect.semitoneCount << " semitones: ";
+                std::cout << "  Parsed " << effect.semitoneCount << " semitones: ";
                 for (int i = 0; i < effect.semitoneCount; i++) {
                     std::cout << effect.semitones[i] << " ";
                 }
                 std::cout << std::endl;
-            } else {
-                effect.semitoneCount = 0;
-                std::cout << "  Harmonizer disabled, no semitones loaded" << std::endl;
+            }
+            else if (effect.type == EffectParam::TYPE_FLOAT || effect.type == EffectParam::TYPE_INT) {
+                // For numeric values, use a consistent approach
+                float defaultValue = (effect.minValue + effect.maxValue) / 2.0f;
+                float value = config.get<float>(effect.configKey, defaultValue);
+                
+                std::cout << "  Config lookup for " << effect.name 
+                          << ": key='" << effect.configKey << "'"
+                          << ", returned value=" << value 
+                          << ", default=" << defaultValue << std::endl;
+                
+                effect.currentValue = value;
             }
         } 
-        else if (effect.type == EffectParam::TYPE_FLOAT || effect.type == EffectParam::TYPE_INT) {
-            // Get value based on type
-            float value;
-            if (effect.type == EffectParam::TYPE_FLOAT) {
-                value = config.get<float>(effect.configKey, (effect.minValue + effect.maxValue) / 2.0f);
-            } else {
-                value = config.get<int>(effect.configKey, static_cast<int>((effect.minValue + effect.maxValue) / 2.0f));
-            }
+        else {
+            std::cout << "Effect: " << effect.name << " not found in config, setting to disabled" << std::endl;
+            isEnabled = false;
             
-            std::cout << "  Parameter value loaded: " << value << std::endl;
-            effect.currentValue = value;
+            if (effect.type == EffectParam::TYPE_SEMITONES) {
+                effect.semitoneCount = 0;
+                std::cout << "  Using empty semitones array" << std::endl;
+            } else {
+                float defaultValue = (effect.minValue + effect.maxValue) / 2.0f;
+                effect.currentValue = defaultValue;
+                std::cout << "  Using default value: " << defaultValue << std::endl;
+            }
         }
+        
+        effect.isEnabled = isEnabled;
     }
     
-    std::cout << "=== CONFIG LOADING COMPLETE ===" << std::endl;
+    // After loading all effects, set the step sizes
+    for (auto& effect : effects) {
+        if (effect.type == EffectParam::TYPE_SEMITONES) {
+            effect.stepSize = 1.0f; // Not used for harmonizer
+        }
+        else if (effect.type == EffectParam::TYPE_FLOAT) {
+            // For Fuzz (range 1.0-6.0)
+            if (effect.name == "Fuzz") {
+                effect.stepSize = 0.1f; // Adjust fuzz in 0.1 increments
+            }
+            // For Gain (range 0.0-200.0)
+            else if (effect.name == "Gain") {
+                effect.stepSize = 5.0f; // Adjust gain in steps of 5
+            }
+            // Default fallback
+            else {
+                effect.stepSize = (effect.maxValue - effect.minValue) / 40.0f; // ~40 steps across range
+            }
+        }
+        else if (effect.type == EffectParam::TYPE_INT) {
+            effect.stepSize = 1.0f; // Integer parameters step by 1
+        }
+    }
 }
+
 
 std::string UIHandler::semitonesToString(const std::array<int, EffectParam::MAX_SEMITONES>& semitones, int count) {
     std::stringstream ss;
