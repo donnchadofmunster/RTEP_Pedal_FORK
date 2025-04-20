@@ -146,6 +146,7 @@ int main()
     }
 
     audio.cleanup();
+    delete mcpDriver;
     configThread.join();
     gpiopin.stop();
     return 0;

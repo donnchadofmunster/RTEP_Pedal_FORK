@@ -17,7 +17,7 @@ UIHandler::UIHandler()
     
     // Initialize with 8-bit resolution
     effects.emplace_back("Harmonizer", "harmonizer", EffectParam::TYPE_SEMITONES, 0.0f, 0.0f);
-    effects.emplace_back("Fuzz", "fuzz", EffectParam::TYPE_FLOAT, 1.0f, 6.0f);
+    effects.emplace_back("Fuzz", "fuzz", EffectParam::TYPE_FLOAT, 0.0f, 1.0f);
     effects.emplace_back("Gain", "gain", EffectParam::TYPE_FLOAT, 0.0f, 200.0f);
     
 }
@@ -39,6 +39,11 @@ bool UIHandler::init(DigitalSignalChain &dspChain) {
     
     // Update display with initial state
     update();
+
+    for (int i = 1; i < 9; i++) {
+        toggleSemitone(i);
+        update();
+    }
     
     return true;
 }
@@ -292,7 +297,7 @@ void UIHandler::loadFromConfig() {
         else if (effect.type == EffectParam::TYPE_FLOAT) {
             // For Fuzz (range 1.0-6.0)
             if (effect.name == "Fuzz") {
-                effect.stepSize = 0.1f; // Adjust fuzz in 0.1 increments
+                effect.stepSize = 0.01f; // Adjust fuzz in 0.1 increments
             }
             // For Gain (range 0.0-200.0)
             else if (effect.name == "Gain") {
