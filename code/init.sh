@@ -8,7 +8,7 @@ sudo apt-get install cmake
 sudo apt-get install gdb
 sudo apt-get install clang clang-tidy
 sudo apt-get install libgtest-dev
-sudo apt-get install libsndfile1-dev pkg-config
+sudo apt-get install libsndfile1 libsndfile1-dev pkg-config
 sudo apt-get install sndfile-programs
 sudo apt-get install sox
 sudo apt-get install libasound2-dev
