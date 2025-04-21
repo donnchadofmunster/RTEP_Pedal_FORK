@@ -28,7 +28,7 @@ fi
 if [ ! -d "signalsmith-stretch" ]; then
   git submodule add -f https://github.com/Signalsmith-Audio/signalsmith-stretch.git ./signalsmith-stretch
   cd signalsmith-stretch
-  git checkout 49dc7bf
+  git checkout f2294a5
   cd ..
 fi
 
