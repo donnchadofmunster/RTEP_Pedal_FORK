@@ -1,5 +1,6 @@
 #ifndef MCP23017DRIVER_H
 #define MCP23017DRIVER_H
+#include <cstdint>
 
 #include "MCP23017Registers.h"
 #include <iostream>
