@@ -51,3 +51,12 @@ sudo raspi-config nonint do_i2c 0
 if ! grep -q "^dtparam=i2s=on" /boot/firmware/config.txt; then
   echo "dtparam=i2s=on" | sudo tee -a /boot/firmware/config.txt > /dev/null
 fi
+
+# Check if Rpi is active to ensure CI/CD compatibility on Git
+if grep -q "Raspberry Pi" /proc/cpuinfo; then
+  sudo raspi-config nonint do_spi 0
+  sudo raspi-config nonint do_i2c 0
+  if ! grep -q "^dtparam=i2s=on" /boot/firmware/config.txt; then
+    echo "dtparam=i2s=on" | sudo tee -a /boot/firmware/config.txt > /dev/null
+  fi
+fi
