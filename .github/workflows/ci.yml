@@ -21,6 +21,9 @@ jobs:
           chmod +x ./init.sh
           ./init.sh
 
+      - name: Symlink libsndfile to /usr/lib
+        run: sudo ln -s /lib/x86_64-linux-gnu/libsndfile.so.1 /usr/lib/libsndfile.so.1
+
       - name: Build
         working-directory: code/
         run: |
