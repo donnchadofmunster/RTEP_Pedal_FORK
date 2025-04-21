@@ -11,7 +11,7 @@ EncoderHandler::EncoderHandler(MCP23017Driver* driver) {
 void EncoderHandler::begin(long int uSec) {
     driver->begin();
 
-    struct itimerval timer1;
+    struct itimerval timer1 = {};
     _timer1 = timer1;
     _uSec = uSec;
 
