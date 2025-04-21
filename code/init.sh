@@ -27,6 +27,9 @@ fi
 # Clone if not already present
 if [ ! -d "signalsmith-stretch" ]; then
   git submodule add -f https://github.com/Signalsmith-Audio/signalsmith-stretch.git ./signalsmith-stretch
+  cd signalsmith-stretch
+  git checkout 49dc7bf
+  cd ..
 fi
 
 # Clone and build lgpio if not already done
